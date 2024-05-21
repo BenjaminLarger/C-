@@ -20,9 +20,14 @@ MKDIR_P=mkdir -p
 CFLAGS=-g -Wall -Wextra -Werror -std=c++98
 
 # Source files and object files
-SRCS=main.cpp
-#OBJS=$(SRCS:.cpp=.o)
-OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
+SRCS_DIR=Sources/
+BUILD_DIR=build/
+SRCS_FILES	:= main.cpp \
+			de_constructors.cpp \
+			add_contact.cpp search_contact.cpp\
+			utils.cpp
+SRCS=$(addprefix $(SRCS_DIR), $(SRCS_FILES))
+OBJS=$(patsubst $(SRCS_DIR)%.cpp, $(BUILD_DIR)%.o,$(SRCS))
 DEPS=$(OBJS:.o=.d)
 
 # Output binary name
@@ -36,7 +41,7 @@ all: build $(NAME)
 
 build:
 	@echo -e "${YELLOW}📁 Creating build directory...${NC}"
-	$(MKDIR_P) build
+	$(MKDIR_P) $(BUILD_DIR)
 	@echo -e "${GREEN}📁 Build directory created.${NC}"
 
 $(NAME): $(OBJS)
@@ -47,7 +52,7 @@ $(NAME): $(OBJS)
 # Automatically generate dependencies
 -include $(DEPS)
 
-build/%.o: %.cpp
+$(BUILD_DIR)%.o: $(SRCS_DIR)%.cpp
 	@echo -e "${YELLOW}🔨 Compiling $<...${NC}"
 	$(CXX) $(CFLAGS) -MMD -MP -c $< -o $@ $(HEADER)
 	@echo -e "${GREEN}✅ Compiled $< to $@.${NC}"

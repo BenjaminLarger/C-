@@ -1,15 +1,21 @@
-# ifndef PHONEBOOK_CLASS_CPP
-# define PHONEBOOK_CLASS_CPP
+# ifndef PHONEBOOK_CLASS_HPP
+# define PHONEBOOK_CLASS_HPP
+
+#include "contact.class.hpp"
 
 class Phonebook
 {
 	public:
-			int		foo;
 			
 			Phonebook(void);
 			~Phonebook(void);
-			
-			void	bar(void);
+			Contact			contact[9];
+			unsigned int	index;
+			void		publicbar(void);
+	
+	private:
+			int		_privatefoo;//convention _ avant function privee 
+			void	_privateBar(void);
 };
 
 #endif
