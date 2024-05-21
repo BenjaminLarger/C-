@@ -6,7 +6,6 @@ BLUE=\033[0;34m
 BLUE_BOLD=\033[1;34m
 NC=\033[0m
 
-
 # Compiler and tools
 CC=gcc
 CXX=g++
