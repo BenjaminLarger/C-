@@ -5,7 +5,7 @@ using namespace std;
 namespace	megaphone {
 			int	no_noise()
 			{
-				std::cout << NO_NOISE << endl;
+				std::cout << NO_NOISE;
 				return (0);
 			}
 			void	display_noise(char *noise)
@@ -28,12 +28,15 @@ namespace	megaphone {
 int main(int argc, char **argv)
 {
     if (argc == 1)
-        return (megaphone::no_noise());
-    for(int i = 1; i < argc; i++)
-    {
-		megaphone::display_noise(argv[i]);
-		if (i < argc - 1)
-			std::cout << ' ';
-    }
-	std::cout << endl;
+        megaphone::no_noise();
+	else
+	{
+		for(int i = 1; i < argc; i++)
+		{
+			megaphone::display_noise(argv[i]);
+			if (i < argc - 1)
+				cout << ' ';
+		}
+	}
+	cout << endl;
 }
