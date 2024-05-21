@@ -14,7 +14,7 @@ RM=rm -f
 MKDIR_P=mkdir -p
 
 # Compilation flags
-CFLAGS=-g -Wall
+CFLAGS=-g -Wall -Wextra -Werror -std=c++98
 
 # Source files and object files
 SRCS=megaphone.cpp
