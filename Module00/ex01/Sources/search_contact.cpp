@@ -32,19 +32,19 @@ void	display_contacts_info(Phonebook *phonebook)
 {
 	for (unsigned int i = 0; i < 9; i++)
 	{
-		cout << i + 1 << " | ";
+		cout << "         " << i + 1 << " | ";
 		if (phonebook->contact[i].first_name == "")
 			cout << "   <empty>" << " | ";
 		else
-			cout << phonebook->contact[i].first_name << " | ";
+			print_contact(phonebook->contact[i].first_name);
 		if (phonebook->contact[i].last_name == "")
 			cout << "   <empty>" << " | ";
 		else
-			cout << phonebook->contact[i].last_name << " | ";
+			print_contact(phonebook->contact[i].last_name);
 		if (phonebook->contact[i].nickname == "")
 			cout << "   <empty>" << " | ";
 		else
-			cout << phonebook->contact[i].nickname << " | ";
+			print_contact(phonebook->contact[i].nickname);
 		cout << endl;
 	}
 }

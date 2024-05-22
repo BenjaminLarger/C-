@@ -40,7 +40,8 @@ void			add_contact(Phonebook *phonebook, Contact *contact);
 /* SEARCH CONTACT */
 void			search_contact(Phonebook *phonebook, Contact *contact);
 void			display_contacts_info(Phonebook *phonebook);
-//std::string		print_contact(std::string info)
+std::string		print_contact(std::string info);
+//std::string		print_contact(const std::string& info);
 
 
 

@@ -4,19 +4,18 @@ using namespace std;
 
 std::string		print_contact(std::string info)
 {
-	for(int i = 0; i < 10 - info.length)
-		cout << ' ';
-	i = 0;
-	while (info[i] != '\0' && i < 9)
-	{
-		cout << info[i];
-		i++;
-	}
-	if (info[i + 1] != '\0')
-		cout '.';
+	std::string output;
+
+	for(long unsigned int i = 0; i < 10 - info.length(); i++)
+		output += ' ';
+	for (long unsigned int i = 0; i < info.length() && i < 9; i++)
+		output += info[i];
+	if (info.length() > 10)
+		output += '.';
 	else
-		cout << info[i];
-	cout << endl;
+		output += info.substr(0, 10);
+	std::cout << output << " | ";
+	return (output);
 }
 
 char	*prompt_user(const char *prompt)
