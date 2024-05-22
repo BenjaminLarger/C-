@@ -11,6 +11,7 @@ class Phonebook
 			~Phonebook(void);
 			Contact			contact[9];
 			unsigned int	index;
+			unsigned int	nb_of_contact;
 			void		publicbar(void);
 	
 	private:

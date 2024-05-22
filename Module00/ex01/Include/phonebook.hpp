@@ -1,6 +1,14 @@
 # ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
+// ----------INCLUDE
+
+#include <iostream>
+#include <cstring>
+#include <stdlib.h>
+#include "contact.class.hpp"
+#include "phonebook.class.hpp"
+
 // ----------DEFINITION
 
 /* MAIN PROMPTS */
@@ -15,24 +23,26 @@
 /* ERRORS */
 # define BAD_INDEX "Please, provide an index between 1 and 9 included: "
 # define EMPTY_OUTPUT "Please, provide a non-empty output: "
+# define EMPTY ""
 
-
-// ----------INCLUDE
-
-#include <iostream>
-#include <cstring>
-#include <stdlib.h>
-#include "contact.class.hpp"
-#include "phonebook.class.hpp"
-
+// ----------NAMESPACE
 using namespace std;
 
+// ----------COLORS
+#define RESET   "\033[0m"
+#define BLACK   "\033[30m"
+#define RED     "\033[1;31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define WHITE   "\033[1; 37m"
 
 // ----------FUNCTIONS
 
 /* PROMPTS */
-char	*prompt_user(const char *prompt);
-int		prompt_an_integer(const char *prompt);
+std::string		prompt_user(const char *prompt, const char *color);
 
 /* ADD CONTACTS */
 void			add_contact(Phonebook *phonebook, Contact *contact);
@@ -41,7 +51,6 @@ void			add_contact(Phonebook *phonebook, Contact *contact);
 void			search_contact(Phonebook *phonebook, Contact *contact);
 void			display_contacts_info(Phonebook *phonebook);
 std::string		print_contact(std::string info);
-//std::string		print_contact(const std::string& info);
 
 
 

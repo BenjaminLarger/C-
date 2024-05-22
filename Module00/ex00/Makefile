@@ -28,7 +28,7 @@ NAME=megaphone
 
 # Targets
 all: build $(NAME)
-	@echo "${BLUE_BOLD}🚀 Build successful! 🚀${BLUE_BOLD}"
+	@echo "${BLUE_BOLD}🚀 $(NAME) Built successful! 🚀${BLUE_BOLD}"
 
 build:
 	@echo -e "${YELLOW}📁 Creating build directory...${NC}"
