@@ -12,11 +12,6 @@ class Phonebook
 			Contact			contact[9];
 			unsigned int	index;
 			unsigned int	nb_of_contact;
-			void		publicbar(void);
-	
-	private:
-			int		_privatefoo;//convention _ avant function privee 
-			void	_privateBar(void);
 };
 
 #endif
