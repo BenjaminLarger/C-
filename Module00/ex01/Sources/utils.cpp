@@ -1,7 +1,5 @@
 #include "phonebook.hpp"
 
-using namespace std;
-
 std::string		print_contact(std::string info)
 {
 	std::string output;
@@ -36,7 +34,7 @@ std::string		prompt_user(const char *prompt, const char *color)
 {
 	std::string 	user_input;
 
-	cout << RESET << prompt << color;
+	std::cout << RESET << prompt << color;
 	std::getline(std::cin, user_input);
 	if (!(strcmp((char *)user_input.c_str(), "EXIT")))
 		exit(0);

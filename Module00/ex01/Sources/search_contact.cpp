@@ -1,6 +1,5 @@
 #include "phonebook.hpp"
 
-using namespace std;
 
 static unsigned int	get_search_index(string prompt)
 {
@@ -20,8 +19,6 @@ static unsigned int	get_search_index(string prompt)
 		return (7);
 	else if (!(prompt.compare("8")))
 		return (8);
-	else if (!(prompt.compare("9")))
-		return (9);
 	else if (!(prompt.compare("EXIT")))
 		exit(0);
 	else
@@ -30,23 +27,23 @@ static unsigned int	get_search_index(string prompt)
 
 void	display_contacts_info(Phonebook *phonebook)
 {
-	cout << RESET;
-	for (unsigned int i = 0; i < 9; i++)
+	std::cout << RESET;
+	for (unsigned int i = 0; i < 8; i++)
 	{
 		cout << "         " << i + 1 << YELLOW << " | " << RESET;
 		if (phonebook->contact[i].first_name == EMPTY)
-			cout << "   <empty>" << YELLOW << " | " << RESET;
+			std::cout << "   <empty>" << YELLOW << " | " << RESET;
 		else
 			print_contact(phonebook->contact[i].first_name);
 		if (phonebook->contact[i].last_name == EMPTY)
-			cout << "   <empty>" << YELLOW << " | " << RESET;
+			std::cout << "   <empty>" << YELLOW << " | " << RESET;
 		else
 			print_contact(phonebook->contact[i].last_name);
 		if (phonebook->contact[i].nickname == EMPTY)
-			cout << "   <empty>" << YELLOW << " | " << RESET;
+			std::cout << "   <empty>" << YELLOW << " | " << RESET;
 		else
 			print_contact(phonebook->contact[i].nickname);
-		cout << endl;
+		std::cout << std::endl;
 	}
 }
 
@@ -54,12 +51,12 @@ static bool index_is_correct(Phonebook phonebook, unsigned int index)
 {
 	if (index == 0)
 	{
-		cout << RED << BAD_INDEX << RESET << endl;
+		std::cout << RED << BAD_INDEX << RESET << std::endl;
 		return (false);
 	}
 	else if (index > phonebook.nb_of_contact)
 	{
-		cout << RED << "You only have " << phonebook.index << " contact(s)" << RESET << endl;
+		std::cout << RED << "You only have " << phonebook.index << " contact(s)" << RESET << std::endl;
 		return (false);
 	}
 	else
@@ -68,30 +65,25 @@ static bool index_is_correct(Phonebook phonebook, unsigned int index)
 
 static void		display_indexed_contact_info(Phonebook phonebook, unsigned int index)
 {
-	cout << YELLOW << "------------------------------------------------" << RESET << endl;
-	cout << "INDEX:          " << index << endl;
-	cout << "FIRST NAME:     " << phonebook.contact[index - 1].first_name << endl;
-	cout << "LAST NAME:      " << phonebook.contact[index - 1].last_name << endl;
-	cout << "NICKNAME:       " << phonebook.contact[index - 1].nickname << endl;
-	cout << "PHONE NUMBER:   " << phonebook.contact[index - 1].phone_number << endl;
-	cout << "DARKEST SECRET: " << phonebook.contact[index - 1].darkest_secret << endl;
-	cout << YELLOW << "------------------------------------------------" << RESET << endl;
+	std::cout << YELLOW << "------------------------------------------------" << RESET << std::endl;
+	std::cout << "INDEX:          " << index << std::endl;
+	std::cout << "FIRST NAME:     " << phonebook.contact[index - 1].first_name << std::endl;
+	std::cout << "LAST NAME:      " << phonebook.contact[index - 1].last_name << std::endl;
+	std::cout << "NICKNAME:       " << phonebook.contact[index - 1].nickname << std::endl;
+	std::cout << "PHONE NUMBER:   " << phonebook.contact[index - 1].phone_number << std::endl;
+	std::cout << "DARKEST SECRET: " << phonebook.contact[index - 1].darkest_secret << std::endl;
+	std::cout << YELLOW << "------------------------------------------------" << RESET << std::endl;
 }
 
-void	search_contact(Phonebook *phonebook, Contact *contact)
+void	search_contact(Phonebook *phonebook)
 {
 	string			user_prompt;
 	unsigned int	index;
 
-	(void)*phonebook;
-	(void)*contact;
 	display_contacts_info(phonebook);
 	user_prompt = prompt_user(INDEX_PROMPT, YELLOW);
 	index = get_search_index(user_prompt);
-	while (index_is_correct(*phonebook, index) == false)
-	{
-		user_prompt = prompt_user(INDEX_PROMPT, YELLOW);
-		index = get_search_index(user_prompt);
-	}
+	if (index_is_correct(*phonebook, index) == false)
+		return ;
 	display_indexed_contact_info(*phonebook, index);
 }
