@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:29:48 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/29 13:12:40 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:22:34 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -40,19 +40,20 @@ void	display_contacts_info(Phonebook *phonebook)
 	std::cout << RESET;
 	for (unsigned int i = 0; i < 8; i++)
 	{
+		Contact contact = phonebook->get_contact(i);
 		cout << "         " << i + 1 << YELLOW << " | " << RESET;
-		if (phonebook->contact[i].first_name == EMPTY)
+		if (contact.get_first_name() == EMPTY)
 			std::cout << "   <empty>" << YELLOW << " | " << RESET;
 		else
-			print_contact(phonebook->contact[i].first_name);
-		if (phonebook->contact[i].last_name == EMPTY)
+			print_contact(contact.get_first_name());
+		if (contact.get_last_name() == EMPTY)
 			std::cout << "   <empty>" << YELLOW << " | " << RESET;
 		else
-			print_contact(phonebook->contact[i].last_name);
-		if (phonebook->contact[i].nickname == EMPTY)
+			print_contact(contact.get_last_name());
+		if (contact.get_nickname() == EMPTY)
 			std::cout << "   <empty>" << YELLOW << " | " << RESET;
 		else
-			print_contact(phonebook->contact[i].nickname);
+			print_contact(contact.get_nickname());
 		std::cout << std::endl;
 	}
 }
@@ -75,13 +76,14 @@ static bool index_is_correct(Phonebook phonebook, unsigned int index)
 
 static void		display_indexed_contact_info(Phonebook phonebook, unsigned int index)
 {
+	Contact contact = phonebook.get_contact(index - 1);
 	std::cout << YELLOW << "------------------------------------------------" << RESET << std::endl;
 	std::cout << "INDEX:          " << index << std::endl;
-	std::cout << "FIRST NAME:     " << phonebook.contact[index - 1].first_name << std::endl;
-	std::cout << "LAST NAME:      " << phonebook.contact[index - 1].last_name << std::endl;
-	std::cout << "NICKNAME:       " << phonebook.contact[index - 1].nickname << std::endl;
-	std::cout << "PHONE NUMBER:   " << phonebook.contact[index - 1].phone_number << std::endl;
-	std::cout << "DARKEST SECRET: " << phonebook.contact[index - 1].darkest_secret << std::endl;
+	std::cout << "FIRST NAME:     " << contact.get_first_name() << std::endl;
+	std::cout << "LAST NAME:      " << contact.get_last_name() << std::endl;
+	std::cout << "NICKNAME:       " << contact.get_nickname() << std::endl;
+	std::cout << "PHONE NUMBER:   " << contact.get_phone_number() << std::endl;
+	std::cout << "DARKEST SECRET: " << contact.get_darkest_secret() << std::endl;
 	std::cout << YELLOW << "------------------------------------------------" << RESET << std::endl;
 }
 

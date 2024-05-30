@@ -1,20 +1,37 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:26:32 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/30 12:26:53 by blarger          ###   ########.fr       */
+/*   Created: 2024/05/30 15:12:11 by blarger           #+#    #+#             */
+/*   Updated: 2024/05/30 15:19:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Zombie.hpp"
+#include "phonebook.hpp"
 
-void	Zombie::random_chump(void)
+void	Phonebook::add_contact(const Contact &new_contact, int index)
 {
-	Zombie	zombie;
+	contact[index] = new_contact;
+}
 
-	zombie._name = "Bizon";
+Contact	Phonebook::get_contact(int i)
+{
+	return (contact[i]);
+}
+
+/* CONSTRUCTOR */
+Phonebook::Phonebook(void)
+{
+	this->index = 0;
+	this->nb_of_contact = 0;
+	return ;
+}
+
+/* DECONSTRUCTOR */
+Phonebook::~Phonebook(void)
+{
+	return ;
 }

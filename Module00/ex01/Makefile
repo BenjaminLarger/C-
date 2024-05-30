@@ -23,8 +23,8 @@ CFLAGS=-g -Wall -Wextra -Werror -std=c++98
 SRCS_DIR=Sources/
 BUILD_DIR=build/
 SRCS_FILES	:= main.cpp \
-			de_constructors.cpp \
 			add_contact.cpp search_contact.cpp\
+			Contact.cpp Phonebook.cpp \
 			utils.cpp
 SRCS=$(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS=$(patsubst $(SRCS_DIR)%.cpp, $(BUILD_DIR)%.o,$(SRCS))

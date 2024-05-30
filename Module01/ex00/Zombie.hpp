@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/29 20:39:24 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:42:11 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,8 +20,8 @@
 
 // ----------DEFINITION
 
-#define MAIN "Type NAME to name a new zombie; or type RANDOM to randize the zombie new name; type EXIT to quit the program"
-#define NAME "Find a name for your new zombie"
+#define MAIN "Type NAME to name a new zombie; or type RANDOM to randize the zombie new name; type EXIT to quit the program: "
+#define NAME "Find a name for your new zombie: "
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -46,14 +46,14 @@ public:
 	~Zombie (void);
     void    announce(void)
 	{
-		 std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+		 std::cout << RESET << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 	}
 	static Zombie	*name_zombie(void);
 	static void	random_chump(void);
-	std::string _name;
 
 
 private:
+	std::string _name;
 
 
 };

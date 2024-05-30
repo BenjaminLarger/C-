@@ -6,22 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:29:30 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/29 19:25:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/30 15:12:23 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "phonebook.hpp"
 
-static void	reset_contact(Phonebook *phonebook, int index)
-{
-	phonebook->contact[index].first_name = EMPTY;
-	phonebook->contact[index].last_name = EMPTY;
-	phonebook->contact[index].nickname = EMPTY;
-	phonebook->contact[index].phone_number = EMPTY;
-	phonebook->contact[index].darkest_secret = EMPTY;
-}
-
-static bool	valid_phone_number(string phone_number)
+static bool	valid_phone_number(std::string phone_number)
 {
 	long unsigned int	i;
 
@@ -54,7 +45,7 @@ static bool	valid_phone_number(string phone_number)
 	return (true);
 }
 
-static bool	valid_input(string str)
+static bool	valid_input(std::string str)
 {
 	if (str == EMPTY)
 	{
@@ -66,23 +57,27 @@ static bool	valid_input(string str)
 
 void	add_contact(Phonebook *phonebook)
 {
-	int	index;
+	int			index;
+	std::string	input;
+	Contact		new_contact;
 
 	if (phonebook->index == 8)
 		phonebook->index = 0;
 	index = phonebook->index;
-	reset_contact(phonebook, index);
-	while (valid_input(phonebook->contact[index].first_name) == false)
-		phonebook->contact[index].first_name = prompt_user(FIRST_NAME, YELLOW);
-	while (valid_input(phonebook->contact[index].last_name) == false)
-		phonebook->contact[index].last_name = prompt_user(LAST_NAME, YELLOW);
-	while (valid_input(phonebook->contact[index].nickname) == false)
-		phonebook->contact[index].nickname = prompt_user(NICKNAME, YELLOW);
-	while (valid_phone_number(phonebook->contact[index].phone_number) == false)
-		phonebook->contact[index].phone_number = prompt_user(PHONE_NUMBER, YELLOW);
-	while (valid_input(phonebook->contact[index].darkest_secret)  == false)
-		phonebook->contact[index].darkest_secret = prompt_user(DARK_SECRET, YELLOW);
-	phonebook->index++;
-	if (phonebook->nb_of_contact < 8)
+	while (valid_input(input = prompt_user(FIRST_NAME, YELLOW)) == false);
+	new_contact.setFirstName(input);
+	while (valid_input(input = prompt_user(LAST_NAME, YELLOW)) == false);
+	new_contact.setLastName(input);
+	while (valid_input(input = prompt_user(NICKNAME, YELLOW)) == false);
+	new_contact.setNickname(input);
+	while (valid_phone_number(input = prompt_user(PHONE_NUMBER, YELLOW)) == false);
+	new_contact.setPhoneNumber(input);
+	while (valid_input(input = prompt_user(DARK_SECRET, YELLOW)) == false);
+	new_contact.setDarkestSecret(input);
+	phonebook->add_contact(new_contact, index);
+	if (index < 8)
+	{
+		phonebook->index++;
 		phonebook->nb_of_contact++;
+	}
 }
