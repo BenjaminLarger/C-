@@ -19,8 +19,6 @@ static unsigned int	get_search_index(string prompt)
 		return (7);
 	else if (!(prompt.compare("8")))
 		return (8);
-	else if (!(prompt.compare("EXIT")))
-		exit(0);
 	else
 		return (0);
 }
