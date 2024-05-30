@@ -61,6 +61,7 @@ fclean:
 	$(RM) $(OBJS) $(DEPS)
 	$(RM) *~ .depend
 	$(RM) $(NAME)
+	rm -rf build/
 	@echo -e "${RED}🧹 Deep clean completed.${NC}"
 
 re: fclean all

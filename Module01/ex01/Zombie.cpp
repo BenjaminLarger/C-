@@ -1,31 +1,23 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:26:32 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/30 20:45:06 by blarger          ###   ########.fr       */
+/*   Created: 2024/05/29 16:26:55 by blarger           #+#    #+#             */
+/*   Updated: 2024/05/30 19:19:29 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Zombie.hpp"
-#include <cstdlib> // for std::rand and std::srand
 
-std::string	generate_random_name(void)
+Zombie::Zombie(void)
 {
-	int	random_index;
-	std::string	names[] = {"Tommy Shelby", "Heisenberg", "Saul Goodman", "Rick", "Sully"};
-
-	random_index = rand() % 5;
-	return names[random_index];
+	return ;
 }
 
-void	Zombie::random_chump(std::string name)
+Zombie::~Zombie(void)
 {
-	Zombie	zombie;
-
-	zombie.name = name;
-	zombie.announce();
+	return ;
 }

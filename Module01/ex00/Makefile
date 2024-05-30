@@ -30,7 +30,7 @@ all: build $(NAME)
 	@echo "${BLUE_BOLD}🚀 $(NAME) Built successful! 🚀${BLUE_BOLD}"
 
 build:
-	@echo -e "${YELLOW}📁 Creating build directory...${NC}"
+	@echo -e "${YEfLLOW}📁 Creating build directory...${NC}"
 	$(MKDIR_P) build
 	@echo -e "${GREEN}📁 Build directory created.${NC}"
 
@@ -61,6 +61,7 @@ fclean:
 	$(RM) $(OBJS) $(DEPS)
 	$(RM) *~ .depend
 	$(RM) $(NAME)
+	rm -rf build/
 	@echo -e "${RED}🧹 Deep clean completed.${NC}"
 
 re: fclean all
