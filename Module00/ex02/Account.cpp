@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:29:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/29 13:04:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/30 12:18:04 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -188,8 +188,11 @@ void    Account::displayStatus(void) const
 /* CONSTRUCTOR */
 Account::Account(int initial_deposit)
 {
+	static int	index = 0;
+
     _displayTimestamp();
-    print_index(this->_accountIndex, false);
+    print_index(index, false);
+	index++;
     print_amount(initial_deposit, false);
     std::cout << "created" << std::endl;
 
