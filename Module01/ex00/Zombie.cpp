@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:55 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/29 20:35:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/30 16:32:03 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,10 +14,10 @@
 
 Zombie::Zombie(void)
 {
-	std::cout << "Zombie born." << std::endl;
+	return ;
 }
 
 Zombie::~Zombie(void)
 {
-	std::cout << "Zombie " << this->_name << "destroyed." << std::endl;
+	return ;
 }
