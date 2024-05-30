@@ -17,7 +17,6 @@ CFLAGS=-g -Wall -Wextra -Werror -std=c++98
 
 # Source files and object files
 SRCS=megaphone.cpp
-#OBJS=$(SRCS:.cpp=.o)
 OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
 DEPS=$(OBJS:.o=.d)
 

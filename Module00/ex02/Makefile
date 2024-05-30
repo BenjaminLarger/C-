@@ -16,23 +16,22 @@ MKDIR_P=mkdir -p
 CFLAGS=-g -Wall -Wextra -Werror -std=c++98
 
 # Source files and object files
-BUILD_DIR=build/
-SRCS	:= main.cpp \
-OBJS=$(patsubst %.cpp, $(BUILD_DIR)%.o,$(SRCS))
+SRCS=Account.cpp tests.cpp
+OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
 DEPS=$(OBJS:.o=.d)
 
 # Output binary name
-NAME=PhoneBook
+NAME=bank_transfers_history
 
 .PHONY: all clean distclean
 
 # Targets
 all: build $(NAME)
-	@echo "${BLUE_BOLD}🚀 Build successful! 🚀${NC}"
+	@echo "${BLUE_BOLD}🚀 $(NAME) Built successful! 🚀${BLUE_BOLD}"
 
 build:
 	@echo -e "${YELLOW}📁 Creating build directory...${NC}"
-	$(MKDIR_P) $(BUILD_DIR)
+	$(MKDIR_P) build
 	@echo -e "${GREEN}📁 Build directory created.${NC}"
 
 $(NAME): $(OBJS)
@@ -43,7 +42,7 @@ $(NAME): $(OBJS)
 # Automatically generate dependencies
 -include $(DEPS)
 
-$(BUILD_DIR)%.o: %.cpp
+build/%.o: %.cpp
 	@echo -e "${YELLOW}🔨 Compiling $<...${NC}"
 	$(CXX) $(CFLAGS) -MMD -MP -c $< -o $@
 	@echo -e "${GREEN}✅ Compiled $< to $@.${NC}"
