@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   add_contact.cpp                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:29:30 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/28 12:29:30 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:25:36 by blarger          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "phonebook.hpp"
 
@@ -74,8 +74,6 @@ void	add_contact(Phonebook *phonebook, Contact *contact)
 		phonebook->index = 0;
 	index = phonebook->index;
 	reset_contact(phonebook, index);
-	(void)*phonebook;
-	(void)*contact;
 	while (valid_input(phonebook->contact[index].first_name) == false)
 		phonebook->contact[index].first_name = prompt_user(FIRST_NAME, YELLOW);
 	while (valid_input(phonebook->contact[index].last_name) == false)
