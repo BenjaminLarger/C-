@@ -12,8 +12,6 @@
 
 #include "phonebook.hpp"
 
-using namespace std;
-
 static void	reset_contact(Phonebook *phonebook, int index)
 {
 	phonebook->contact[index].first_name = EMPTY;
@@ -66,11 +64,11 @@ static bool	valid_input(string str)
 		return (true);
 }
 
-void	add_contact(Phonebook *phonebook, Contact *contact)
+void	add_contact(Phonebook *phonebook)
 {
 	int	index;
 
-	if (phonebook->index == 9)
+	if (phonebook->index == 8)
 		phonebook->index = 0;
 	index = phonebook->index;
 	reset_contact(phonebook, index);
@@ -85,6 +83,6 @@ void	add_contact(Phonebook *phonebook, Contact *contact)
 	while (valid_input(phonebook->contact[index].darkest_secret)  == false)
 		phonebook->contact[index].darkest_secret = prompt_user(DARK_SECRET, YELLOW);
 	phonebook->index++;
-	if (phonebook->nb_of_contact < 9)
+	if (phonebook->nb_of_contact < 8)
 		phonebook->nb_of_contact++;
 }

@@ -12,7 +12,6 @@
 
 #include <iostream>
 #define NO_NOISE "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
-using namespace std;
 
 namespace	megaphone {
 			int	no_noise()
@@ -47,8 +46,8 @@ int main(int argc, char **argv)
 		{
 			megaphone::display_noise(argv[i]);
 			if (i < argc - 1)
-				cout << ' ';
+				std::cout << ' ';
 		}
 	}
-	cout << endl;
+	std::cout << std::endl;
 }

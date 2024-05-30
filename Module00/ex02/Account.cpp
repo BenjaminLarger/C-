@@ -11,9 +11,6 @@
 /******************************************************************************/
 
 #include "Account.hpp"
-#include <iostream>
-#include <ctime>
-#include <vector>
 
 int Account::_totalAmount = 0;
 int Account::_nbAccounts = 0;

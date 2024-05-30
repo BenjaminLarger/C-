@@ -12,8 +12,6 @@
 
 #include "phonebook.hpp"
 
-using namespace std;
-
 Phonebook::Phonebook(void)
 {
 	this->index = 0;
