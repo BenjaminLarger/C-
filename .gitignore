@@ -1,3 +1,4 @@
 *.o
 build
 *DS*
+*/check_memory_leaks/*

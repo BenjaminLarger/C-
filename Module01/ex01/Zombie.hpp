@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/30 21:14:38 by blarger          ###   ########.fr       */
+/*   Updated: 2024/05/31 08:31:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,6 +25,8 @@
 
 #define MAIN "How many zombies do you want to create? "
 # define N_PROMPT "Provide only the name of the zombies as parameter."
+# define BRAINZ ": BraiiiiiiinnnzzzZ..."
+# define BAD_INT "Input must be an integer inferior to 21474836"
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -47,12 +49,9 @@ public:
 
 	Zombie  (void);
 	~Zombie (void);
-    void    announce(void)
-	{
-		 std::cout << RESET << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	}
-	void 	set_name(const std::string& _name) {name = _name;}
-	Zombie	*next;
+    void    		announce(void) { std::cout << RESET << this->name << BRAINZ << std::endl;}
+	void 			set_name(const std::string& _name) {name = _name;}
+	std::string 	get_name(void) {return (name);}
 
 private:
 	std::string name;
