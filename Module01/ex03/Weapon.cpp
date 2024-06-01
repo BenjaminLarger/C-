@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/01 19:31:02 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:34:58 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,12 +24,10 @@ void Weapon::setType(/* const  */std::string _type)
 /* CONSTRUCTOR */
 Weapon::Weapon(std::string _weapon_name)
 {
-	std::cout << GREEN << "Weapon created." << RESET << std::endl;
 	setType(_weapon_name);
 }
 /* DECONSTRUCTOR */
 Weapon::~Weapon(void)
 {
-	std::cout << RED << "Weapon destructed." << RESET << std::endl;
 	return;
 }

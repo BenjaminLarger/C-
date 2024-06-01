@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:38 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/01 17:19:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:39:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,7 +29,6 @@ int	main()
 
 		HumanB jim("Jim");
 		jim.setWeapon(club);
-		//std::cout << "wepon name = " << club.getType() << std::endl;
 		jim.attack();
 		club.setType("some other type of club");
 		jim.attack();
