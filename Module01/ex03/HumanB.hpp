@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/31 12:00:40 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:29:32 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,11 +29,11 @@ public:
 
 	HumanB(const std::string& _name);
 	~HumanB (void);
-    Weapon *weapon;
-	void	setWeapon(Weapon _weapon);
+	void	setWeapon(Weapon &_weapon);
 	void	attack(void);
 private:
 	std::string name;
+	Weapon *weapon;
 };
 
 

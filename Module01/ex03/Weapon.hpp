@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/31 11:30:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:24:06 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -53,9 +53,9 @@ public:
 
 	Weapon(std::string _weapon_name);
 	~Weapon (void);
-	void	setWeapon(std::string _weapon_name);
-	std::string 	getType(void);
-	void 			setType(const std::string _type);
+	void				setWeapon(std::string _weapon_name);
+	const std::string 	getType(void);
+	void 				setType(/* const  */std::string _type);
 
 private:
 	std::string type;

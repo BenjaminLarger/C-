@@ -6,21 +6,20 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:33:11 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/31 12:03:37 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:30:49 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "HumanB.hpp"
 
-void	HumanB::setWeapon(Weapon _weapon)
+void	HumanB::setWeapon(Weapon &_weapon)
 {
 	this->weapon = &_weapon;
-	return ;
 }
 
 void	HumanB::attack(void)
 {
-	std::cout << name << ATTACK << weapon.getType() << std::endl;
+	std::cout << name << ATTACK << weapon->getType() << std::endl;
 }
 
 

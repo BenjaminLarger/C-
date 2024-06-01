@@ -6,18 +6,18 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/31 11:10:52 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/01 19:31:02 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Weapon.hpp"
 
-std::string	Weapon::getType(void)
+const std::string Weapon::getType(void)
 {
 	return (this->type);
 }
 
-void	Weapon::setType(std::string _type)
+void Weapon::setType(/* const  */std::string _type)
 {
 	this->type = _type;
 }
@@ -31,5 +31,5 @@ Weapon::Weapon(std::string _weapon_name)
 Weapon::~Weapon(void)
 {
 	std::cout << RED << "Weapon destructed." << RESET << std::endl;
-	return ;
+	return;
 }
