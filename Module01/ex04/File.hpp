@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/01 19:55:42 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/02 14:16:57 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,14 +16,16 @@
 
 // ----------INCLUDE
 
-#include <iostream>
-#include <cerrno>
-#include <ostream>
-
+#include <fstream> 
+#include <fstream> 
+#include <iostream> 
+#include <string>
+#include <cstdlib>
+#include <cstring>
 
 // ----------DEFINITION
 
-# define ATTACK " attacks with their "
+# define FILE "Cannot open file :"
 # define ARGC "Program must take in 4 parameters"
 
 // ----------COLORS
@@ -37,33 +39,14 @@
 #define CYAN    "\033[36m"
 #define WHITE   "\033[1; 37m"
 
-// ----------FORWARD DECLERARTION
-
-
-class File {
-
-
-// ************************************************************************** //
-//                               Class                                //
-// ************************************************************************** //
-
-
-
-public:
-
-	File(std::string _weapon_name);
-	~File (void);
-	void				setWeapon(std::string _weapon_name);
-	const std::string 	getType(void);
-	void 				setType(/* const  */std::string _type);
-
-private:
-	std::string type;
-
-
-};
-
 // ----------FUNCTIONS
 
+/* INFILE */
+void	openInfile(char *infile, std::ifstream& infile_fd);
+std::string	readInfile(std::ifstream& infile_fd, std::string line);
+
+/* OUTFILE */
+void	createNewFile(char *infile, std::ifstream& infile_fd, std::ofstream& outfile_fd);
+std::string	sedNewLine(std::string fileContent, const char *s1, const char *s2);
 
 #endif

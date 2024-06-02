@@ -16,7 +16,7 @@ MKDIR_P=mkdir -p
 CFLAGS=-g -Wall -Wextra -Werror -std=c++98
 
 # Source files and object files
-SRCS=main.cpp
+SRCS=main.cpp infile.cpp outfile.cpp
 OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
 DEPS=$(OBJS:.o=.d)
 
