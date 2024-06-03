@@ -6,13 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/02 14:16:57 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/02 20:32:07 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
-#ifndef WEAPON_HPP
-#define WEAPON_HPP
+#ifndef FILE_HPP
+#define FILE_HPP
 
 // ----------INCLUDE
 
