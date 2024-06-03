@@ -6,13 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:38 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 12:57:49 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 14:22:05 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Harl.hpp"
 
-std::string		prompt_user(const char *prompt, const char *color)
+static std::string		prompt_user(const char *prompt, const char *color)
 {
 	std::string 	user_input;
 

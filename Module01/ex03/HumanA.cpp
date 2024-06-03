@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:59 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/01 19:35:11 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:29:09 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,9 @@ void	HumanA::attack(void)
 /* CONSTRUCTOR */
 HumanA::HumanA(const std::string _name, Weapon& _weapon) : name(_name), weapon(_weapon)
 {
+	return ;
 }
+
 /* DECONSTRUCTOR */
 HumanA::~HumanA(void)
 {

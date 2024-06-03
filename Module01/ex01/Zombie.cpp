@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:55 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/31 08:31:54 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:26:51 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,5 +69,6 @@ Zombie::Zombie(void)
 
 Zombie::~Zombie(void)
 {
+	std::cout << RED << this->name << " died." << RESET << std::endl;
 	return ;
 }

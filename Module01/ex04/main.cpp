@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:38 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/02 20:27:21 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:53:17 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,8 +17,6 @@ int	print_error(const char *str)
 	std::cout << RED << str << RESET << std::endl;
 	return (-1);
 }
-
-
 
 int	main(int argc, char **argv)
 {

@@ -17,12 +17,10 @@
 // ----------INCLUDE
 #include "Weapon.hpp"
 
-
 // ************************************************************************** //
 //                               Account Class                                //
 // ************************************************************************** //
 class HumanA {
-
 
 public:
 
@@ -30,7 +28,6 @@ public:
 	~HumanA (void);
 
 	void	attack(void);
-	//void	setWeapon(Weapon _weapon);
 private:
 	std::string name;
     Weapon 		&weapon;

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:32 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/30 20:45:06 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:19:26 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,8 +24,7 @@ std::string	generate_random_name(void)
 
 void	Zombie::random_chump(std::string name)
 {
-	Zombie	zombie;
+	Zombie	zombie(name);
 
-	zombie.name = name;
 	zombie.announce();
 }

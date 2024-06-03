@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:34 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/02 20:45:08 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:18:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,8 +14,7 @@
 
 Zombie	*Zombie::name_zombie(void)
 {
-	Zombie*	new_zombie = new Zombie;
+	Zombie*	new_zombie = new Zombie(prompt_user(NAME, YELLOW));
 
-	new_zombie->name = prompt_user(NAME, YELLOW);
 	return (new_zombie);
 }

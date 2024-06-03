@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/30 17:20:30 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 16:16:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -39,10 +39,9 @@
 // ************************************************************************** //
 class Zombie {
 
-
 public:
 
-	Zombie  (void);
+	Zombie  (std::string _name);
 	~Zombie (void);
     void    announce(void)
 	{
@@ -60,6 +59,6 @@ private:
 
 // ----------FUNCTIONS
 std::string		prompt_user(const char *prompt, const char *color);
-std::string	generate_random_name(void);
+std::string		generate_random_name(void);
 
 #endif

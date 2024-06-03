@@ -6,42 +6,20 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 20:30:07 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 16:38:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 15:44:59 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Harl.hpp"
 
-/* FUNCTION TO MEMBER: 
-
-	levelMap[level]: This looks up the function pointer associated
-with the key level in the levelMap map.
-
-	this->*: This is the syntax for dereferencing a member function pointer.
-It means "the member function of this pointed to by...".
-
-	(this->*levelMap[level])(): This calls the member function pointed to by
-levelMap[level] on the current object (this).
-
-	So, if level is "DEBUG", and levelMap["DEBUG"] is a pointer to the debug
-function, this line would call this->debug().
-*/
-
-void Harl::complain( std::string level )
-{
-	if (levelMap.find(level) != levelMap.end())
-		(this->*levelMap[level])();
-	else
-		std::cout << RED << "Invalid comments: " << level << RESET << std::endl;
-}
-
 /* CONSTRUCTOR */
 Harl::Harl(void)
 {
-	levelMap["DEBUG"] = &Harl::debug;
-	levelMap["WARNING"] = &Harl::warning;
-	levelMap["INFO"] = &Harl::info;
-	levelMap["ERROR"] = &Harl::error;
+	levelMap["DEBUG"] = std::make_pair(1, &Harl::debug);
+	levelMap["INFO"] = std::make_pair(2, &Harl::info);
+	levelMap["WARNING"] = std::make_pair(3, &Harl::warning);
+	levelMap["ERROR"] = std::make_pair(4, &Harl::error);
+
 	return ;
 }
 
@@ -49,6 +27,37 @@ Harl::Harl(void)
 Harl::~Harl(void)
 {
 	return;
+}
+
+void Harl::complain( std::string level )
+{
+    switch(this->levelMap[level].first)
+	{
+		case 1:
+			display_msg(DEBUG);
+			display_msg(INFO);
+			display_msg(WARNING);
+			display_msg(ERROR);
+			break ;
+
+		case 2:
+			display_msg(INFO);
+			display_msg(WARNING);
+			display_msg(ERROR);
+			break ;
+
+		case 3:
+			display_msg(WARNING);
+			display_msg(ERROR);
+			break ;
+
+		case 4:
+			display_msg(ERROR);
+			break ;
+		default:
+			print_error(COMP);
+			break ;
+	}
 }
 
 void Harl::debug( void )

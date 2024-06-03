@@ -1,24 +1,36 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:26:55 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 16:18:09 by blarger          ###   ########.fr       */
+/*   Created: 2024/05/31 09:32:38 by blarger           #+#    #+#             */
+/*   Updated: 2024/06/03 15:45:07 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
-Zombie::Zombie(std::string _name) : name(_name)
+void	display_msg(const char *msg)
 {
-	return ;
+	std::cout << ORANGE << msg << RESET << std::endl;
 }
 
-Zombie::~Zombie(void)
+int	print_error(const char *str)
 {
-	std::cout << RED << this->name << " died" << RESET << std::endl;
-	return ;
+	std::cout << RED << "Error: " << str << RESET << std::endl;
+	return (-1);
+}
+
+enum logLevel { _DEBUG, _WARNING, _INFO, _ERROR};
+
+int	main(int argc, char **argv)
+{
+	Harl harlObject;
+
+	if (argc != 2)
+		return (print_error(PARAM));
+	harlObject.complain(argv[1]);
+	return (0);
 }
