@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/04 09:22:48 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/04 09:34:02 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -48,11 +48,18 @@ private:
 
 public:
 	Fixed(void);
-	Fixed(const Fixed& other);
+	//Fixed(const Fixed& other);
+	Fixed(const int n);
+	Fixed(const float n);
 	~Fixed (void);
-	int					getRawBits(void) const;
-	void				setRawBits(int const raw);
-	void				operator=(const Fixed& F);
+
+	int			getRawBits(void) const;
+	void		setRawBits(int const raw);
+	float		toFloat( void ) const;
+	int			toInt( void ) const;
+
+	void		operator=(const Fixed& F);
+	void		operator<<(const Fixed& F);
 };
 
 // ----------FUNCTIONS
