@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/04 09:34:02 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/04 18:48:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,6 +22,7 @@
 #include <string>
 #include <cstdlib>
 #include <cstring>
+#include <cmath>
 
 // ----------DEFINITION
 
@@ -31,6 +32,7 @@
 #define RED     "\033[1;31m"
 #define GREEN   "\033[32m"
 #define YELLOW  "\033[33m"
+#define ORANGE "\033[38;5;214m"
 #define BLUE    "\033[34m"
 #define MAGENTA "\033[35m"
 #define CYAN    "\033[36m"
@@ -48,18 +50,18 @@ private:
 
 public:
 	Fixed(void);
-	//Fixed(const Fixed& other);
+	Fixed(const Fixed& other);
 	Fixed(const int n);
 	Fixed(const float n);
 	~Fixed (void);
 
-	int			getRawBits(void) const;
-	void		setRawBits(int const raw);
-	float		toFloat( void ) const;
-	int			toInt( void ) const;
+	int					getRawBits(void) const;
+	void				setRawBits(int const raw);
+	floa	t			toFloat( void ) const;
+	int					toInt( void ) const;
 
-	void		operator=(const Fixed& F);
-	void		operator<<(const Fixed& F);
+	void				operator=(const Fixed& F);
+	friend 				std::ostream& operator<<(std::ostream& os, const Fixed& f);
 };
 
 // ----------FUNCTIONS
