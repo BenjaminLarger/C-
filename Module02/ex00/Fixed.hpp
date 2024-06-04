@@ -1,18 +1,18 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   File.hpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/04 06:48:07 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/04 09:03:34 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
-#ifndef FILE_HPP
-#define FILE_HPP
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 // ----------INCLUDE
 
@@ -25,9 +25,6 @@
 
 // ----------DEFINITION
 
-# define FILE "Cannot open file :"
-# define ARGC "Program must take in 4 parameters"
-
 // ----------COLORS
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"
@@ -38,6 +35,25 @@
 #define MAGENTA "\033[35m"
 #define CYAN    "\033[36m"
 #define WHITE   "\033[1; 37m"
+
+// ************************************************************************** //
+//                               Class                                //
+// ************************************************************************** //
+
+class Fixed {
+
+private:
+	int			fixedDecimal;
+	static int	fractionalBits;
+
+public:
+	Fixed(void);
+	Fixed(const Fixed& other);
+	~Fixed (void);
+	int			getRawBits(void) const;
+	void		setRawBits(int const raw);
+	void		operator=(const Fixed& F);
+};
 
 // ----------FUNCTIONS
 

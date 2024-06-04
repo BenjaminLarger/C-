@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 20:30:07 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 16:38:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:16:21 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -70,4 +70,3 @@ void	Harl::error(void)
 {
 	std::cout << ORANGE << ERROR << RESET << std::endl;
 }
-
