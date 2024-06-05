@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/04 09:22:48 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/05 12:01:34 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,8 +22,6 @@
 #include <string>
 #include <cstdlib>
 #include <cstring>
-
-// ----------DEFINITION
 
 // ----------COLORS
 #define RESET   "\033[0m"

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/05 16:58:02 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/05 18:58:35 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,8 +18,7 @@
 
 #include <fstream> 
 #include <fstream> 
-#include <iostream>
-#include <ostream>
+#include <iostream> 
 #include <string>
 #include <cstdlib>
 #include <cstring>
@@ -43,7 +42,6 @@
 //                               Class                                //
 // ************************************************************************** //
 
-
 class Fixed {
 
 private:
@@ -62,10 +60,30 @@ public:
 	float				toFloat( void ) const;
 	int					toInt( void ) const;
 
+	static Fixed&		min(Fixed& a, Fixed& b);
+	static const Fixed&	min(const Fixed &a, const Fixed &b);
+	static Fixed&		max(Fixed& a, Fixed& b);
+    static const Fixed& max(const Fixed& a, const Fixed& b);
+
 	Fixed				&operator=(const Fixed& F);
+	Fixed				&operator>=(const Fixed& F);
+	Fixed				&operator<=(const Fixed& F);
+	Fixed				&operator==(const Fixed& F);
+	Fixed				&operator!=(const Fixed& F);
+
+	Fixed				&operator+(const Fixed& F);
+	Fixed				&operator-(const Fixed& F);
+	Fixed				operator*(const Fixed& F);
+	Fixed				&operator/(const Fixed& F);
+
+	Fixed				&operator++();
+	Fixed				&operator--();
+	Fixed				&operator++(int);
+	Fixed				&operator--(int);
 };
 
 std::ostream&			operator<<(std::ostream& os, const Fixed& f);
+
 // ----------FUNCTIONS
 
 
