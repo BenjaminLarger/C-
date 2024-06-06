@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/06 21:19:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 21:30:19 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -67,10 +67,11 @@ public:
     static const Fixed& max(const Fixed& a, const Fixed& b);
 
 	Fixed				&operator=(const Fixed& F);
-	Fixed				&operator>=(const Fixed& F);
-	Fixed				&operator<=(const Fixed& F);
-	Fixed				&operator==(const Fixed& F);
-	Fixed				&operator!=(const Fixed& F);
+	
+	bool				operator>=(const Fixed& F);
+	bool				operator<=(const Fixed& F);
+	bool				operator==(const Fixed& F);
+	bool				operator!=(const Fixed& F);
 
 	Fixed				&operator+(const Fixed& F);
 	Fixed				&operator-(const Fixed& F);
@@ -80,7 +81,7 @@ public:
 	Fixed				&operator++();
 	Fixed				&operator--();
 	Fixed				operator++(int);
-	Fixed				&operator--(int);
+	Fixed				operator--(int);
 };
 
 std::ostream&			operator<<(std::ostream& os, const Fixed& f);
