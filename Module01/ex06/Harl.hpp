@@ -6,11 +6,12 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 15:45:18 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 16:20:22 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
+
 #ifndef HARL_HPP
 #define HARL_HPP
 
@@ -19,7 +20,6 @@
 #include <iostream>
 #include <cerrno>
 #include <ostream>
-#include <map>
 
 // ----------DEFINITION
 
@@ -61,8 +61,9 @@ private:
 	void warning( void );
 	void error( void );
 	
-	std::map<std::string, std::pair<int, void (Harl::*)() > > levelMap;
 };
+
+typedef void (Harl::*func) (void);
 
 // ----------FUNCTIONS
 void	display_msg(const char *msg);

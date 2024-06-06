@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 20:30:07 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 15:44:59 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 16:20:12 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,11 +15,6 @@
 /* CONSTRUCTOR */
 Harl::Harl(void)
 {
-	levelMap["DEBUG"] = std::make_pair(1, &Harl::debug);
-	levelMap["INFO"] = std::make_pair(2, &Harl::info);
-	levelMap["WARNING"] = std::make_pair(3, &Harl::warning);
-	levelMap["ERROR"] = std::make_pair(4, &Harl::error);
-
 	return ;
 }
 
@@ -31,28 +26,35 @@ Harl::~Harl(void)
 
 void Harl::complain( std::string level )
 {
-    switch(this->levelMap[level].first)
+	int	i = 0;
+
+	func		levelMap[] = { &Harl:: debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	while (i < 4 && levels[i].compare(level))
+		i++;
+
+    switch(i)
 	{
+		case 0:
+			(this->*levelMap[0])();
+			(this->*levelMap[1])();
+			(this->*levelMap[2])();
+			(this->*levelMap[3])();
+			break ;
+
 		case 1:
-			display_msg(DEBUG);
-			display_msg(INFO);
-			display_msg(WARNING);
-			display_msg(ERROR);
+			(this->*levelMap[1])();
+			(this->*levelMap[2])();
+			(this->*levelMap[3])();
 			break ;
 
 		case 2:
-			display_msg(INFO);
-			display_msg(WARNING);
-			display_msg(ERROR);
+			(this->*levelMap[2])();
+			(this->*levelMap[3])();
 			break ;
 
 		case 3:
-			display_msg(WARNING);
-			display_msg(ERROR);
-			break ;
-
-		case 4:
-			display_msg(ERROR);
+			(this->*levelMap[3])();
 			break ;
 		default:
 			print_error(COMP);
