@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/05 18:58:35 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 11:56:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,6 +49,7 @@ private:
 	static const int	fractionalBits;
 
 public:
+	static const float ϵ = 0.00390625;
 	Fixed(void);
 	Fixed(const Fixed& other);
 	Fixed(const int n);

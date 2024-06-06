@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:38 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 14:22:05 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 16:03:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,7 @@ static std::string		prompt_user(const char *prompt, const char *color)
 int	main()
 {
 	std::string		user_prompt;
-	Harl harlObject;
+	Harl			harlObject;
 
 	user_prompt = prompt_user(PROMPT, YELLOW);
 	harlObject.complain(user_prompt);

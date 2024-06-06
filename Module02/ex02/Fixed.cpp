@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 06:47:36 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/05 21:00:53 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 11:59:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,13 +18,15 @@ const int Fixed::fractionalBits = 8;
 
 Fixed 		&Fixed::operator=(const Fixed &F)
 {
-	std::cout <<  "Copy assignment operator called" << std::endl;
+	std::cout << CYAN << "this " << F.getRawBits() << RESET << std::endl;
 	setRawBits(F.getRawBits());
+	std::cout << CYAN <<  "Copy assignment operator called " << this->getRawBits() << RESET << std::endl;
 	return (*this);
 }
 
 std::ostream &operator<<(std::ostream &os, const Fixed &f)
 {
+	std::cout << GREEN << "get raw bits " << f.getRawBits() << std::endl;
 	float	rawBits = f.toFloat();
 
 	os << rawBits;
@@ -90,6 +92,11 @@ Fixed 		&Fixed::operator-(const Fixed &F)
 
 Fixed				&Fixed::operator++()
 {
+	float	new_value;
+
+	new_value = this->toFloat() + ϵ;
+	setRawBits(new_value);
+	std::cout << CYAN << "++a " << this->getRawBits() << RESET << std::endl;
 	return (*this);
 }
 
@@ -100,6 +107,7 @@ Fixed				&Fixed::operator--()
 
 Fixed				&Fixed::operator++(int n)
 {
+	std::cout << CYAN << "a++" << RESET << std::endl;
 	(void)n;
 	return (*this);
 }
@@ -116,31 +124,31 @@ Fixed				&Fixed::operator--(int n)
 Fixed::Fixed(void)
 {
 	this->setRawBits(0);
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << GREEN << "Default constructor called " << this->getRawBits() << RESET << std::endl;
 }
 
 Fixed::Fixed(const int n) : fixedDecimal(n << fractionalBits)
 {
-	std::cout << "Int constructor called" << std::endl;
+	std::cout << YELLOW << "Int constructor called " << this->getRawBits() << RESET << std::endl;
 }
 
 Fixed::Fixed(const float n) : fixedDecimal(roundf(n * (1 << fractionalBits)))
 {
-	std::cout << "Float constructor called" << std::endl ;
+	std::cout << YELLOW << "Float constructor called " << this->getRawBits() << RESET << std::endl ;
 }
 
-Fixed::Fixed(const Fixed& other) : fixedDecimal(other.fixedDecimal)
+/* Fixed::Fixed(const Fixed& other) : fixedDecimal(other.fixedDecimal) //not called
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << CYAN << "Copy constructor called " << this->getRawBits() << RESET << std::endl;
 	operator=(other);
-	std::cout << ORANGE << this->getRawBits() << RESET << std::endl;
-}
+	std::cout << CYAN << this->getRawBits() << RESET << std::endl;
+} */
 
-/* Fixed::Fixed(const Fixed& other)
+Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	setRawBits(other.getRawBits());
-} */
+}
 
 /* --------------DECONSTRUCTORS */
 

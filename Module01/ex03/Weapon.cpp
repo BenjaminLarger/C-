@@ -6,18 +6,19 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:32:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 15:52:12 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:40:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Weapon.hpp"
 
-const std::string Weapon::getType(void)
+const std::string &Weapon::getType(void)
 {
-	return (this->type);
+	std::string	&ref = this->type;
+	return (ref);
 }
 
-void Weapon::setType(/* const  */std::string _type)
+void Weapon::setType(std::string _type)
 {
 	this->type = _type;
 }

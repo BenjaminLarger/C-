@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:27:19 by blarger           #+#    #+#             */
-/*   Updated: 2024/05/31 09:30:01 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 15:37:21 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,8 +36,8 @@ int main()
 	std::string	&stringREF = str;
 
 	std::cout << "memory address of str variable : " << &str << std::endl;
-	std::cout << "memory address of str pointer : " << &stringPTR << std::endl;
-	std::cout << "memory address of str reference : " << &stringREF << std::endl;
+	std::cout << "memory address held by pointer : " << stringPTR << std::endl;
+	std::cout << "memory address held by reference : " << &stringREF << std::endl;
 	std::cout << "value of the string variable : " << str << std::endl;
 	std::cout << "value of the string pointer : " << *(static_cast<std::string*>(stringPTR)) << std::endl;
 	std::cout << "value of the string reference : " << stringREF << std::endl;

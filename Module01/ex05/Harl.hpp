@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/03 14:21:42 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 16:05:28 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,11 +19,11 @@
 #include <iostream>
 #include <cerrno>
 #include <ostream>
-#include <map>
 
 // ----------DEFINITION
 
-#define PROMPT "What kind of comments are you willing to do ? {INFO, DEBUG, WARNING, or ERROR): "
+#define PROMPT "What kind of comments are you willing to do ? {INFO, DEBUG, WARNING, ERROR}: "
+#define PROMPT_ERROR "Enter an input between 1 and 4."
 # define DEBUG "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!"
 # define INFO "I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!"
 # define WARNING "I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month."
@@ -61,8 +61,9 @@ private:
 	void warning( void );
 	void error( void );
 	
-	std::map<std::string, void (Harl::*)()> levelMap;
 };
+
+typedef void (Harl::*func) (void);
 
 // ----------FUNCTIONS
 
