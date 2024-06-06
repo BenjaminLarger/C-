@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 06:47:36 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/06 21:20:50 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 11:59:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,7 +26,7 @@ Fixed 		&Fixed::operator=(const Fixed &F)
 
 std::ostream &operator<<(std::ostream &os, const Fixed &f)
 {
-	std::cout << "get raw bits " << f.getRawBits() << std::endl;
+	std::cout << GREEN << "get raw bits " << f.getRawBits() << std::endl;
 	float	rawBits = f.toFloat();
 
 	os << rawBits;
@@ -60,6 +60,7 @@ Fixed 		&Fixed::operator<=(const Fixed &F)
 Fixed 		Fixed::operator*(const Fixed &F)
 {
 	Fixed	result;
+
 	float	factor;
 
 	factor = this->toFloat() * F.toFloat();
@@ -94,45 +95,27 @@ Fixed				&Fixed::operator++()
 	float	new_value;
 
 	new_value = this->toFloat() + ϵ;
-	new_value = (roundf(new_value * (1 << fractionalBits)));
-	this->setRawBits(new_value);
-	std::cout << CYAN << new_value << RESET << std::endl;
+	setRawBits(new_value);
 	std::cout << CYAN << "++a " << this->getRawBits() << RESET << std::endl;
 	return (*this);
 }
 
 Fixed				&Fixed::operator--()
 {
-	float	new_value;
-
-	new_value = this->toFloat() + ϵ;
-	new_value = (roundf(new_value * (1 << fractionalBits)));
-	this->setRawBits(new_value);
 	return (*this);
 }
 
-Fixed				Fixed::operator++(int n)
+Fixed				&Fixed::operator++(int n)
 {
-	Fixed original = operator=(*this);
-	float	new_value = this->toFloat() + ϵ;
-	new_value = (roundf(new_value * (1 << fractionalBits)));
-	this->setRawBits(new_value);
+	std::cout << CYAN << "a++" << RESET << std::endl;
 	(void)n;
-	(void)original;
-	return (original);
+	return (*this);
 }
 
 Fixed				&Fixed::operator--(int n)
 {
-	Fixed original = operator=(*this);
-	float	new_value = this->toFloat() - ϵ;
-	new_value = (roundf(new_value * (1 << fractionalBits)));
-	this->setRawBits(new_value);
-	std::cout << CYAN << new_value << RESET << std::endl;
-	std::cout << CYAN << "++a " << original.getRawBits() << RESET << std::endl;
 	(void)n;
-	(void)original;
-	return (original);
+	return (*this);
 }
 
 
@@ -141,7 +124,7 @@ Fixed				&Fixed::operator--(int n)
 Fixed::Fixed(void)
 {
 	this->setRawBits(0);
-	std::cout << "Default constructor called " << this->getRawBits() << RESET << std::endl;
+	std::cout << GREEN << "Default constructor called " << this->getRawBits() << RESET << std::endl;
 }
 
 Fixed::Fixed(const int n) : fixedDecimal(n << fractionalBits)

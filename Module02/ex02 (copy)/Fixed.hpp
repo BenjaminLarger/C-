@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/06 21:19:36 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/06 11:56:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -79,7 +79,7 @@ public:
 
 	Fixed				&operator++();
 	Fixed				&operator--();
-	Fixed				operator++(int);
+	Fixed				&operator++(int);
 	Fixed				&operator--(int);
 };
 
