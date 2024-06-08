@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 06:47:36 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/06 21:40:51 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/08 11:01:26 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -50,6 +50,14 @@ bool	Fixed::operator>=(const Fixed &F)
 		return (false);
 }
 
+bool	Fixed::operator>(const Fixed &F)
+{
+	if (this->getRawBits() > F.getRawBits())
+		return (true);
+	else
+		return (false);
+}
+
 bool	Fixed::operator!=(const Fixed &F)
 {
 	if (this->getRawBits() != F.getRawBits())
@@ -73,8 +81,17 @@ bool	Fixed::operator<=(const Fixed &F)
 	else
 		return (false);
 }
+
+bool	Fixed::operator<(const Fixed &F)
+{
+	if (this->getRawBits() < F.getRawBits())
+		return (true);
+	else
+		return (false);
+}
+
 /* ---------------------------------------------- */
-/* OPERATION */
+/* ARITHMETIC */
 /* ---------------------------------------------- */
 
 Fixed 		Fixed::operator*(const Fixed &F)
@@ -149,7 +166,6 @@ Fixed				Fixed::operator++(int n)
 	new_value = (roundf(new_value * (1 << fractionalBits)));
 	this->setRawBits(new_value);
 	(void)n;
-	(void)original;
 	return (original);
 }
 

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/07 15:15:03 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/08 10:59:05 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -67,7 +67,9 @@ public:
     static const Fixed& max(const Fixed& a, const Fixed& b);
 
 	Fixed				&operator=(const Fixed& F);
-	
+
+	bool				operator>(const Fixed& F);
+	bool				operator<(const Fixed& F);
 	bool				operator>=(const Fixed& F);
 	bool				operator<=(const Fixed& F);
 	bool				operator==(const Fixed& F);

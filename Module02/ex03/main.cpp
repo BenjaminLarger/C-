@@ -6,58 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/07 14:32:45 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/08 11:14:33 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Point.hpp"
 
-std::string		prompt_user(const char *prompt, const char *color, char P)
-{
-	std::string 	user_input;
-
-	std::cout << RESET << prompt << std::endl << "> " << P << color;
-	std::getline(std::cin, user_input);
-	return (user_input);
-}
-
-Point prompt_triangle_coordinates(std::string pointName, std::string color) {
-    float x, y;
-
-    std::cout << RESET <<  "Enter the x coordinate for point " << pointName << ": " << color;
-    while(!(std::cin >> x)) 
-	{
-		if (std::cin.eof())
-		{
-			std::cout << std::endl << RED << "ctr-d was pressed" << RESET << std::endl;
-			exit(0);
-		}
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << RED << "Invalid input. Please enter a number: " << YELLOW;
-    }
-    std::cout << RESET << "Enter the y coordinate for point " << pointName << ": " << color;
-    while(!(std::cin >> y))
-	{
-		if (std::cin.eof())
-		{
-			std::cout << std::endl << RED << "ctr-d was pressed" << RESET << std::endl;
-			exit(0);
-		}
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << RED << "Invalid input. Please enter a number: " << YELLOW;
-    }
-	std::cout << GREEN << "Point " << pointName << " = [" << x << ", " << y << "]" << std::endl;
-	std::cout << RESET;
-	if (x > 100000000 || y > 100000000 || x < -100000000 || y < -100000000)
-	{
-		std::cout << RED << "Invalid input" << RESET << std::endl;
-		exit(0);
-	}
-    return Point(x, y);
-}
-
+/* -------Main function to prompt user to choose his own coordinate for the program.------- */
 int	main()
 {
 	std::string	user_prompt;
@@ -80,3 +35,40 @@ int	main()
 	}
 }
 
+/* -------Main function to test different hedge cases of the program.------- */
+
+/* void testBSP(Point a, Point b, Point c, Point point, bool expected) {
+    bool result = bsp(a, b, c, point);
+    std::cout << "Point (" << point.getX() << ", " << point.getY() << ") in Triangle ("
+              << a.getX() << ", " << a.getY() << "), (" << b.getX() << ", " << b.getY() << "), ("
+              << c.getX() << ", " << c.getY() << "): " << (result ? "Inside" : "Outside")
+              << " - Expected: " << (expected ? "Inside" : "Outside") << std::endl;
+}
+
+int main() {
+    // Edge case 1: Point inside the triangle
+    testBSP(Point(0, 0), Point(2, 0), Point(1, 2), Point(1, 1), true);
+
+    // Edge case 2: Point on the edge of the triangle
+    testBSP(Point(0, 0), Point(2, 0), Point(1, 2), Point(1, 0), false);
+
+    // Edge case 3: Point at the vertex of the triangle
+    testBSP(Point(0, 0), Point(2, 0), Point(1, 2), Point(0, 0), false);
+
+    // Edge case 4: Point outside the triangle
+    testBSP(Point(0, 0), Point(2, 0), Point(1, 2), Point(3, 3), false);
+
+    // Edge case 5: Point collinear with vertices but not inside
+    testBSP(Point(0, 0), Point(2, 0), Point(1, 2), Point(2, 2), false);
+
+    // Edge case 6: Point very close to the edge but outside
+    testBSP(Point(0, 0), Point(2, 0), Point(1, 2), Point(2, 0.1), false);
+
+    // Edge case 7: Point very close to the vertex but outside
+    testBSP(Point(0, 0), Point(2, 0), Point(1, 2), Point(2.1, 0), false);
+
+    // Edge case 8: Negative coordinates
+    testBSP(Point(-2, -2), Point(-4, -2), Point(-3, -4), Point(-3, -3), true);
+
+    return 0;
+} */

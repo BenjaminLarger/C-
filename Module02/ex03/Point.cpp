@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:47:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/07 15:16:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/08 11:05:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -74,7 +74,7 @@ bool	bsp( Point const a, Point const b, Point const c, Point const point)
 	if (d1 == 0 || d2 == 0 || d3 == 0)
 		return (false);
 	
-	has_neg = (d1 <= 0) || (d2 <= 0) || (d3 <= 0);
-	has_pos = (d1 >= 0) || (d2 >= 0) || (d3 >= 0);
+	has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+	has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
 	return !(has_neg && has_pos);
 }

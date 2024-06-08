@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/07 15:15:17 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/08 11:15:45 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -45,5 +45,6 @@ public:
 // ----------FUNCTION
 bool	bsp( Point const a, Point const b, Point const c, Point const point);
 Fixed	crossProduct(Point p, Point a, Point b);
+Point prompt_triangle_coordinates(std::string pointName, std::string color);
 
 #endif
