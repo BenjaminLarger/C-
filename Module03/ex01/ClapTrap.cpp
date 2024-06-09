@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:47:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/09 10:44:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/09 10:44:05 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,6 +23,15 @@ ClapTrap::ClapTrap(std::string _name) : name(_name), points(10), energyPoints(10
 ClapTrap::ClapTrap() : name("Ben"), points(10), energyPoints(10), attackDamage(0)
 {
 		std::cout << GREEN << "ClapTrap default constructor setting default name <ben>!" << RESET << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string _name, unsigned int _points, unsigned int _energyPoints, unsigned int _attackDamage)
+	: name(_name),
+	points(_points),
+	energyPoints(_energyPoints),
+	attackDamage(_attackDamage)
+{
+	std::cout << GREEN << "ClapTrap constructor setting " << _name << " as name, " << points << " as points, " << energyPoints << " as energy points, " << attackDamage << " as attack damage !" << RESET << std::endl;
 }
 
 /* --------------DECONSTRUCTORS */
