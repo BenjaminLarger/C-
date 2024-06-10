@@ -1,18 +1,18 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 15:05:47 by blarger          ###   ########.fr       */
+/*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
+/*   Updated: 2024/06/10 15:30:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
 // ----------INCLUDE
 #include <iostream> 
@@ -33,28 +33,44 @@
 //                               Class                                		  //
 // ************************************************************************** //
 
-class ClapTrap {
+class Animal {
 
 private:
-	std::string		name;
-	unsigned int	points;
-	unsigned int	energyPoints;
-	unsigned int	attackDamage;
+	std::string		type;
 	
 public:
-	ClapTrap();
-	ClapTrap(std::string _name);
-	ClapTrap(const ClapTrap& other);
-	~ClapTrap(void);
+	Animal();
+	Animal(std::string _name);
+	Animal(const Animal& other);
+	~Animal(void);
 
-	std::string		getName(void);
-	unsigned int	getPoint(void);
-	unsigned int	getEnergyPoints(void);
-	unsigned int	getAttackDamage(void);
-
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	std::string		getType(void);
 };
+
+class Dog : public Animal {
+
+private:
+
+public:
+	Dog();
+	Dog(std::string _name);
+	Dog(const Dog& other);
+	~Dog(void);
+
+};
+
+class Cat : public Animal {
+
+private:
+	
+public:
+	Cat();
+	Cat(std::string _name);
+	Cat(const Cat& other);
+	~Cat(void);
+
+	std::string		getType(void);
+};
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:26:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/09 11:19:47 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:07:55 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -48,12 +48,12 @@ public:
 	ClapTrap(const ClapTrap& other);
 	~ClapTrap(void);
 
-	std::string		getName(void) const { return (this->name); };
-	unsigned int	getPoints(void) const { return (this->points); };
-	unsigned int	getEnergyPoints(void) const { return (this->energyPoints); };
-	unsigned int	getAttackDamage(void) const { return (this->attackDamage);};
+	std::string		getName(void) const;
+	unsigned int	getPoints(void) const;
+	unsigned int	getEnergyPoints(void) const;
+	unsigned int	getAttackDamage(void) const;
 
-	void	setEnergyPoints(unsigned int new_points) {this->energyPoints = new_points;}
+	void	setEnergyPoints(unsigned int new_points);
 
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);

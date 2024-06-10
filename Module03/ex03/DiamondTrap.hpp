@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 11:43:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 14:47:10 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:10:07 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,7 +37,7 @@ public:
 	void			attack(const std::string &target);
 	std::string		getName(void) const;
 
-	void	whoAmI(void);
+	void			whoAmI(void);
 
 };
 

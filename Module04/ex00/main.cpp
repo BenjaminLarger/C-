@@ -6,11 +6,11 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 15:11:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:17:19 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "ClapTrap.hpp"
+#include "Animal.hpp"
 
 int	main()
 {

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 11:29:14 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 14:50:39 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:10:19 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,10 +32,9 @@ public:
 	FragTrap(const FragTrap& other);
 	~FragTrap(void);
 
-	//unsigned int	getPoints(void) const;
-	std::string		getName(void) const;
+	std::string				getName(void) const;
 
-	void	highFivesGuys(void);
+	void					highFivesGuys(void);
 
 	virtual unsigned int	getPoints(void) const ;
 	unsigned int			getAttackDamage(void) const;

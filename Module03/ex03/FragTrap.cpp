@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 11:29:22 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 14:50:27 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:10:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -53,4 +53,3 @@ void	FragTrap::highFivesGuys(void)
 unsigned int	FragTrap::getPoints(void) const { return (100); };
 unsigned int	FragTrap::getAttackDamage(void) const { return (30);};
 std::string		FragTrap::getName(void) const { return ("ben"); };
-//unsigned int	FragTrap::getPoints(void) const { return (100); };

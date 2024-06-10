@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 11:43:17 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 14:59:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:10:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,6 @@ DiamondTrap::DiamondTrap(std::string _name) :
 	ScavTrap::getEnergyPoints(),
 	FragTrap::getAttackDamage())	
 {
-	//DiamondTrap	copy(*this);
 	this->name = _name;
 }
 

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 06:47:36 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/08 11:01:26 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 17:01:17 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -94,45 +94,41 @@ bool	Fixed::operator<(const Fixed &F)
 /* ARITHMETIC */
 /* ---------------------------------------------- */
 
-Fixed 		Fixed::operator*(const Fixed &F)
+float	Fixed::operator*(const Fixed &F)
 {
-	Fixed	result;
 	float	factor;
 
 	factor = this->toFloat() * F.toFloat();
-	factor = roundf(factor * (1 << fractionalBits));
-	result.setRawBits(factor);
-	return (result);
+	return (factor);
 }
 
-Fixed 		&Fixed::operator/(const Fixed &F)
+float	Fixed::operator/(const Fixed &F)
 {
 	float	quotient;
 
+	if (F.toFloat() == 0)
+	{
+		std::cout << RED << "Error: cannot divide by 0! Exit." << RESET << std::endl;
+		exit(EXIT_FAILURE);
+	}
 	quotient = this->toFloat() / F.toFloat();
-	quotient = roundf(quotient * (1 << fractionalBits));
-	this->setRawBits(quotient);
-	return (*this);
+	return (quotient);
 }
 
-Fixed 		&Fixed::operator+(const Fixed &F)
+float	Fixed::operator+(const Fixed &F)
 {
 	float	sum;
 
 	sum = this->toFloat() + F.toFloat();
-	sum = roundf(sum * (1 << fractionalBits));
-	this->setRawBits(sum);
-	return (*this);
+	return (sum);
 }
 
-Fixed 		&Fixed::operator-(const Fixed &F)
+float	Fixed::operator-(const Fixed &F)
 {
 	float	difference;
 
 	difference = this->toFloat() - F.toFloat();
-	difference = roundf(difference * (1 << fractionalBits));
-	this->setRawBits(difference);
-	return (*this);
+	return (difference);
 }
 
 /* ---------------------------------------------- */

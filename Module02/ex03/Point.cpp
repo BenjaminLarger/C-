@@ -6,11 +6,17 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:47:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/08 11:05:41 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 17:26:19 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Point.hpp"
+
+/* CONSTRUCTOR */
+Point::Point() : x(0), y(0) {};
+Point::Point(const float _x, const float _y) : x(_x), y(_y) {};
+Point::Point(const Point& other) : x(other.x), y(other.y) {};
+Point::~Point (void) {};
 
 const Fixed&	Point::getX() const
 {
@@ -22,7 +28,7 @@ const Fixed&	Point::getY() const
 	return (y);
 }
 
-Point 	&Point::operator=(const Point& other) {
+const Point 	&Point::operator=(const Point& other) {
     if (this != &other) {
 		(Fixed) x = other.getX();
         (Fixed) y = other.getY();
@@ -30,16 +36,17 @@ Point 	&Point::operator=(const Point& other) {
     return *this;
 }
 
-Fixed	crossProduct(Point p, Point a, Point b)
+float	crossProduct(Point p, Point a, Point b)
 {
-	return ((a.getX() - p.getX()) * (b.getY() - p.getY()) - (a.getY() - p.getY()) * (b.getX() - p.getX()));
+return ((a.getX().toFloat() - p.getX().toFloat()) * (b.getY().toFloat() - p.getY().toFloat()) 
+            - (a.getY().toFloat() - p.getY().toFloat()) * (b.getX().toFloat() - p.getX().toFloat()));
 }
 
 
 bool	bsp( Point const a, Point const b, Point const c, Point const point)
 {
-	Fixed	d1, d2, d3;
-	bool	has_neg, has_pos;
+	float	d1, d2, d3;
+	bool		has_neg, has_pos;
 	
 	d1 = crossProduct(point, a, b);
 	d2 = crossProduct(point, b, c);

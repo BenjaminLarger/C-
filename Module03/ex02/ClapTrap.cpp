@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:47:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/09 10:44:05 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 15:09:49 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -86,3 +86,12 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	else
 		std::cout << ORANGE << "Not enough energy points to get repaired!" << RESET << std::endl;
 }
+
+/* GETTER */
+	std::string		ClapTrap::getName(void) const { return (this->name); };
+	unsigned int	ClapTrap::getPoints(void) const { return (this->points); };
+	unsigned int	ClapTrap::getEnergyPoints(void) const { return (this->energyPoints); };
+	unsigned int	ClapTrap::getAttackDamage(void) const { return (this->attackDamage);};
+
+/* SETTER */
+	void			ClapTrap::setEnergyPoints(unsigned int new_points) {this->energyPoints = new_points;}
