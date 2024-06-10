@@ -6,24 +6,23 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 17:32:46 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 20:30:37 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Animal.hpp"
 
-int	main()
+int main()
 {
-    ClapTrap    player("Doumbe");
-
-    player.attack("Baki");
-    std::cout << player.getName() << " has " << player.getEnergyPoints() << " energy  points!" << std::endl;
-    player.attack("Baki");
-    std::cout << player.getName() << " has " << player.getEnergyPoints() << " energy  points!" << std::endl;
-    player.takeDamage(5);
-    std::cout << player.getName() << " has " << player.getPoint() << " points of life!" << std::endl;
-    player.beRepaired(1);
-    player.takeDamage(7);
-    std::cout << player.getName() << " has " << player.getPoint() << " points of life!" << std::endl;
-    std::cout << player.getName() << " has " << player.getEnergyPoints() << " energy  points!" << std::endl;
+const Animal* meta = new Animal();
+const Animal* j = new Dog();
+const Animal* i = new Cat();
+std::cout << j->getType() << " " << std::endl;
+std::cout << i->getType() << " " << std::endl;
+i->makeSound(); //will output the cat sound!
+j->makeSound();
+meta->makeSound();
+delete j;
+delete i;
+return 0;
 }

@@ -6,36 +6,36 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:20:13 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 17:32:48 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 20:21:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Animal.hpp"
 
 /* --------------CONSTRUCTORS */
-Animal::Animal(std::string _type) :
-	Animal(_type)	
+Dog::Dog(std::string _type) : Animal(_type)	
 {
-	std::cout << GREEN << "Animal constructor called. Setting type to " << _type << RESET << std::endl;
-	this->type = _type;
+	std::cout << GREEN << "Dog constructor called. Setting type to " << _type << RESET << std::endl;
 }
 
-Animal::Animal() :
-	Animal("N/A")
+Dog::Dog() : Animal("Dog")
 {
-	std::cout << GREEN << "Animal constructor called. Setting type to " << this->type << RESET << std::endl;
+	std::cout << GREEN << "Dog constructor called. Setting type to " << this->getType() << RESET << std::endl;
 
 }
 
 /* --------------DECONSTRUCTORS */
-Animal::~Animal(void)
+Dog::~Dog(void)
 {
-	std::cout << RED << "Animal deconstructor called!" << RESET << std::endl;
+	std::cout << RED << "Dog deconstructor called!" << RESET << std::endl;
 }
 
 /* --------------COPY */
-Animal::Animal(const Animal& other)
-    : Animal(other.type)
+Dog::Dog(const Dog& other) : Animal("Dog")
 {
-    std::cout << GREEN << "Animal calling copy assignment!" << RESET << std::endl;
+	(void)other;
+    std::cout << GREEN << "Dog calling copy assignment!" << RESET << std::endl;
 }
+
+/* FUNCTION */
+void Dog::makeSound( void ) {std::cout << "Warf!" << std::endl;}

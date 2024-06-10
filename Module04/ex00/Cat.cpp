@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:20:08 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 17:32:49 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 20:14:51 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,10 +31,12 @@ Cat::~Cat(void)
 }
 
 /* --------------COPY */
-Cat::Cat(const Cat& other) : Cat(other.getType())
+Cat::Cat(const Cat& other) : Animal("Cat")
 {
+	(void)other;
     std::cout << GREEN << "Cat calling copy assignment!" << RESET << std::endl;
 }
 
-/* GETTER */
-std::string		Cat::getType(void) {return (Animal::getType());}
+
+/* FUNCTIONS */
+void Cat::makeSound( void ) {std::cout << "Meow!" << std::endl;}

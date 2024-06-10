@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 17:32:49 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/10 20:35:23 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,7 +44,11 @@ public:
 	Animal(const Animal& other);
 	~Animal(void);
 
-	std::string		getType(void);
+	std::string		getType(void) const;
+	void			meow(void);
+	void			bark(void);
+
+	void	makeSound(void) const;
 };
 
 class Dog : public Animal {
@@ -57,6 +61,7 @@ public:
 	Dog(const Dog& other);
 	~Dog(void);
 
+	virtual void	makeSound( void );
 };
 
 class Cat : public Animal {
@@ -69,8 +74,10 @@ public:
 	Cat(const Cat& other);
 	~Cat(void);
 
-	std::string		getType(void);
+	virtual void	makeSound( void );
 };
 
+/* FUNCTION */
+typedef void (Animal::*func) (void);
 
 #endif

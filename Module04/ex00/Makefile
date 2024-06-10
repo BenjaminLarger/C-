@@ -13,15 +13,15 @@ RM=rm -f
 MKDIR_P=mkdir -p
 
 # Compilation flags
-CFLAGS=-g -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CFLAGS=-g -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 # Source files and object files
-SRCS=main.cpp
+SRCS=main.cpp Animal.cpp Cat.cpp Dog.cpp
 OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
 DEPS=$(OBJS:.o=.d)
 
 # Output binary name
-NAME=ClapTrap
+NAME=animal
 
 .PHONY: all clean distclean
 
