@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:20:13 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 20:21:24 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/11 10:09:53 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,4 +38,4 @@ Dog::Dog(const Dog& other) : Animal("Dog")
 }
 
 /* FUNCTION */
-void Dog::makeSound( void ) {std::cout << "Warf!" << std::endl;}
+void Dog::makeSound( void ) const {std::cout << "Warf!" << std::endl;}

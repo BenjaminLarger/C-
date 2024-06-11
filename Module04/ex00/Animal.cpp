@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:19:54 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 20:35:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/11 10:09:29 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,10 +37,10 @@ Animal::Animal(const Animal& other) : type(other.type)
     std::cout << GREEN << "Animal calling copy assignment!" << RESET << std::endl;
 }
 
-void	Animal::meow(void) {std::cout << "Meow!" << std::endl;}
+/* void	Animal::meow(void) {std::cout << "Meow!" << std::endl;}
 void	Animal::bark(void) {std::cout << "WARF!" << std::endl;}
-
-void Animal::makeSound( void ) const
+ */
+/* void Animal::makeSound( void ) const
 {
 	int	i = 0;
 
@@ -63,6 +63,10 @@ void Animal::makeSound( void ) const
 			std::cout << ORANGE << "makeSound: Animal not found !" << RESET << std::endl;;
 			break ;
 	}
-}
+} */
+
+void Animal::makeSound( void ) const {std::cout << "<animal sound>" << std::endl;}
+
+
 /* GETTER */
 std::string		Animal::getType(void) const {return (this->type);}

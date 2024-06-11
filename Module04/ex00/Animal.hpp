@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 20:35:23 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/11 10:22:38 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,13 +42,13 @@ public:
 	Animal();
 	Animal(std::string _name);
 	Animal(const Animal& other);
-	~Animal(void);
+	virtual ~Animal(void);
 
 	std::string		getType(void) const;
-	void			meow(void);
-	void			bark(void);
+	/* void			meow(void);
+	void			bark(void); */
 
-	void	makeSound(void) const;
+	virtual void	makeSound(void) const;
 };
 
 class Dog : public Animal {
@@ -61,7 +61,7 @@ public:
 	Dog(const Dog& other);
 	~Dog(void);
 
-	virtual void	makeSound( void );
+	virtual void	makeSound( void ) const;
 };
 
 class Cat : public Animal {
@@ -74,10 +74,46 @@ public:
 	Cat(const Cat& other);
 	~Cat(void);
 
-	virtual void	makeSound( void );
+	virtual void	makeSound( void ) const;
 };
 
 /* FUNCTION */
-typedef void (Animal::*func) (void);
+//typedef void (Animal::*func) (void);
+
+/* ---------------------------------------------- */
+/* ---------------------------------------------- */
+/* -------------------WRONG----------------------- */
+/* ---------------------------------------------- */
+
+class WrongAnimal {
+
+private:
+	std::string		type;
+	
+public:
+	WrongAnimal();
+	WrongAnimal(std::string _name);
+	WrongAnimal(const WrongAnimal& other);
+	virtual ~WrongAnimal(void);
+
+	std::string		getType(void) const;
+	/* void			meow(void);
+	void			bark(void); */
+
+	void	makeSound(void) const;
+};
+
+class WrongCat : public WrongAnimal {
+
+private:
+	
+public:
+	WrongCat();
+	WrongCat(std::string _name);
+	WrongCat(const WrongCat& other);
+	~WrongCat(void);
+
+	void	makeSound( void ) const;
+};
 
 #endif

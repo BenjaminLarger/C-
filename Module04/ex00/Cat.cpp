@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:20:08 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 20:14:51 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/11 10:09:59 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -39,4 +39,4 @@ Cat::Cat(const Cat& other) : Animal("Cat")
 
 
 /* FUNCTIONS */
-void Cat::makeSound( void ) {std::cout << "Meow!" << std::endl;}
+void Cat::makeSound( void ) const {std::cout << "Meow!" << std::endl;}
