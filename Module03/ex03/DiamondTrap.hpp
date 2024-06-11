@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 11:43:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/10 15:10:07 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/11 14:45:40 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,7 +23,7 @@
 //                               Class                                		  //
 // ************************************************************************** //
 
-class DiamondTrap : public ScavTrap, public FragTrap {
+class DiamondTrap : public virtual ScavTrap, public virtual FragTrap {
 
 private:
 	std::string		name;
