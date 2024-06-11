@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/11 10:22:38 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/11 12:24:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -97,8 +97,6 @@ public:
 	virtual ~WrongAnimal(void);
 
 	std::string		getType(void) const;
-	/* void			meow(void);
-	void			bark(void); */
 
 	void	makeSound(void) const;
 };
