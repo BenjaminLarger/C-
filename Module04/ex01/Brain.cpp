@@ -6,21 +6,21 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:19:57 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/11 16:31:28 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/18 18:36:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Animal.hpp"
 
 /* --------------CONSTRUCTORS */
-Brain::Brain(std::string _type) /*: type(_type) */
+Brain::Brain(std::string _type)
 {
 	(void)_type;
 	this->idea = new std::string[100];
 	std::cout << MAGENTA << "Brain constructor called." << RESET << std::endl;
 }
 
-Brain::Brain() /*:  type("N/A") */
+Brain::Brain()
 {
 	this->idea = new std::string[100];
 	std::cout << MAGENTA << "Brain constructor called."  << RESET << std::endl;
