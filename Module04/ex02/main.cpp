@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/11 17:43:40 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/18 19:02:34 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@ int main()
 
 	a.makeSound();
 	
-	AAnimal&		b = dog;
+	Dog&		b = dog;
 
 	b.makeSound();
 

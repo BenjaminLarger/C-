@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/11 16:32:08 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/18 19:00:33 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,6 +22,7 @@ int main()
 	{
 		std::cout << YELLOW << i << ". " << RESET;
 		animals[i] = new Dog();
+		animals[i]->makeSound();
 	}
 	std::cout << YELLOW << "Creating Cat objects..." << RESET << std::endl;
 	for (int i = size / 2; i < size; i++)
