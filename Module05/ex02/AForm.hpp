@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:06:17 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 12:52:00 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/19 19:02:55 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,15 +14,21 @@
 //                               Class                                		  //
 // ************************************************************************** //
 
+#pragma once
+#ifndef AFORM_HPP
+#define AFORM_HPP
+
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class Form {
 
 private:
 	const std::string		name;
-	bool					isSigned;
 	const int				minGradeToSign;
 	const int				minGradeToExecute;
+	bool					isSigned;
+	std::string				signer;
 	
 public:
 	Form();
@@ -30,10 +36,13 @@ public:
 	Form(const Form& other);
 	virtual ~Form(void);
 
-	std::string		getName(void) const;
+	Form	&operator=(const Form &other);
+
+	virtual std::string		getName(void) const;
 	bool			getIsSigned(void) const;
 	int				getMinGradeToSign(void) const;
 	int				getMinGradeToExecute(void) const;
+	std::string		getSigner(void) const;
 	
 	
 	class GradeTooHighException : public std::exception
@@ -46,10 +55,20 @@ public:
 		
 	class GradeTooLowException : public std::exception
 	{
-		const char* what() const throw()
-		{
-			return ("Grade too high!");
-		}
+		public:
+			const char* what() const throw()
+			{
+				return ("Grade too low!");
+			}
+	};
+
+	class IsAlreadySigned : public std::exception
+	{
+		public:
+			const char* what() const throw()
+			{
+				return ("Contract is already signed");
+			}
 	};
 
 	void	beSigned(Bureaucrat *b);
@@ -65,3 +84,5 @@ class myexception: public std::exception
     return "My exception happened";
   }
 } extern myex;
+
+#endif

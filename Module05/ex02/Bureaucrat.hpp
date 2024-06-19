@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 18:59:06 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/19 18:58:18 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,7 +17,7 @@
 // ----------INCLUDE
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -55,8 +55,9 @@ public:
 	virtual std::string		getName(void) const;
 	int				getGrade(void) const;
 
-	Bureaucrat	&operator=(const Bureaucrat &other);
 	void			setGrade(int newGrade);
+
+	Bureaucrat	&operator=(const Bureaucrat &other);
 	
 	class GradeTooHighException : public std::exception
 	{
@@ -88,5 +89,6 @@ public:
 };
 
 std::ostream&			operator<<(std::ostream& os, const Bureaucrat& f);
+
 
 #endif
