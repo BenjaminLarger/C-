@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 12:10:02 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/19 11:28:51 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -55,7 +55,7 @@ public:
 
 	void			setGrade(int newGrade);
 	
-	class GradeTooHighException : public std::exception
+	class GradeTooHighExceptions : public std::exception
 	{
 		const char* what() const throw()
 		{
@@ -63,7 +63,7 @@ public:
 		}
 	};
 		
-	class GradeTooLowException : public std::exception
+	class GradeTooLowExceptions : public std::exception
 	{
 		const char* what() const throw()
 		{

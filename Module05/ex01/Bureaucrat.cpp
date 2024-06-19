@@ -18,9 +18,9 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grad
 	try
 	{
 		if (grade < 1)
-			throw GradeTooLowException();
+			throw GradeTooLowExceptions();
 		else if (grade > 150)
-			throw GradeTooHighException();
+			throw GradeTooHighExceptions();
 		else
 			std::cout << GREEN << "Bureaucrat constructor called. Setting type to " << grade << " and name to " << name << RESET << std::endl;
 	}
@@ -39,9 +39,9 @@ Bureaucrat::Bureaucrat(int _grade) : name("Scoot"), grade(_grade)
 	try
 	{
 		if (grade < 1)
-			throw GradeTooLowException();
+			throw GradeTooLowExceptions();
 		else if (grade > 150)
-			throw GradeTooHighException();
+			throw GradeTooHighExceptions();
 		else
 			std::cout << GREEN << "Bureaucrat constructor called. Setting type to " << grade << " and name to " << name << RESET << std::endl;
 	}
@@ -100,9 +100,9 @@ void		Bureaucrat::decrementGrade(void)
 	try
 	{
 		if (newGrade < 1)
-			throw GradeTooLowException();
+			throw GradeTooLowExceptions();
 		else if (newGrade > 150)
-			throw GradeTooHighException();
+			throw GradeTooHighExceptions();
 		else
 		{
 			std::cout << MAGENTA << "Decrementing " << this->getName() <<  "'s grade to " << newGrade << RESET << std::endl;
@@ -128,9 +128,9 @@ void		Bureaucrat::incrementGrade(void)
 	try
 	{
 		if (newGrade < 1)
-			throw GradeTooLowException();
+			throw GradeTooLowExceptions();
 		else if (newGrade > 150)
-			throw GradeTooHighException();
+			throw GradeTooHighExceptions();
 		else
 		{
 			std::cout << MAGENTA << "Incrementing " << this->getName() <<  "'s grade to " << newGrade << RESET << std::endl;
