@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 09:18:17 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/19 11:28:51 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,7 +15,8 @@
 #define ANIMAL_HPP
 
 // ----------INCLUDE
-#include <iostream> 
+#include <iostream>
+#include <exception>
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -44,6 +45,7 @@ private:
 public:
 	Bureaucrat();
 	Bureaucrat(std::string _name);
+	Bureaucrat(int _grade);
 	Bureaucrat(std::string _name, int grade);
 	Bureaucrat(const Bureaucrat& other);
 	virtual ~Bureaucrat(void);
@@ -51,11 +53,36 @@ public:
 	std::string		getName(void) const;
 	int				getGrade(void) const;
 
-	/* Bureaucrat		&operator++();
-	Bureaucrat		&operator--(); */
+	void			setGrade(int newGrade);
+	
+	class GradeTooHighExceptions : public std::exception
+	{
+		const char* what() const throw()
+		{
+			return ("Grade too high!");
+		}
+	};
+		
+	class GradeTooLowExceptions : public std::exception
+	{
+		const char* what() const throw()
+		{
+			return ("Grade too high!");
+		}
+	};
 
-	void		decrementGrade(Bureaucrat _bureaucrat);
-	void		incrementGrade(Bureaucrat _bureaucrat);
+	void		decrementGrade();
+	void		incrementGrade();
 };
+
+std::ostream&			operator<<(std::ostream& os, const Bureaucrat& f);
+
+class myexception: public std::exception
+{
+  virtual const char* what() const throw()
+  {
+    return "My exception happened";
+  }
+} extern myex;
 
 #endif

@@ -6,23 +6,22 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/18 19:02:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/19 11:57:48 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Animal.hpp"
+#include "Bureaucrat.hpp"
 
-int main()
-{
-	//AAnimal	test;
-	Dog			dog;
-	AAnimal&	a = dog;
+int main () {
+  Bureaucrat  Spencer("Spencer", 1);
+  Bureaucrat  Scott(0);
+  Bureaucrat  Rick("Rick", 151);
 
-	a.makeSound();
-	
-	Dog&		b = dog;
+  std::cout << std::endl << "-------------------------------" << std::endl;
+  Spencer.incrementGrade();
+  Spencer.decrementGrade();
+  std::cout << "-------------------------------" << std::endl;
 
-	b.makeSound();
-
-	return 0;
+  std::cout << Spencer << std::endl << std::endl;
+  return 0;
 }

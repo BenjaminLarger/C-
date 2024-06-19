@@ -15,7 +15,44 @@
 /* --------------CONSTRUCTORS */
 Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grade)
 {
-	std::cout << GREEN << "Bureaucrat constructor called. Setting type to " << grade << "and name to " << name << RESET << std::endl;
+	try
+	{
+		if (grade < 1)
+			throw GradeTooLowExceptions();
+		else if (grade > 150)
+			throw GradeTooHighExceptions();
+		else
+			std::cout << GREEN << "Bureaucrat constructor called. Setting type to " << grade << " and name to " << name << RESET << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << ORANGE << "An exception occurred: " << this->getGrade() << ". " << e.what() << RESET << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
+	}
+}
+
+Bureaucrat::Bureaucrat(int _grade) : name("Scoot"), grade(_grade)
+{
+	try
+	{
+		if (grade < 1)
+			throw GradeTooLowExceptions();
+		else if (grade > 150)
+			throw GradeTooHighExceptions();
+		else
+			std::cout << GREEN << "Bureaucrat constructor called. Setting type to " << grade << " and name to " << name << RESET << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << ORANGE << "An exception occurred: " << this->getGrade() << ". " << e.what() << RESET << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
+	}
 }
 
 Bureaucrat::Bureaucrat(std::string _name) : name(_name), grade(1)
@@ -40,33 +77,72 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.
     std::cout << GREEN << "Bureaucrat calling copy assignment!" << RESET << std::endl;
 }
 
-/* GETTER */
+/* --------------OPERATORS */
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &f)
+{
+	os << f.getName() << ", bureaucrat grade " << f.getGrade();
+	return (os);
+}
+
+/* --------------GETTER */
 int				Bureaucrat::getGrade(void) const {return (this->grade);}
 std::string		Bureaucrat::getName(void) const {return (this->name);}
 
-/* FUNCTION MEMBER */
-/* Bureaucrat				&Bureaucrat::operator++()
-{
-	float	new_value;
+/* --------------SETTER */
+void			Bureaucrat::setGrade(int newGrade) {this->grade = newGrade;}
 
-	new_value = this->toFloat() + ϵ;
-	new_value = (roundf(new_value * (1 << fractionalBits)));
-	this->setRawBits(new_value);
-	return (*this);
+/* --------------FUNCTION MEMBER */
+void		Bureaucrat::decrementGrade(void)
+{
+	int	newGrade = this->getGrade() + 1;
+
+	std::cout << YELLOW << "decrement function try to set " << newGrade << " to " << this->name << RESET << std::endl;
+	try
+	{
+		if (newGrade < 1)
+			throw GradeTooLowExceptions();
+		else if (newGrade > 150)
+			throw GradeTooHighExceptions();
+		else
+		{
+			std::cout << MAGENTA << "Decrementing " << this->getName() <<  "'s grade to " << newGrade << RESET << std::endl;
+			this->setGrade(newGrade);
+		}
+	}
+	catch (std::exception& e)
+	{
+		std::cout << ORANGE << "An exception occurred: " << this->getGrade() << ". " << e.what() << RESET << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
+	}
 }
 
-Bureaucrat				&Bureaucrat::operator--()
+void		Bureaucrat::incrementGrade(void)
 {
-	float	new_value;
+	int	newGrade = this->getGrade() - 1;
 
-	new_value = this->toFloat() + ϵ;
-	new_value = (roundf(new_value * (1 << fractionalBits)));
-	this->setRawBits(new_value);
-	return (*this);
-} */
+	std::cout << YELLOW << "increment function try to set " << newGrade << " to " << this->name << RESET << std::endl;
 
-void		decrementGrade(Bureaucrat _bureaucrat)
-{
-
+	try
+	{
+		if (newGrade < 1)
+			throw GradeTooLowExceptions();
+		else if (newGrade > 150)
+			throw GradeTooHighExceptions();
+		else
+		{
+			std::cout << MAGENTA << "Incrementing " << this->getName() <<  "'s grade to " << newGrade << RESET << std::endl;
+			this->setGrade(newGrade);
+		}
+	}
+	catch (std::exception& e)
+	{
+		std::cout << ORANGE << "An exception occurred: " << this->getGrade() << ". " << e.what() << RESET << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
+	}
 }
-void		incrementGrade(Bureaucrat _bureaucrat){}
