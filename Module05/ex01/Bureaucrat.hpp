@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 18:59:06 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:51:39 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -86,6 +86,22 @@ public:
 	void		incrementGrade(void);
 	void		signForm(Form *f);
 };
+
+	class AlreadySigned : public std::exception
+	{
+		const char* what() const throw()
+		{
+			return ("the contract is already signed.");
+		}
+	};
+
+	class MinGradeTooLowToSign : public std::exception
+	{
+		const char* what() const throw()
+		{
+			return ("not enough grade to sign the contract.");
+		}
+	};
 
 std::ostream&			operator<<(std::ostream& os, const Bureaucrat& f);
 

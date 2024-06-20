@@ -6,14 +6,14 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:13:01 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 19:02:39 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:39:13 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 /* --------------CONSTRUCTORS */
-Form::Form(std::string _name, int _minGradeToSign, int _minGradeToExecute) : name(_name), minGradeToSign(_minGradeToSign), minGradeToExecute(_minGradeToExecute), isSigned(false), signer("N/D")
+AForm::AForm(std::string _name, int _minGradeToSign, int _minGradeToExecute) : name(_name), minGradeToSign(_minGradeToSign), minGradeToExecute(_minGradeToExecute), isSigned(false), signer("N/D")
 {
 	try
 	{
@@ -22,7 +22,7 @@ Form::Form(std::string _name, int _minGradeToSign, int _minGradeToExecute) : nam
 		else if (_minGradeToSign > 150 || _minGradeToExecute > 150)
 			throw GradeTooHighException();
 		else
-			std::cout << GREEN << "Form constructor called. Setting name to " << name << ", minimum grade to sign to " << _minGradeToSign << ", minimum grade to execute " << _minGradeToExecute << RESET << std::endl;
+			std::cout << GREEN << "AForm constructor called. Setting name to " << name << ", minimum grade to sign to " << _minGradeToSign << ", minimum grade to execute " << _minGradeToExecute << RESET << std::endl;
 	}
 	catch (std::exception& e)
 	{
@@ -34,48 +34,59 @@ Form::Form(std::string _name, int _minGradeToSign, int _minGradeToExecute) : nam
 	}
 }
 
-Form::Form() : name("Noname"), minGradeToSign(75), minGradeToExecute(10) , isSigned(false), signer("N/D")
+AForm::AForm() : name("Noname"), minGradeToSign(75), minGradeToExecute(10) , isSigned(false), signer("N/D")
 {
-	std::cout << GREEN << "Form constructor called. Setting name to " << name << RESET << std::endl;
+	std::cout << GREEN << "AForm constructor called. Setting name to " << name << RESET << std::endl;
 }
 
 /* --------------DECONSTRUCTORS */
-Form::~Form(void)
+AForm::~AForm(void)
 {
-	std::cout << RED << "Form deconstructor called!" << RESET << std::endl;
+	std::cout << RED << "AForm deconstructor called!" << RESET << std::endl;
 }
 
 /* --------------OPERATORS */
-std::ostream&			operator<<(std::ostream& os, const Form& f)
+std::ostream&			operator<<(std::ostream& os, const AForm& f)
 {
-	os << f.getName() << ", form minimum grade to sign " << f.getMinGradeToSign() << ", form minimum grade to execute " << f.getMinGradeToExecute();
+	os << f.getName() << ", AForm minimum grade to sign " << f.getMinGradeToSign() << ", AForm minimum grade to execute " << f.getMinGradeToExecute();
 	return (os);
 }
 
-Form 		&Form::operator=(const Form &F)
+AForm 		&AForm::operator=(const AForm &F)
 {
 	this->isSigned = F.isSigned;
 	this->signer = F.signer;
+	return(*this);
 }
 
 /* --------------COPY */
-Form::Form(const Form& other) : name(other.name), minGradeToSign(other.minGradeToSign), minGradeToExecute(other.minGradeToExecute)
+AForm::AForm(const AForm& other) : name(other.name), minGradeToSign(other.minGradeToSign), minGradeToExecute(other.minGradeToExecute)
 {
-    std::cout << GREEN << "Form calling copy assignment!" << RESET << std::endl;
+    std::cout << GREEN << "AForm calling copy assignment!" << RESET << std::endl;
 }
 
 /* --------------GETTER */
-int				Form::getMinGradeToSign(void) const {return (this->minGradeToSign);}
-int				Form::getMinGradeToExecute(void) const {return (this->minGradeToExecute);}
-bool			Form::getIsSigned(void) const {return (this->isSigned);}
-std::string		Form::getName(void) const {return (this->name);}
-std::string		Form::getSigner(void) const {return (this->signer);};
+int				AForm::getMinGradeToSign(void) const {return (this->minGradeToSign);}
+int				AForm::getMinGradeToExecute(void) const {return (this->minGradeToExecute);}
+
+bool			AForm::getIsSigned(void) const
+{
+	return (this->isSigned);
+}
+
+std::string		AForm::getName(void) const {return (this->name);}
+std::string		AForm::getSigner(void) const {return (this->signer);};
+
+/* --------------NON OBJECT CREATOR GETTER */
+int				AForm::getFixedMinGradeToSign(void) const {return (75);}
+int				AForm::getFixedMinGradeToExecute(void) const {return (30);}
 
 /* --------------SETTER */
+void					AForm::setIsSigned(void) { this->isSigned = true ;}
 
 /* --------------FUNCTION MEMBER */
 
-void	Form::beSigned(Bureaucrat *b)
+void	AForm::beSigned(Bureaucrat *b)
 {
 	try
 	{
@@ -97,5 +108,28 @@ void	Form::beSigned(Bureaucrat *b)
 	catch (...)
 	{
 		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
+	}
+}
+
+bool	AForm::checkRequirement(int minGradeToExecute, Bureaucrat const &executor) const
+{
+	try
+	{
+		if (executor.getGrade() > minGradeToExecute)
+		{
+			throw GradeTooLowException();
+		}
+		else
+			return (true);
+	}
+	catch (std::exception& e)
+	{
+		std::cout << ORANGE << "An exception occurred." << e.what() << RESET << std::endl;
+		return (false);
+	}
+	catch (...)
+	{
+		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
+		return (false);
 	}
 }

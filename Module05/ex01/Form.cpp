@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:13:01 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 19:02:22 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:54:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -56,6 +56,7 @@ Form 		&Form::operator=(const Form &F)
 {
 	this->isSigned = F.isSigned;
 	this->signer = F.signer;
+	return (*this);
 }
 
 /* --------------COPY */
@@ -72,6 +73,7 @@ std::string		Form::getName(void) const {return (this->name);}
 std::string		Form::getSigner(void) const {return (this->signer);};
 
 /* --------------SETTER */
+void					Form::setIsSigned(void) { this->isSigned = true ;}
 
 /* --------------FUNCTION MEMBER */
 

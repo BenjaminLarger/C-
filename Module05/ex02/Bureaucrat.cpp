@@ -12,7 +12,6 @@
 
 #include "Bureaucrat.hpp"
 
-
 /* --------------CONSTRUCTORS */
 Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grade)
 {
@@ -88,6 +87,7 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &f)
 Bureaucrat 		&Bureaucrat::operator=(const Bureaucrat &F)
 {
 	this->grade = F.grade;
+	return (*this);
 }
 
 /* --------------GETTER */
@@ -153,18 +153,42 @@ void		Bureaucrat::incrementGrade(void)
 	}
 }
 
-void	Bureaucrat::signForm(Form *f)
+void	Bureaucrat::signForm(AForm *f)
 {
 	try
 	{
 		if (f->getIsSigned() == true)
-			std::cout << CYAN << f->getSigner() << " signed " << f->Form::getName() << RESET << std::endl;
+			throw AlreadySigned();
+		else if (this->getGrade() > f->getMinGradeToSign())
+			throw MinGradeTooLowToSign();
 		else
-    		throw SomeReason();
+		{
+			std::cout << CYAN << f->getName() << " is signed!" << RESET << std::endl;
+    		f->setIsSigned();
+		}
 	}
 	catch (std::exception &e)
 	{
-		std::cout << ORANGE << this->getName() << " couldn't sign " << f->Form::getName() << " because " << e.what() << RESET << std::endl;
+		std::cout << ORANGE << this->getName() << " couldn't sign " << f->AForm::getName() << " because " << e.what() << RESET << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
+	}
+}
+
+void		Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		if (form.execute(*this) == true)
+			std::cout << CYAN << this->getName() << " executed " << form.getName() << RESET << std::endl;
+		else
+    		throw MinGradeTooLowToExecute();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << ORANGE << this->getName() << " couldn't execute " << form.getName() << RESET << std::endl;
 	}
 	catch (...)
 	{

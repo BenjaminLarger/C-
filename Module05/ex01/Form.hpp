@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:06:17 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 19:00:28 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:54:04 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,6 +41,8 @@ public:
 	int				getMinGradeToSign(void) const;
 	int				getMinGradeToExecute(void) const;
 	std::string		getSigner(void) const;
+
+	void					setIsSigned(void);
 	
 	Form	&operator=(const Form &other);
 	
@@ -71,7 +73,6 @@ public:
 	};
 
 	void	beSigned(Bureaucrat *b);
-	void	signForm(void);
 };
 
 std::ostream&			operator<<(std::ostream& os, const Form& f);

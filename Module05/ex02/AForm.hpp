@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*   AAForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -21,7 +21,7 @@
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
-class Form {
+class AForm {
 
 private:
 	const std::string		name;
@@ -31,18 +31,27 @@ private:
 	std::string				signer;
 	
 public:
-	Form();
-	Form(std::string _name, int _minGradeToSign, int _minGradeToExecute);
-	Form(const Form& other);
-	virtual ~Form(void);
+	AForm();
+	AForm(std::string _name, int _minGradeToSign, int _minGradeToExecute);
+	AForm(const AForm& other);
+	virtual ~AForm(void);
 
-	Form	&operator=(const Form &other);
 
+	AForm					&operator=(const AForm &other);
+
+	void					beSigned(Bureaucrat *b);
 	virtual std::string		getName(void) const;
-	bool			getIsSigned(void) const;
-	int				getMinGradeToSign(void) const;
-	int				getMinGradeToExecute(void) const;
-	std::string		getSigner(void) const;
+	bool					getIsSigned(void) const;
+	int						getMinGradeToSign(void) const;
+	int						getMinGradeToExecute(void) const;
+	std::string				getSigner(void) const;
+	int						getFixedMinGradeToSign(void) const;//can delete
+	int						getFixedMinGradeToExecute(void) const;//can delete
+
+	void					setIsSigned(void);
+	
+	virtual bool			execute(Bureaucrat const &form) const = 0;
+	bool					checkRequirement(int minGradeToExecute, Bureaucrat const &executor) const;
 	
 	
 	class GradeTooHighException : public std::exception
@@ -70,12 +79,9 @@ public:
 				return ("Contract is already signed");
 			}
 	};
-
-	void	beSigned(Bureaucrat *b);
-	void	signForm(void);
 };
 
-std::ostream&			operator<<(std::ostream& os, const Form& f);
+std::ostream&			operator<<(std::ostream& os, const AForm& f);
 
 class myexception: public std::exception
 {

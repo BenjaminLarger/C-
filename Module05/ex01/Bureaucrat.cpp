@@ -88,6 +88,7 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &f)
 Bureaucrat 		&Bureaucrat::operator=(const Bureaucrat &F)
 {
 	this->grade = F.grade;
+	return (*this);
 }
 
 /* --------------GETTER */
@@ -158,9 +159,14 @@ void	Bureaucrat::signForm(Form *f)
 	try
 	{
 		if (f->getIsSigned() == true)
-			std::cout << CYAN << f->getSigner() << " signed " << f->Form::getName() << RESET << std::endl;
+			throw AlreadySigned();
+		else if (this->getGrade() > f->getMinGradeToSign())
+			throw MinGradeTooLowToSign();
 		else
-    		throw SomeReason();
+		{
+			std::cout << CYAN << f->getName() << " is signed!" << RESET << std::endl;
+    		f->setIsSigned();
+		}
 	}
 	catch (std::exception &e)
 	{
