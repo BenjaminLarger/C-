@@ -6,11 +6,12 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:47:26 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 19:44:47 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 19:50:18 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Intern.hpp"
+#include <stdexcept>
 
 
 int strToInt(const char* str, int h = 0)
@@ -32,16 +33,24 @@ AForm* Intern::createPresident(std::string target) {
 
 AForm	*Intern::makeForm(std::string nameForm, std::string targetForm)
 {
-	func formCreators[] = {&Intern::createShruberry, &Intern::createRobotomy, &Intern::createPresident};
-    std::string formNames[] = {"shrubery request", "robotomy request", "president request"};
+	try
+	{
+		func formCreators[] = {&Intern::createShruberry, &Intern::createRobotomy, &Intern::createPresident};
+		std::string formNames[] = {"shrubery request", "robotomy request", "president request"};
 
-    for (int i = 0; i < 3; i++) {
-        if (nameForm == formNames[i])
-		{
-			std::cout << "Intern creates " << formNames[i] << std::endl;
-             return (this->*formCreators[i])(targetForm);
-        }
-    }
-	std::cout << RED << "ERROR: " << nameForm << "is not a form." << std::endl;
-    return (NULL);
+		for (int i = 0; i < 3; i++) {
+			if (nameForm == formNames[i])
+			{
+				std::cout << "Intern creates " << formNames[i] << std::endl;
+				return (this->*formCreators[i])(targetForm);
+			}
+		}
+		throw InvalidNameForm();
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << "ERROR: " << e.what() << RESET << std::endl;
+	}
+	return (NULL);
+	
 }
