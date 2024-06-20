@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:47:26 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 19:07:22 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 19:44:47 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,46 +33,15 @@ AForm* Intern::createPresident(std::string target) {
 AForm	*Intern::makeForm(std::string nameForm, std::string targetForm)
 {
 	func formCreators[] = {&Intern::createShruberry, &Intern::createRobotomy, &Intern::createPresident};
-    std::string formNames[] = {"shruberry request", "robotomy request", "president request"};
+    std::string formNames[] = {"shrubery request", "robotomy request", "president request"};
 
     for (int i = 0; i < 3; i++) {
-        if (nameForm == formNames[i]) {
+        if (nameForm == formNames[i])
+		{
+			std::cout << "Intern creates " << formNames[i] << std::endl;
              return (this->*formCreators[i])(targetForm);
         }
     }
-
-    throw std::invalid_argument("Invalid form name");
-	/* Bureaucrat	bob("Bob", 5);
-	int			switchCase = strToInt(nameForm.c_str());
-	AForm		*form;
-	const int			switchShruberry = strToInt("shruberry request");
-	const int			switchRobotomy = strToInt("robotomy request");
-	const int			switchPresident = strToInt("president request");
-
-	try
-	{
-		switch (switchCase)
-		{
-			case switchShruberry:
-				form = new Shrubbery(targetForm);
-				return (form);
-			case strToInt("robotomy request"):
-				form = new Robotomy(targetForm);
-				return (form);
-			case strToInt("president request"):
-				form = new President(targetForm);
-				return (form);
-			default:
-				throw InvalidNameForm();
-		}
-		
-	}
-	catch (std::exception& e)
-	{
-		std::cout << ORANGE << "An exception occurred: " << nameForm << ". " << e.what() << RESET << std::endl;
-	}
-	catch (...)
-	{
-		std::cout << RED << "An unknown exception occurred." << RESET << std::endl;
-	} */
+	std::cout << RED << "ERROR: " << nameForm << "is not a form." << std::endl;
+    return (NULL);
 }

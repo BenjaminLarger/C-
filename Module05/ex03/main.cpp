@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 19:26:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 19:41:29 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,6 +27,37 @@ int main()
 
     bob.signForm(rrf);
     bob.executeForm(*rrf);
+
+
+    std::cout << "------------------------" << std::endl;
+
+    rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+
+    if (rrf)
+    {
+        bob.signForm(rrf);
+        bob.executeForm(*rrf);
+    }   
+
+    std::cout << "------------------------" << std::endl;
+
+    rrf = someRandomIntern.makeForm("shrubery request", "Bender");
+
+    if (rrf)
+    {
+        bob.signForm(rrf);
+        bob.executeForm(*rrf);
+    }
+
+    std::cout << "------------------------" << std::endl;
+
+    rrf = someRandomIntern.makeForm("other request", "Bender");
+
+    if (rrf)
+    {
+        bob.signForm(rrf);
+        bob.executeForm(*rrf);
+    }
 
     delete rrf;
 
