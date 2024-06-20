@@ -6,19 +6,19 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:21:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 14:01:21 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 17:39:23 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "PresidentialPardonForm.hpp"
 
 /* --------------CONSTRUCTORS */
-President::President(std::string _target) : target(_target)
+President::President(std::string _target) : AForm("Robotomy", 25, 5), target(_target)
 {
 	std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;
 }
 
-President::President() : target("President")
+President::President() : AForm("Robotomy", 25, 5), target("President")
 {
 	std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;}
 

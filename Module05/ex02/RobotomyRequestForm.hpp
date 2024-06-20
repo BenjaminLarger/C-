@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:21:03 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 13:22:14 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 16:54:57 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,9 @@
 #define ROBOTOMY_HPP
 
 #include "AForm.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 class AForm;
 class Robotomy : public AForm{

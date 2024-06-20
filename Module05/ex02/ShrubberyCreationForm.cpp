@@ -6,19 +6,19 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:20:22 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 13:22:24 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 17:42:13 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "ShrubberyCreationForm.hpp"
 
 /* --------------CONSTRUCTORS */
-Shrubbery::Shrubbery(std::string _target) : target(_target)
+Shrubbery::Shrubbery(std::string _target) : AForm("Shrubbery", 145, 137), target(_target)
 {
 	std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;
 }
 
-Shrubbery::Shrubbery() : target("Shrubbery")
+Shrubbery::Shrubbery() : AForm("Shrubbery", 145, 137), target("Shrubbery")
 {
 	std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;
 }
@@ -48,7 +48,7 @@ std::string		Shrubbery::getTarget(void) const { return (this->target); }
 /* --------------MEMBER */
 bool 			Shrubbery::execute(Bureaucrat const &executor) const
 {
-	if (AForm::checkRequirement(5, executor) == true && this->getIsSigned() == true)
+	if (AForm::checkRequirement(137, executor) == true && this->getIsSigned() == true)
 	{
 			std::ofstream ofs((this->getTarget() + "_shrubbery").c_str());
 

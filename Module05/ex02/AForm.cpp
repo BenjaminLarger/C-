@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:13:01 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 13:39:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 17:17:06 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,7 +34,7 @@ AForm::AForm(std::string _name, int _minGradeToSign, int _minGradeToExecute) : n
 	}
 }
 
-AForm::AForm() : name("Noname"), minGradeToSign(75), minGradeToExecute(10) , isSigned(false), signer("N/D")
+AForm::AForm() : name("Contract"), minGradeToSign(75), minGradeToExecute(10) , isSigned(false), signer("N/D")
 {
 	std::cout << GREEN << "AForm constructor called. Setting name to " << name << RESET << std::endl;
 }
