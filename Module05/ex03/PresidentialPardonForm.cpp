@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:21:18 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 19:19:18 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 19:24:21 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,17 +15,18 @@
 /* --------------CONSTRUCTORS */
 President::President(std::string _target) : AForm("President", 25, 5), target(_target)
 {
-	std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;
+	//std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;
 }
 
 President::President() : AForm("President", 25, 5), target("President")
 {
-	std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;}
+	//std::cout << GREEN << "President constructor called setting target to " << target << RESET << std::endl;
+}
 
 /* --------------DECONSTRUCTORS */
 President::~President(void)
 {
-	std::cout << RED << "President deconstructor called!" << RESET << std::endl;
+	//std::cout << RED << "President deconstructor called!" << RESET << std::endl;
 }
 
 /* --------------OPERATORS */

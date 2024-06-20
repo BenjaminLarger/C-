@@ -1,40 +1,41 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 18:21:38 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 17:51:31 by blarger          ###   ########.fr       */
+/*   Created: 2024/06/19 18:20:34 by blarger           #+#    #+#             */
+/*   Updated: 2024/06/20 13:22:17 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
-#ifndef PRESIDENT_HPP
-#define PRESIDENT_HPP
+#ifndef SHRUBBERY_HPP
+#define SHRUBBERY_HPP
 
-#include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include <fstream>
+
 
 class AForm;
-class Bureaucrat;
-class President : public AForm{
+class Shrubbery : public AForm{
 
 private:
 	std::string target;
 		
 public:
-	President();
-	President(std::string _name);
-	President(const President& other);
-	virtual ~President(void);
+	Shrubbery();
+	Shrubbery(std::string _name);
+	Shrubbery(const Shrubbery& other);
+	virtual ~Shrubbery(void);
 
 	std::string		getTarget(void) const;
 	int				getCallIndex(void) const;
 
-	President	&operator=(const President &other);
+	Shrubbery		&operator=(const Shrubbery &other);
 	
-	bool		execute(Bureaucrat const & executor) const;
+	bool			execute(Bureaucrat const & executor) const;
 };
 
 #endif

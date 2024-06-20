@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:21:38 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 17:51:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:22:10 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,6 +22,8 @@ class President : public AForm{
 
 private:
 	std::string target;
+	int			callIndex;
+	bool		isRandomized;
 		
 public:
 	President();
