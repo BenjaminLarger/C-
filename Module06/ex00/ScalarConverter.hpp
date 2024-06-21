@@ -11,8 +11,8 @@
 /******************************************************************************/
 
 #pragma once
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef SCALAR_CONVERTER_HPP
+#define SCALAR_CONVERTER_HPP
 
 // ----------INCLUDE
 #include <iostream>
@@ -20,6 +20,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <stdexcept>
+#include <stdlib.h>
+#include <iomanip>
 
 // ----------COLORS
 #define RESET   "\033[0m"

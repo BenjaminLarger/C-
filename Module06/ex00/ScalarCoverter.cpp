@@ -11,8 +11,6 @@
 /******************************************************************************/
 
 #include "ScalarConverter.hpp"
-#include <stdlib.h>
-#include <iomanip>
 
 void	displayChar(float floatValue)
 {
@@ -40,6 +38,7 @@ void	displayChar(float floatValue)
 void	ScalarConverter::convertStringToScalar(std::string str)
 {
     double floatValue = atof(str.c_str());
+	//check NAN or inf number
 
 	std::cout << "Converting " << str << " to character, integer, flaot and double." << RESET << std::endl;
 	displayChar(floatValue);
@@ -58,10 +57,4 @@ void	ScalarConverter::convertStringToScalar(std::string str)
 	{
         std::cerr << "Out of range: " << e.what() << std::endl;
     }
-	/* double valueDouble = std::stod(str);
-
-	displayChar(valueDouble);
-	displayInt(valueDouble);
-	displayFloat(valueDouble);
-	displayDouble(valueDouble); */
 }
