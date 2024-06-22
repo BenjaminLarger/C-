@@ -22,6 +22,7 @@
 #include <stdexcept>
 #include <stdlib.h>
 #include <iomanip>
+#include <string.h>
 
 // ----------COLORS
 #define RESET   "\033[0m"

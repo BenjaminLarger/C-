@@ -11,6 +11,7 @@
 /******************************************************************************/
 
 #include "ScalarConverter.hpp"
+#include <cmath>
 
 void	displayChar(float floatValue)
 {
@@ -33,21 +34,41 @@ void	displayChar(float floatValue)
     }
 }
 
+bool    isNanOrInfiniteNumber(float number)
+{
+    if (number != number)
+    {
+        std::cout << RED << "ERROR: input is not a number" << RESET << std::endl;
+        return (true);
+    }
+    if (std::isinf(number))
+    {
+        std::cout << RED << "ERROR: input is an infinite number" << RESET << std::endl;
+        return (true);
+    }
+    return (false);
+}
+
 /* --------------FUNCTION MEMBER */
 
 void	ScalarConverter::convertStringToScalar(std::string str)
 {
     double floatValue = atof(str.c_str());
-	//check NAN or inf number
+
+    if (isNanOrInfiniteNumber(floatValue) == true)
+    {
+        return ;
+    }
 
 	std::cout << "Converting " << str << " to character, integer, flaot and double." << RESET << std::endl;
+
 	displayChar(floatValue);
 
     try
 	{
         std::cout << YELLOW << "The integer is: " << RESET << static_cast<int>(floatValue) << std::endl;
-		std::cout << YELLOW << "The float is: " << RESET << std::setprecision(6) << static_cast<float>(floatValue) << std::endl;
-        std::cout << YELLOW << "The double is: " << RESET << std::setprecision(12) << static_cast<double>(floatValue) << std::endl;
+		std::cout << YELLOW << "The float is: " << RESET << std::setprecision(8) << static_cast<float>(floatValue) << std::endl;
+        std::cout << YELLOW << "The double is: " << RESET << std::setprecision(strlen(str.c_str())) << floatValue << std::endl;
     }
 	catch (const std::invalid_argument& e)
 	{
