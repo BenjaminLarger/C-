@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 08:23:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/22 08:51:01 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 11:23:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,6 +14,8 @@
 
 #ifndef B_HPP
 #define B_HPP
+
+class Base ;
 
 struct B : public Base
 {

@@ -17,9 +17,6 @@
 // ----------INCLUDE
 #include <cstdlib> 
 #include <iostream> 
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -42,10 +39,11 @@
 class Base {
 
 private:
-	Base();
 	
 public:
-	Base * generate(void);
+	virtual ~Base();
+
+	static Base * generate(void);
 	void identify(Base* p);
 	void identify(Base& p);
 };

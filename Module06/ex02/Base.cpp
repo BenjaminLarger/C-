@@ -11,34 +11,77 @@
 /******************************************************************************/
 
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+
+A::A(void){};
+A::~A(void){};
+
+B::B(void){}
+B::~B(void){};
+
+C::C(void){};
+C::~C(void){};
+
+Base::~Base(void){};
+
+static Base	*generateA(void)
+{
+	A	a;
+	Base		*basePtr = dynamic_cast<Base*>(&a);
+
+	return (basePtr);
+}
+
+static Base	*generateB(void)
+{
+	B	b;
+	Base		*basePtr = dynamic_cast<Base*>(&b);
+
+	return (basePtr);
+}
+
+static Base	*generateC(void)
+{
+	C	c;
+	Base		*basePtr = dynamic_cast<Base*>(&c);
+
+	return (basePtr);
+}
+
 
 Base * Base::generate(void)
 {
 	int	arr[3] = {1, 2, 3};
 	int	randomizedInt;
 
-	randomizedInt = rand() % 3 == 0;
+	randomizedInt = arr[rand() % 3];
 
 	switch(randomizedInt)
 	{
 		case 1:
-			Base	*aPtr = new A();
-			A		*basePtr1 = dynamic_cast<A*>(aPtr);
-			return (basePtr1);
+//			return (generateA());
+			return (new A());
 		case 2:
-			Base	*bPtr = new B();
-			A		*basePtr2 = dynamic_cast<A*>(basePtr);
-			return (basePtr);
+//			return (generateB());
+			return (new B());
+
 		case 3:
-			C	c;
-			return (static_cast<Base>(c));
+//			return (generateC());
+			return (new C());
 	}
-	return (this);
+	return (NULL);
 }
 
 void Base::identify(Base* p)
-{;}
+{
+	std::cout << 
+	(void)p;
+}
 
 void Base::identify(Base& p)
-{}
+{
+	(void)p;
+}
 
