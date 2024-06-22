@@ -6,13 +6,11 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/22 19:34:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 19:36:29 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "Whatever.hpp"
-
-#include <iostream>
 
 std::ostream& operator<<(std::ostream& os, const Point& p)
 {
