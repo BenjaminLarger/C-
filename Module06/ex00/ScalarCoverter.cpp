@@ -13,6 +13,8 @@
 #include "ScalarConverter.hpp"
 #include <cmath>
 
+ScalarConverter::ScalarConverter() {};
+
 static void	displayChar(float floatValue)
 {
     try
@@ -78,12 +80,13 @@ static void displayEndOfDecimal(bool isFloat, std::string str)
 
 void	ScalarConverter::convertStringToScalar(std::string str)
 {
+    double floatValue = atof(str.c_str());
+
     if (str == "")
     {
         std::cout << RED << "ERROR: input is empty." << RESET << std::endl;
         return ;
     }
-    double floatValue = atof(str.c_str());
 
     if (isNanOrInfiniteNumber(floatValue) == true)
     {

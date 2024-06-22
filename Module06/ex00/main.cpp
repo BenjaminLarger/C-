@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/22 06:34:14 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 07:28:57 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@ int main (int argc, char **argv)
     return (-1);
   }
   ScalarConverter::convertStringToScalar(argv[1]);
-  /*
+  /* 
   std::cout << BLUE << "-----------------------" << RESET << std::endl;
   ScalarConverter::convertStringToScalar("65.08555665464");
   std::cout << BLUE << "-----------------------" << RESET << std::endl;

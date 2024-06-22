@@ -11,18 +11,13 @@
 /******************************************************************************/
 
 #pragma once
-#ifndef SCALAR_CONVERTER_HPP
-#define SCALAR_CONVERTER_HPP
+#ifndef SERIALIZER_HPP
+#define SERIALIZER_HPP
 
 // ----------INCLUDE
 #include <iostream>
-#include <string>
-#include <iostream>
-#include <cstdlib>
-#include <stdexcept>
-#include <stdlib.h>
-#include <iomanip>
-#include <string.h>
+#include <inttypes.h>
+#include "Data.hpp"
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -42,12 +37,14 @@
 //                               Class                                		  //
 // ************************************************************************** //
 
-class ScalarConverter {
+class Serializer {
 
 private:
+	Serializer();
 	
 public:
-	static void	convertStringToScalar(std::string str);
+	static uintptr_t serialize(Data* ptr);
+	static Data* deserialize(uintptr_t ptr);
 };
 
 #endif
