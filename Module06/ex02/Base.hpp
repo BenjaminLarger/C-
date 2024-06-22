@@ -11,13 +11,15 @@
 /******************************************************************************/
 
 #pragma once
-#ifndef SERIALIZER_HPP
-#define SERIALIZER_HPP
+#ifndef BASE_HPP
+#define BASE_HPP
 
 // ----------INCLUDE
-#include <iostream>
-#include <inttypes.h>
-#include "Data.hpp"
+#include <cstdlib> 
+#include <iostream> 
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -37,14 +39,15 @@
 //                               Class                                		  //
 // ************************************************************************** //
 
-class Serializer {
+class Base {
 
 private:
-	Serializer();
+	Base();
 	
 public:
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t ptr);
+	Base * generate(void);
+	void identify(Base* p);
+	void identify(Base& p);
 };
 
 #endif

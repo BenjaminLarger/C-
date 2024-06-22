@@ -10,33 +10,35 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include "Serializer.hpp"
+#include "Base.hpp"
 
-/* 
-DEFINITION uinptr
-In C99, uintptr is defined as "an unsigned integer type
-    with the property that any valid pointer to void can be
-    converted to this type, then converted back to pointer
-    to void, and the result will compare equal to the
-    original pointer".
-
-STATIC_CAST
-static_casting a pointer to and from void*p reserves the address.
-
-REINTERPRET_CAST
-reinterpret_cast only guarantees that if you cast a pointer
-    to a different type, and then reinterpret_cast it back
-    to the original type, you get the original value.
-*/
-
-Serializer::Serializer() {};
-
-uintptr_t Serializer::serialize(Data* ptr)
+Base * Base::generate(void)
 {
-    return reinterpret_cast<uintptr_t>(ptr);
+	int	arr[3] = {1, 2, 3};
+	int	randomizedInt;
+
+	randomizedInt = rand() % 3 == 0;
+
+	switch(randomizedInt)
+	{
+		case 1:
+			Base	*aPtr = new A();
+			A		*basePtr1 = dynamic_cast<A*>(aPtr);
+			return (basePtr1);
+		case 2:
+			Base	*bPtr = new B();
+			A		*basePtr2 = dynamic_cast<A*>(basePtr);
+			return (basePtr);
+		case 3:
+			C	c;
+			return (static_cast<Base>(c));
+	}
+	return (this);
 }
 
-Data* Serializer::deserialize(uintptr_t ptr)
-{
-    return reinterpret_cast<Data*>(ptr);
-}
+void Base::identify(Base* p)
+{;}
+
+void Base::identify(Base& p)
+{}
+
