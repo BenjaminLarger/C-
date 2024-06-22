@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/19 18:52:51 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 05:46:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -57,6 +57,8 @@ public:
 
 	void				setGrade(int newGrade);
 	
+	void				decrementGrade();
+	void				incrementGrade();
 	class GradeTooHighExceptions : public std::exception
 	{
 		const char* what() const throw()
@@ -73,8 +75,6 @@ public:
 		}
 	};
 
-	void		decrementGrade();
-	void		incrementGrade();
 };
 
 std::ostream&			operator<<(std::ostream& os, const Bureaucrat& f);

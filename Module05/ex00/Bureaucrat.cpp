@@ -87,6 +87,7 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &f)
 Bureaucrat 		&Bureaucrat::operator=(const Bureaucrat &F)
 {
 	this->grade = F.grade;
+	return (*this);
 }
 
 /* --------------GETTER */

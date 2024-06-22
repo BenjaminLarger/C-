@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:06:17 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 13:54:04 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 05:53:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -45,6 +45,7 @@ public:
 	void					setIsSigned(void);
 	
 	Form	&operator=(const Form &other);
+	void	beSigned(Bureaucrat *b);
 	
 	class GradeTooHighException : public std::exception
 	{
@@ -63,16 +64,6 @@ public:
 			}
 	};
 
-	class IsAlreadySigned : public std::exception
-	{
-		public:
-			const char* what() const throw()
-			{
-				return ("Contract is already signed");
-			}
-	};
-
-	void	beSigned(Bureaucrat *b);
 };
 
 std::ostream&			operator<<(std::ostream& os, const Form& f);

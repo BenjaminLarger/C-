@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:13:01 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 13:54:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 06:00:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -83,13 +83,13 @@ void	Form::beSigned(Bureaucrat *b)
 	{
 		if (b->getGrade() > this->getMinGradeToSign())
 			throw GradeTooLowException();
-		else if (this->isSigned == true)
-			throw IsAlreadySigned();
 		else
 		{
-			std::cout << CYAN << this->getName() << " form signed!" << RESET << std::endl;
-			this->isSigned = true;
-			this->signer = b->getName();
+			if (this->isSigned == false)
+			{
+				this->isSigned = true;
+				std::cout << CYAN << this->getName() << " changed signed bool status to true" << RESET << std::endl;
+			}
 		}
 	}
 	catch (std::exception& e)

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:20:34 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 13:22:17 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 06:06:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,7 +26,7 @@ private:
 		
 public:
 	Shrubbery();
-	Shrubbery(std::string _name);
+	Shrubbery(std::string _target);
 	Shrubbery(const Shrubbery& other);
 	virtual ~Shrubbery(void);
 

@@ -158,13 +158,11 @@ void	Bureaucrat::signForm(Form *f)
 {
 	try
 	{
-		if (f->getIsSigned() == true)
-			throw AlreadySigned();
-		else if (this->getGrade() > f->getMinGradeToSign())
+		if (this->getGrade() > f->getMinGradeToSign())
 			throw MinGradeTooLowToSign();
 		else
 		{
-			std::cout << CYAN << f->getName() << " is signed!" << RESET << std::endl;
+			std::cout << CYAN << this->getName() << " signed " << f->getName() << RESET << std::endl;
     		f->setIsSigned();
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:21:03 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 06:06:50 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,7 +29,7 @@ private:
 		
 public:
 	Robotomy();
-	Robotomy(std::string _name);
+	Robotomy(std::string _target);
 	Robotomy(const Robotomy& other);
 	virtual ~Robotomy(void);
 

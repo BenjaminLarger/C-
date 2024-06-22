@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:21:38 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/20 17:51:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/22 06:06:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,7 +25,7 @@ private:
 		
 public:
 	President();
-	President(std::string _name);
+	President(std::string _target);
 	President(const President& other);
 	virtual ~President(void);
 
