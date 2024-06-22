@@ -44,8 +44,8 @@ public:
 	virtual ~Base();
 
 	static Base * generate(void);
-	void identify(Base* p);
-	void identify(Base& p);
+	static void identify(Base* p);
+	static void identify(Base& p);
 };
 
 #endif
