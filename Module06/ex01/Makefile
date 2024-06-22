@@ -21,7 +21,7 @@ OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
 DEPS=$(OBJS:.o=.d)
 
 # Output binary name
-NAME=convert
+NAME=a.out
 
 .PHONY: all clean distclean
 

@@ -13,28 +13,32 @@
 #include "ScalarConverter.hpp"
 #include <cmath>
 
-static void	displayChar(float floatValue)
+void	displayChar(float floatValue)
 {
     try
 	{
         int 	intValue = static_cast<int>(floatValue);
         char    charValue = static_cast<char>(intValue);
 		if (intValue < 32 || intValue > 126)
-			throw std::out_of_range("");
-		std::cout << "char: " << charValue << std::endl;
+			throw std::out_of_range("Out of printable ASCII char range");
+		std::cout << YELLOW << "The char value is: " << RESET << charValue << std::endl;
 
+    }
+	catch (const std::invalid_argument& e)
+	{
+        std::cerr << "Invalid argument: " << e.what() << std::endl;
     }
 	catch (const std::out_of_range& e)
     {
-        std::cerr << "char: Non displayable" << e.what() << RESET << std::endl;
+        std::cerr << RED << "Error: " << e.what() << RESET << std::endl;
     }
 }
 
-static bool    isNanOrInfiniteNumber(float number)
+bool    isNanOrInfiniteNumber(float number)
 {
     if (number != number)
     {
-        std::cout << "char: impossible\nint: impossible\nflaot: nanf\ndouble nan" << std::endl;
+        std::cout << RED << "ERROR: input is not a number" << RESET << std::endl;
         return (true);
     }
     if (std::isinf(number))
@@ -45,44 +49,10 @@ static bool    isNanOrInfiniteNumber(float number)
     return (false);
 }
 
-static void displayEndOfDecimal(bool isFloat, std::string str)
-{
-    if (!str.empty() && str[strlen(str.c_str()) - 1] == 'f') {
-       str[strlen(str.c_str()) - 1] = '\0';
-}    if (str == "0")
-    {
-        std::cout << ".0";
-        if (isFloat)
-            std::cout << "f";
-        std::cout << std::endl;
-        return;
-    }
-
-    size_t decimalPos = str.find('.');
-    if (decimalPos != std::string::npos)
-    {
-        std::cout << str.substr(decimalPos);
-        
-        if (isFloat)
-            std::cout << "f";
-        std::cout << std::endl;
-    } else {
-        std::cout << ".0";
-        if (isFloat)
-            std::cout << "f";
-        std::cout << std::endl;
-    }
-}
-
 /* --------------FUNCTION MEMBER */
 
 void	ScalarConverter::convertStringToScalar(std::string str)
 {
-    if (str == "")
-    {
-        std::cout << RED << "ERROR: input is empty." << RESET << std::endl;
-        return ;
-    }
     double floatValue = atof(str.c_str());
 
     if (isNanOrInfiniteNumber(floatValue) == true)
@@ -90,15 +60,15 @@ void	ScalarConverter::convertStringToScalar(std::string str)
         return ;
     }
 
+	std::cout << "Converting " << str << " to character, integer, flaot and double." << RESET << std::endl;
+
 	displayChar(floatValue);
 
     try
 	{
-        std::cout << "int: " << static_cast<int>(floatValue) << std::endl;
-		std::cout << "float: " << std::setprecision(8) << static_cast<float>(floatValue);
-        displayEndOfDecimal(true, str);
-        std::cout << "double: " << std::setprecision(strlen(str.c_str())) << floatValue;
-        displayEndOfDecimal(false, str);
+        std::cout << YELLOW << "The integer is: " << RESET << static_cast<int>(floatValue) << std::endl;
+		std::cout << YELLOW << "The float is: " << RESET << std::setprecision(8) << static_cast<float>(floatValue) << std::endl;
+        std::cout << YELLOW << "The double is: " << RESET << std::setprecision(strlen(str.c_str())) << floatValue << std::endl;
     }
 	catch (const std::invalid_argument& e)
 	{
