@@ -6,13 +6,13 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/22 20:13:25 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/23 09:20:27 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
 
 // ----------INCLUDE
 #include <iostream>
@@ -39,33 +39,95 @@
 template <typename T> class Array
 {
 	private:
-		T* ptr;
-		int size;
+		T* 				array;
+		unsigned int 	arraySize;
 
 	public:
 		Array();
 		Array(unsigned int n);
-		Array(T arr[], int s);
 		Array(const Array& other);
-		Array	&operator=(const Array &other);
-		void print();
+		~Array();
+		Array			&operator=(const Array &other);
+		T&				operator[](unsigned int index);
+
+		
+		unsigned int	size(void);
 };
 
 // ************************************************************************** //
 //                               Template                                		  //
 // ************************************************************************** //
 
-template	<typename T>
-void iter(T *arr, const int arrayLength, void (*f)(T &element))
+/* CONSTRUCTOR */
+template <typename T>
+Array<T>::Array(unsigned int n) : arraySize(n)
 {
-	for (int i = 0; i < arrayLength; i++)
-	{ f(arr[i]);}
+	this->array = new T[n];
 }
 
-template	<typename T>
-void	print(T &i)
+template <typename T>
+Array<T>::Array() : array(NULL), arraySize(0)
+{}
+
+/* DECONSTRUCTOR */
+template <typename T>
+Array<T>::~Array()
 {
-	std::cout << YELLOW << i << RESET << std::endl;
+	if (this->arraySize > 0)
+		delete[] this->array;
 }
 
+/* COPY ASSIGNMENT */
+template <typename T>
+Array<T>::Array(const Array& other)
+{
+	if (this != &other)
+	{
+		this->arraySize = other.arraySize;
+		this->array = new T[this->size()];
+		for (unsigned int i = 0; i < this->size(); i++)
+		{
+			this->array[i] = other.array[i];
+		}
+	}
+}
 
+/* OPERATOR */
+template <typename T>
+Array<T>& Array<T>::operator=(const Array &other)
+{
+	if (this != &other)
+	{
+		if (this->size() > 0)
+			delete[] this->array;
+		this->arraySize = other.arraySize;
+		this->array = new T[this->arraySize];
+		for (unsigned int i = 0; i < this->arraySize; i++)
+		{this->array[i] = other.array[i];}
+		
+	}
+	return (*this);
+}
+
+template <typename T>
+T& Array<T>::operator[](unsigned int index)
+{
+	try
+	{
+		if (index >= this->size())
+			throw std::exception();
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << RED << "ERROR: Access to unallocated memory. Undefined behaviour prevented!" << RESET << std::endl;
+		
+	}
+	return (this->array[index]);
+	
+};
+
+template <typename T>
+unsigned int Array<T>::size(void)
+{return (this->arraySize);}
+
+#endif

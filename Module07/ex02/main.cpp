@@ -6,35 +6,43 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/22 20:03:43 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/23 09:27:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Iter.hpp"
+#include "Array.hpp"
 
-#define N 5
-
-int main( void )
+int main()
 {
-    int arr1[] = { 1, 2, 3, 4, 5 };
+    Array<int> defaultArray;
+    std::cout << "Default array size: " << defaultArray.size() << std::endl;
+	std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 
-    std::cout << "arr1: " << std::endl;
-    ::iter(arr1, N, &print);
+    Array<int> sizedArray(5);
+    std::cout << "Sized array size: " << sizedArray.size() << std::endl;
+		std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 
-    double arr2[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+    for (unsigned int i = 0; i < sizedArray.size(); ++i) {
+        sizedArray[i] = i * 10;
+        std::cout << "sizedArray[" << i << "] = " << sizedArray[i] << std::endl;
+    }
+		std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 
-    std::cout << "\narr2: " << std::endl;
-    ::iter(arr2, N, &print);
+    Array<int> copiedArray(sizedArray);
+    std::cout << "Copied array size: " << copiedArray.size() << std::endl;
+		std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 
-    char arr3[] = { 'a', 'b', 'c', 'd', 'e' };
+    sizedArray[0] = 100;
+    std::cout << "After modification, sizedArray[0] = " << sizedArray[0] << std::endl;
+    std::cout << "Copied array[0] remains unchanged: " << copiedArray[0] << std::endl;
+		std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 
-    std::cout << "\narr3: " << std::endl;
-    ::iter(arr3, N, &print);
-
-    std::string arr4[] = { "one", "two", "three", "four", "five" };
-
-    std::cout << "\narr4: " << std::endl;
-    ::iter(arr4, N, &print);
+    try {
+        std::cout << "Accessing out of bounds: " << sizedArray[10] << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+		std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 
     return 0;
 }
