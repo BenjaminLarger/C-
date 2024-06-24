@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/24 10:30:06 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/24 12:12:24 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,7 @@
 // ----------INCLUDE
 #include <iostream>
 #include <list>
+#include <stdexcept>
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -33,32 +34,20 @@
 #define GREY "\033[1;30m"
 
 // ************************************************************************** //
-//                               Template                                		  //
+//                               Container                                		  //
 // ************************************************************************** //
 
 template	<typename T>
 T&			easyfind(std::list<T> list, int toFind)
 {
+	typename	std::list<T>::iterator	it;
 
-	try
+	for (it = list.begin(); it != list.end(); ++it)
 	{
-		list<int>::iterator	it;
-
-		for (it = list.begin(); it != list.end(); ++it)
-		{
-			if (toFind == static_cast<int>(*it))
-				return (*it);
-		}
-		throw std::exception("El")
-		
+		if (toFind == static_cast<int>(*it))
+			return (*it);
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
-	
-	
+	throw std::out_of_range(" does not belong to the list passed as parameter.");
 }
 
 #endif
