@@ -16,12 +16,12 @@ MKDIR_P=mkdir -p
 CFLAGS=-g -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 # Source files and object files
-SRCS=main.cpp
+SRCS=main.cpp Span.cpp
 OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
 DEPS=$(OBJS:.o=.d)
 
 # Output binary name
-NAME=a.out Span.cpp
+NAME=a.out
 
 .PHONY: all clean distclean
 

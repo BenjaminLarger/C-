@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/24 13:34:15 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/24 20:19:32 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,6 +20,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include <limits>
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -52,14 +53,16 @@ public:
 	Span(const Span& other);
 	~Span(void);
 
-	unsigned int		getMaxmaxIntStockable(void) const;
+	unsigned int	getMaxmaxIntStockable(void) const;
 
-	Span	&operator=(const Span &other);
+	Span			&operator=(const Span &other);
 
-	void	addNumber(int numerToAdd);
-	void	addRandomNumbers(int indexToAdd);
-	int		shortestSpan(void);
-	int		longestSpan(void);
+	void			addNumber(int numerToAdd);
+	void			addRandomNumbers(int indexToAdd);
+	void			insertNumbers(unsigned int position, int n, const int val);
+
+	int				shortestSpan(void) const;
+	int				longestSpan(void) const;
 };
 
 
