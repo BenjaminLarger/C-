@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/25 13:46:16 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/25 17:13:41 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,6 +21,8 @@
 #include <iostream>
 #include <stack>
 #include <deque>
+#include <vector>
+
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -41,23 +43,25 @@
 //                               Class Template                                		  //
 // ************************************************************************** //
 
-template <typename T, class container=std::deque<T>>
-class MutantStack : public std::stack<T>
+template <typename T, class container = std::deque<T> >
+class MutantStack : public std::stack<T, container>
 {
-public:
-	MutantStack();
-	~MutantStack();
-	MutantStack(const MutanStack &stack);
-	
-	typedef	typename std::deque::iterator	iterator;
-	iterator begin()
-	{
-		return (this->c.begin());
-	}
-	iterator	end()
-	{
-		return (this->c.end());
-	}
+	public:
+		MutantStack() {};
+		~MutantStack() {};
+		MutantStack(const MutantStack &stack) {*this = stack;}
+
+		MutantStack 		&operator=(const MutantStack &F) {return (*this);}
+
+		typedef	typename container::iterator	iterator;
+		iterator begin()
+		{
+			return (this->c.begin());
+		}
+		iterator	end()
+		{
+			return (this->c.end());
+		}
 };
 
 #endif
