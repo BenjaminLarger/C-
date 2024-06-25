@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 11:27:50 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/25 13:20:54 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/25 13:16:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,7 +31,7 @@ int main()
 	std::cout << "Shortest span = " << sp.shortestSpan() << std::endl;
 	std::cout << "Longest span = " << sp.longestSpan() << std::endl;
 
-	std::cout << YELLOW << "TEST 3--------------------------" << RESET << std::endl;
+	std::cout << YELLOW << "TEST 2--------------------------" << RESET << std::endl;
 	sp.insertNumbers(4, 5, 42);
 	std::cout << "Shortest span = " << sp.shortestSpan() << std::endl;
 	std::cout << "Longest span = " << sp.longestSpan() << std::endl;
