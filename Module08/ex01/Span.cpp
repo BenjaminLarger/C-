@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:40:28 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/24 20:31:46 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/25 13:16:02 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -82,6 +82,17 @@ void			Span::addRandomNumbers(int index)
 	std::cout << RESET << std::endl;
 }
 
+static void	printVectors(std::vector<int> 	vector)
+{
+	
+	for(std::vector<int>::const_iterator it = vector.begin(); it != vector.end(); ++it)
+	{
+ 		std::cout << BLUE << *it << " | ";
+		
+	}
+	std::cout << RESET << std::endl;
+}
+
 void	Span::insertNumbers(unsigned int position, int n, const int val)
 {
 	std::vector<int>::iterator it = this->vector.begin();
@@ -97,6 +108,7 @@ void	Span::insertNumbers(unsigned int position, int n, const int val)
 			++it;
 		}
 		this->vector.insert(it, n, val);
+		printVectors(this->vector);
 		std::cout << GREEN << "Vector insertion successfull!" << RESET << std::endl;
 	}
 	catch (const std::out_of_range& e)
