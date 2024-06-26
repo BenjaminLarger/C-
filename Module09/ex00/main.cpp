@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/26 16:14:33 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/26 16:59:17 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -51,10 +51,10 @@ double	getBtcPrice(const std::string &s, char sep)
 		throw std::out_of_range("BTC price out of range");
 	return (btcPrice);
 }
-std::vector<std::pair<Date, double> > read_csv(const std::string& filename, char sep) {
+DateDoublePairVector read_csv(const std::string& filename, char sep) {
     std::ifstream file(filename.c_str()); 
     std::string line;
-	std::vector<std::pair<Date, double> > myPairs;
+	DateDoublePairVector myPairs;
 
     if (!file.is_open())
 	{
@@ -82,9 +82,25 @@ std::vector<std::pair<Date, double> > read_csv(const std::string& filename, char
 	return (myPairs);
 }
 
-void	matchPairs(std::vector<std::pair<Date, double> > inputPairs,std::vector<std::pair<Date, double> > dataPairs)
+void	dateIsEarlier(Date inputDate, Date dataPairs)
 {
-	std::vector<std::pair<Date, double> > = mstack.begin();
+	
+}
+
+void	matchPairs(DateDoublePairVector inputPairs,DateDoublePairVector dataPairs)
+{
+	DateDoublePairVector::iterator itInput = inputPairs.begin();
+	DateDoublePairVector::iterator itData = inputPairs.begin();
+
+	for (size_t i = 0; i < inputPairs.size(); i++)
+	{
+		for (size_t j = 0; j < dataPairs.size(); j++)
+		{
+			if (dateIsEarlier(inputPairs[i].first, dataPairs[j].first) == false)
+				break ;
+		}
+		
+	}
 }
 
 int main(int argc, char **argv)
@@ -95,9 +111,9 @@ int main(int argc, char **argv)
 	{
 		if (argc != 2)
 			throw (std::runtime_error(BAD_INPUT));
-		std::vector<std::pair<Date, double> > dataPairs = read_csv("data.csv", ',');
+		DateDoublePairVector dataPairs = read_csv("data.csv", ',');
 		std::cout << YELLOW << "----------------------------------------------" << RESET << std::endl;
-		std::vector<std::pair<Date, double> > inputPairs = read_csv(argv[1], '-');
+		DateDoublePairVector inputPairs = read_csv(argv[1], '-');
 		std::cout << YELLOW << "----------------------------------------------" << RESET << std::endl;
 		matchPairs(inputPairs, dataPairs);
 	}
