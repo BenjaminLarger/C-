@@ -6,106 +6,68 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/26 16:59:17 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/26 18:35:25 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "BitcoinExchange.hpp"
 
-unsigned int	findTokenizedDate(std::string dateTokenized)
+bool	dateAreDifferent(Date fixedPairs, Date inputDate)
 {
-	unsigned int	result;
-
-	std::istringstream	iss(dateTokenized);
-	iss >> result;
-	return (result);
+	if (fixedPairs.getYear() == inputDate.getYear()
+		&& fixedPairs.getMonth() == inputDate.getMonth()
+		&& fixedPairs.getDay() == inputDate.getDay())
+		return (false);
+	else
+		return (true);
 }
 
-
-Date	getDate(const std::string &s)
+bool	fixedDateIsEarlierThanInput(Date fixedPairs, Date inputDate)
 {
-    std::pair<Date, double> btcPair;
-    std::stringstream ss(s);
-    std::string yearStr, monthStr, dayStr;
-    std::getline(ss, yearStr, '-');
-	unsigned int year = findTokenizedDate(yearStr); 
-	std::getline(ss, monthStr, '-');
-	unsigned int month = findTokenizedDate(monthStr); 
-	std::getline(ss, dayStr, '-');
-	unsigned int day = findTokenizedDate(dayStr); 
-	Date	btcDate(day, month, year);
-   	return btcDate;
-
+	//std::cout << MAGENTA << "Fixed Date: " << fixedPairs.getDay() << '/' << fixedPairs.getMonth() << '/' << fixedPairs.getYear() << std::endl;
+    //std::cout << "Input Date: " << inputDate.getDay() << '/' << inputDate.getMonth() << '/' << inputDate.getYear() << RESET << std::endl;
+	if (fixedPairs.getYear() < inputDate.getYear())
+		return (true);
+	else if (fixedPairs.getYear() > inputDate.getYear())
+		return (false);
+	if (fixedPairs.getMonth() < inputDate.getMonth())
+		return (true);
+	else if (fixedPairs.getMonth() > inputDate.getMonth())
+		return (false);
+	if (fixedPairs.getDay() < inputDate.getDay())
+		return (true);
+	else
+		return (false);
 }
 
-double	getBtcPrice(const std::string &s, char sep)
+double	getBtcPrice(double nbOfBtc, double btcPrice)
 {
-	std::stringstream ss(s);
-	std::string	priceStr;
-
-	std::getline(ss, priceStr, sep);
-	std::getline(ss, priceStr);
-
-	double btcPrice = atof(priceStr.c_str());
-	if (btcPrice > 1000 || btcPrice < 0)
-		throw std::out_of_range("BTC price out of range");
-	return (btcPrice);
-}
-DateDoublePairVector read_csv(const std::string& filename, char sep) {
-    std::ifstream file(filename.c_str()); 
-    std::string line;
-	DateDoublePairVector myPairs;
-
-    if (!file.is_open())
-	{
-        std::cerr << "Error opening file: " << filename << std::endl;
-        throw std::runtime_error("Could not open file");
-    }
-
-    while (std::getline(file, line))
-	{
-		try
-		{
-			Date	date = getDate(line);
-			double btcPrice = getBtcPrice(line, sep);
-			std::pair<Date, double> btcPair = std::make_pair(date, btcPrice);
-			myPairs.push_back(btcPair);
-			printDateValuePair(btcPair);
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << RED << e.what() << RESET << std::endl;
-		}
-    }
-
-    file.close();
-	return (myPairs);
+	//std::cout << BLUE << "nb of btc = " << nbOfBtc << " | btc price = " << btcPrice << RESET << std::endl;
+	return (nbOfBtc * btcPrice);
 }
 
-void	dateIsEarlier(Date inputDate, Date dataPairs)
+void	matchPairs(DateDoublePairVector inputPairs,DateDoublePairVector fixedPairs)
 {
-	
-}
-
-void	matchPairs(DateDoublePairVector inputPairs,DateDoublePairVector dataPairs)
-{
-	DateDoublePairVector::iterator itInput = inputPairs.begin();
-	DateDoublePairVector::iterator itData = inputPairs.begin();
-
+	size_t	j = 0;
 	for (size_t i = 0; i < inputPairs.size(); i++)
 	{
-		for (size_t j = 0; j < dataPairs.size(); j++)
+		j = 0;
+		while (j < fixedPairs.size())
 		{
-			if (dateIsEarlier(inputPairs[i].first, dataPairs[j].first) == false)
+			if (fixedDateIsEarlierThanInput(inputPairs[i].first, fixedPairs[j].first) == true)
 				break ;
+			j++;
 		}
-		
+		//std::cout << BLUE << "i = " << i << RESET << std::endl;
+		if (fixedPairs.size() > 1 && (j != fixedPairs.size() || (j == fixedPairs.size() && dateAreDifferent(inputPairs[i].first, fixedPairs[j - 1].first) == true)))
+			j--;
+		std::cout << inputPairs[i].first.getYear() << "-" << inputPairs[i].first.getMonth() << "-" << inputPairs[i].first.getDay() << " => " << inputPairs[i].second << " = " << getBtcPrice(inputPairs[i].second, fixedPairs[j].second) << std::endl;
 	}
 }
 
 int main(int argc, char **argv)
 {
-	std::vector<std::pair<std::string, std::vector<int> > > fileContent;
+//	std::vector<std::pair<std::string, std::vector<int> > > fileContent;
 
 	try
 	{
@@ -113,7 +75,7 @@ int main(int argc, char **argv)
 			throw (std::runtime_error(BAD_INPUT));
 		DateDoublePairVector dataPairs = read_csv("data.csv", ',');
 		std::cout << YELLOW << "----------------------------------------------" << RESET << std::endl;
-		DateDoublePairVector inputPairs = read_csv(argv[1], '-');
+		DateDoublePairVector inputPairs = read_csv(argv[1], '|');
 		std::cout << YELLOW << "----------------------------------------------" << RESET << std::endl;
 		matchPairs(inputPairs, dataPairs);
 	}

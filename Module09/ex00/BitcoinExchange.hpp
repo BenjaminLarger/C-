@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/26 16:13:44 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/26 18:08:08 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -72,6 +72,11 @@ struct Date
 typedef std::vector<std::pair<Date, double> > DateDoublePairVector;
 
 /* UTILS FUNCTIONS */
-void printDateValuePair(const std::pair<Date, double>& pair);
+void 					printDateValuePair(const std::pair<Date, double>& pair);
+unsigned int			findTokenizedDate(std::string dateTokenized);
+Date					getDate(const std::string &s);
+double					getBtcPrice(const std::string &s, char sep);
+DateDoublePairVector	read_csv(const std::string& filename, char sep);
+
 
 #endif
