@@ -6,38 +6,54 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:31 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/25 17:55:31 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/26 12:37:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "BitcoinExchange.hpp"
 
-/* --------------CONSTRUCTORS */
-BitcoinExchange::BitcoinExchange()
-{}
-
-/* --------------DECONSTRUCTORS */
-BitcoinExchange::~BitcoinExchange(void)
+void printDateValuePair(const std::pair<Date, double>& pair)
 {
-	std::cout << RED << "BitcoinExchange deconstructor called!" << RESET << std::endl;
+    std::cout << "Date: " << pair.first.getDay() << "/"
+              << pair.first.getMonth() << "/"
+              << pair.first.getYear()
+              << ", Value: " << pair.second << std::endl;
 }
 
-/* --------------COPY */
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) : maxIntStockable(other.maxIntStockable)
+/* ------------------------DATE CLASS */
+
+/* CONSTRUCTORS */
+Date::Date(unsigned int d, unsigned int m, unsigned int y) : day(d), month(m), year(y)
 {
-	this->vector = other.vector;
-    std::cout << GREEN << "BitcoinExchange calling copy assignment!" << RESET << std::endl;
+	if (d > 31 || d == 0 || m > 12 || m == 0 || y < 2009 
+		|| (y == 2009 && m == 01 && d < 2))
+	{
+		std::cout << RED << "d = " << d << " m = " << m << " y = " << y << RESET << std::endl;
+		throw std::out_of_range("Invalid date!");
+	}
+}
+Date::Date() :day(06), month(01), year(2001) {};
+
+Date::~Date() {};
+
+Date::Date(const Date &stack)
+{
+	this->day = stack.day;
+	this->month = stack.month;
+	this->year = stack.year;
+
 }
 
-/* --------------OPERATORS */
-BitcoinExchange 		&BitcoinExchange::operator=(const BitcoinExchange &F)
+/* OPERATORS */
+Date 	&Date::operator=(const Date &F)
 {
+	this->day = F.day;
+	this->month = F.month;
+	this->year = F.year;
 	return (*this);
 }
 
-/* --------------GETTER */
-
-/* --------------SETTER */
-
-
-/* --------------FUNCTION MEMBER */
+/* GETTERS */
+unsigned int	Date::getDay() const { return (this->day);}
+unsigned int	Date::getMonth() const {return (month);}
+unsigned int	Date::getYear() const {return (year);}

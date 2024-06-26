@@ -98,9 +98,9 @@ void	ScalarConverter::convertStringToScalar(std::string str)
     try
 	{
         std::cout << "int: " << static_cast<int>(floatValue) << std::endl;
-		std::cout << "float: " << std::setprecision(8) << static_cast<float>(floatValue);
+		std::cout << "float: " << std::setprecision(8) << static_cast<int>(floatValue);
         displayEndOfDecimal(true, str);
-        std::cout << "double: " << std::setprecision(strlen(str.c_str())) << floatValue;
+        std::cout << "double: " << std::setprecision(strlen(str.c_str())) << static_cast<int>(floatValue);
         displayEndOfDecimal(false, str);
     }
 	catch (const std::invalid_argument& e)

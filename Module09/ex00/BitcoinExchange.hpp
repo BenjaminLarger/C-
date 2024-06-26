@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/25 18:08:37 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/26 16:13:44 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,8 +16,18 @@
 
 // ----------INCLUDE
 #include <iostream>
-#include <ostream>
+#include <string>
+#include <fstream>
 #include <vector>
+#include <utility> // std::pair
+#include <stdexcept> // std::runtime_error
+#include <sstream> // std::stringstream
+#include <utility>
+#include <sstream> // Include for std::istringstream
+#include <string>  // Include for std::string
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -34,26 +44,34 @@
 #define GREY "\033[1;30m"
 
 // ----------MESSAGES
-#define BAD_INPUT "ERROR: This program only accept 1 csv file passed as argument!"
+#define BAD_INPUT "This program only accept 1 file passed as argument!"
 
 // ************************************************************************** //
 //                               Class                                		  //
 // ************************************************************************** //
 
-class BitcoinExchange {
+struct Date
+{
+	private:
+	    unsigned int day;
+    	unsigned int month;
+	    unsigned int year;
+		
+	public:
+		Date(unsigned int d, unsigned int m, unsigned int y);
+		Date();
+		~Date();
+		Date(const Date &stack);
+		Date 		&operator=(const Date &F);
 
-private:
-	unsigned int		maxIntStockable;
-	std::vector<int> 	vector;
-	
-public:
-	BitcoinExchange(void);
-	BitcoinExchange(const BitcoinExchange& other);
-	~BitcoinExchange(void);
-
-
-	BitcoinExchange			&operator=(const BitcoinExchange &other);
+		unsigned int	getDay() const ;
+		unsigned int	getMonth() const ;
+		unsigned int	getYear() const ;
 };
 
+typedef std::vector<std::pair<Date, double> > DateDoublePairVector;
+
+/* UTILS FUNCTIONS */
+void printDateValuePair(const std::pair<Date, double>& pair);
 
 #endif
