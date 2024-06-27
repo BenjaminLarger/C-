@@ -6,76 +6,77 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/27 10:41:19 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 17:31:58 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
-bool	InvalidChar(char c)
+void	displayNbBeforeOrdering(char **argv)
 {
-	if ((c < '0' || c > '9') && c != '*' && c != '-' && c != '+' && c != '/')
-		return (true);
-	else
-		return (false);
-}
+	int	i = 1;
 
-int	performOperation(int op1, int op2, char operation)
-{
-	switch (operation)
+	std::cout << "Before:	";
+	while (argv[i])
 	{
-		case ('+'):
-			return (op2 + op1);
-		case('-'):
-			return (op2 - op1);
-		case ('/'):
-			return (op2 / op1);
-		case ('*'):
-			return (op2 * op1);
-		default:
-			throw (std::out_of_range(""));
+		std::cout << argv[i];
+		i++;
+		if (argv[i])
+			std::cout << " ";	
 	}
+	std::cout << std::endl;
 }
 
-void	ReversePolishNotation(const std::string& expression)
+std::list<int>	convertDataInputIntoList(char **argv, int argc)
 {
-	std::stack<int> 	s;
-	std::istringstream	tokens(expression);
-	std::string			token;
-	int					value;
-	bool				hasValue = false;
+	std::list<int>	input;
+	int				value;	
 
-	while (tokens >> token)
+	for (int i = 1; i < argc; i++)
 	{
-		if (isdigit(token[0]))
+		for (int j = 0; argv[i][j]; j++)
 		{
-			std::istringstream iss(token);
+			if (!isdigit(argv[i][j]))
+				throw (std::out_of_range("Invalid input."));
+			std::istringstream iss(argv[i]);
 			iss >> value;
-			s.push(value);
-			hasValue = true;
+			input.push_back(value);
 		}
-		else
-		{
-			if (hasValue == false)
-				throw(std::out_of_range(""));
-			int	operand1 = s.top();
-			s.pop();
-			int	operand2 = s.top();
-			s.pop();
-			s.push(performOperation(operand1, operand2, token[0]));
-		}
-		std::cout << s.top() << " ";
 	}
-	std::cout << std::endl << s.top();
+	return (input);
+}
+
+void	fordJohnsonSort(std::list<int> main)
+{
+	std::list<int>	aux;
+
+	if (main.size() < 2)
+		return ;
+	
+	std::list<int>::iterator it = main.begin();
+	while (it != main.end())
+	{
+		std::list<int>::iterator next_it = it;
+		++next_it;
+		if (next_it != main.end() && *it > *next_it)
+			std::iter_swap(it, next_it);
+		aux.push_back(*next_it);
+		it = main.erase(next_it);
+	}
+	++it;
+	aux.sort();
 }
 
 int main(int argc, char **argv)
 {
 	try
 	{
-		if (argc != 2)
+		if (argc < 2)
 			throw (std::runtime_error(BAD_INPUT));
-		ReversePolishNotation(argv[1]);
+		displayNbBeforeOrdering(argv);
+		std::list<int> inputs= convertDataInputIntoList(argv, argc);
+		fordJohnsonSort(inputs);
+		
 	}
 	catch (const std::runtime_error& e)
 	{

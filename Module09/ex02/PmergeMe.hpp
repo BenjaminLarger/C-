@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/27 10:41:24 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 16:42:44 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,6 +19,7 @@
 #include <stack>
 #include <sstream>
 #include <string>
+#include <list>
 
 
 // ----------COLORS
@@ -41,25 +42,6 @@
 // ************************************************************************** //
 //                               Class                                		  //
 // ************************************************************************** //
-
-struct Date
-{
-	private:
-	    unsigned int day;
-    	unsigned int month;
-	    unsigned int year;
-		
-	public:
-		Date(unsigned int d, unsigned int m, unsigned int y);
-		Date();
-		~Date();
-		Date(const Date &stack);
-		Date 		&operator=(const Date &F);
-
-		unsigned int	getDay() const ;
-		unsigned int	getMonth() const ;
-		unsigned int	getYear() const ;
-};
 
 
 /* ---------------------UTILS FUNCTIONS */
