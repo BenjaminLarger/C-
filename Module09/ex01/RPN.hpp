@@ -1,34 +1,25 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/27 08:51:04 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 09:45:17 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #pragma once
-#ifndef BITCOINEXCHANGE_HPP
-#define BITCOINEXCHANGE_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 
 // ----------INCLUDE
 #include <iostream>
+#include <stack>
+#include <sstream>
 #include <string>
-#include <fstream>
-#include <vector>
-#include <utility> // std::pair
-#include <stdexcept> // std::runtime_error
-#include <sstream> // std::stringstream
-#include <utility>
-#include <sstream> // Include for std::istringstream
-#include <string>  // Include for std::string
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <cmath>
+
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -45,7 +36,7 @@
 #define GREY "\033[1;30m"
 
 // ----------MESSAGES
-#define BAD_INPUT "Error: could not open file."
+#define BAD_INPUT "program must take in two arguments."
 
 // ************************************************************************** //
 //                               Class                                		  //
@@ -70,21 +61,10 @@ struct Date
 		unsigned int	getYear() const ;
 };
 
-typedef std::vector<std::pair<Date, double> > DateDoublePairVector;
 
 /* ---------------------UTILS FUNCTIONS */
 /* READ_CSV */
-void 					printDateValuePair(const std::pair<Date, double>& pair);
-unsigned int			findTokenizedDate(std::string dateTokenized);
-Date					getDate(const std::string &s);
-double					getBtcPrice(const std::string &s, char sep);
-DateDoublePairVector	read_csv(const std::string& filename, char sep, DateDoublePairVector dataPairs);
-void					matchPairs(std::pair<Date, double> inputDate,DateDoublePairVector fixedPairs);
-/* CREATE PAIR */
-bool					dateAreDifferent(Date fixedPairs, Date inputDate);
-bool					fixedDateIsEarlierThanInput(Date fixedPairs, Date inputDate);
-double					getBtcPrice(double nbOfBtc, double btcPrice);
-void					matchPairs(std::pair<Date, double> inputDate,DateDoublePairVector fixedPairs);
+
 
 
 #endif
