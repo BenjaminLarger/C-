@@ -16,7 +16,7 @@ MKDIR_P=mkdir -p
 CFLAGS=-g -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 # Source files and object files
-SRCS=main.cpp BitcoinExchange.cpp readCSV.cpp
+SRCS=main.cpp BitcoinExchange.cpp readCSV.cpp CreatePair.cpp
 OBJS=$(addprefix build/,$(SRCS:.cpp=.o))
 DEPS=$(OBJS:.o=.d)
 

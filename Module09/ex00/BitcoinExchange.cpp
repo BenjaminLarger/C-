@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:31 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/26 12:37:56 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 07:19:56 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,11 +25,11 @@ void printDateValuePair(const std::pair<Date, double>& pair)
 /* CONSTRUCTORS */
 Date::Date(unsigned int d, unsigned int m, unsigned int y) : day(d), month(m), year(y)
 {
-	if (d > 31 || d == 0 || m > 12 || m == 0 || y < 2009 
-		|| (y == 2009 && m == 01 && d < 2))
+	if (d > 31 || d == 0 || m > 12 || m == 0)
 	{
-		std::cout << RED << "d = " << d << " m = " << m << " y = " << y << RESET << std::endl;
-		throw std::out_of_range("Invalid date!");
+		std::ostringstream oss;
+        oss << "Error : bad input => " << y << "-" << m << "-" << d << std::endl;
+		throw std::out_of_range(oss.str());
 	}
 }
 Date::Date() :day(06), month(01), year(2001) {};

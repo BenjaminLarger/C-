@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/26 18:08:08 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 07:09:13 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cmath>
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -44,7 +45,7 @@
 #define GREY "\033[1;30m"
 
 // ----------MESSAGES
-#define BAD_INPUT "This program only accept 1 file passed as argument!"
+#define BAD_INPUT "Error: could not open file."
 
 // ************************************************************************** //
 //                               Class                                		  //
@@ -71,12 +72,19 @@ struct Date
 
 typedef std::vector<std::pair<Date, double> > DateDoublePairVector;
 
-/* UTILS FUNCTIONS */
+/* ---------------------UTILS FUNCTIONS */
+/* READ_CSV */
 void 					printDateValuePair(const std::pair<Date, double>& pair);
 unsigned int			findTokenizedDate(std::string dateTokenized);
 Date					getDate(const std::string &s);
 double					getBtcPrice(const std::string &s, char sep);
-DateDoublePairVector	read_csv(const std::string& filename, char sep);
+DateDoublePairVector	read_csv(const std::string& filename, char sep, DateDoublePairVector dataPairs);
+void					matchPairs(std::pair<Date, double> inputDate,DateDoublePairVector fixedPairs);
+/* CREATE PAIR */
+bool					dateAreDifferent(Date fixedPairs, Date inputDate);
+bool					fixedDateIsEarlierThanInput(Date fixedPairs, Date inputDate);
+double					getBtcPrice(double nbOfBtc, double btcPrice);
+void					matchPairs(std::pair<Date, double> inputDate,DateDoublePairVector fixedPairs);
 
 
 #endif

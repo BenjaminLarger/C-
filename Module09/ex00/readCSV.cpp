@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:06:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/26 18:07:08 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 07:49:09 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,6 @@ unsigned int	findTokenizedDate(std::string dateTokenized)
 	iss >> result;
 	return (result);
 }
-
 
 Date	getDate(const std::string &s)
 {
@@ -46,14 +45,39 @@ double	getBtcPrice(const std::string &s, char sep)
 	std::getline(ss, priceStr, sep);
 	std::getline(ss, priceStr);
 
-	std::cout << YELLOW << priceStr << RESET << std::endl;
 	double btcPrice = atof(priceStr.c_str());
-	std::cout << YELLOW << btcPrice << RESET << std::endl;
-	if (btcPrice > 1000 || btcPrice < 0)
-		throw std::out_of_range("BTC price out of range");
+	if (btcPrice > 2147483647)
+		throw std::out_of_range("Error: too large a number\n");
+	if (btcPrice != btcPrice)
+		throw std::out_of_range("Error: NAN\n");
+	if (btcPrice > 1000)
+		throw std::out_of_range("");
+	if (btcPrice < 0)
+		throw std::out_of_range("Error: not a positive number.\n");
 	return (btcPrice);
 }
-DateDoublePairVector read_csv(const std::string& filename, char sep)
+
+bool	isInvalidLine(std::string line, char sep)
+{
+	int	i = 0;
+	int	numberOfDash = 0;
+
+	while (line[i] && line[i] != sep)
+	{
+		if (line[i] == '-')
+			numberOfDash++;
+		if (line[i] == ' ' && (numberOfDash != 2 /* || !isalpha(line[i - 1]) */))
+			return (false);
+		if (line[i] != ' ' && (line[i] < '0' || line[i] > '9') && line[i] != '-')
+			return (false);
+		i++;
+	}
+	if (numberOfDash != 2)
+		return (false);
+	return (true);
+}
+
+DateDoublePairVector read_csv(const std::string& filename, char sep, DateDoublePairVector dataPairs)
 {
     std::ifstream file(filename.c_str()); 
     std::string line;
@@ -61,23 +85,28 @@ DateDoublePairVector read_csv(const std::string& filename, char sep)
 
     if (!file.is_open())
 	{
-        std::cerr << "Error opening file: " << filename << std::endl;
-        throw std::runtime_error("Could not open file");
+        throw std::runtime_error("Error : Could not open file");
     }
 
     while (std::getline(file, line))
 	{
 		try
 		{
+			if (isInvalidLine(line, sep) == false)
+			{
+				throw std::out_of_range("") ;
+			}
 			Date	date = getDate(line);
 			double btcPrice = getBtcPrice(line, sep);
 			std::pair<Date, double> btcPair = std::make_pair(date, btcPrice);
 			myPairs.push_back(btcPair);
-			printDateValuePair(btcPair);
+			if (sep == '|')
+				matchPairs(btcPair, dataPairs);
 		}
 		catch(const std::exception& e)
 		{
-			//std::cerr << RED << e.what() << RESET << std::endl;
+			if (sep == '|')
+				std::cerr << RED << e.what() << RESET;
 		}
     }
 
