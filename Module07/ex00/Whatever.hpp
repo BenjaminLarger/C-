@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/22 19:30:35 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:38:44 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -59,7 +59,7 @@ template	<typename T> T max(const T &x, const T &y)
 //                               Class                                		  //
 // ************************************************************************** //
 
-class Point {
+/* class Point {
 public:
     int x, y;
 
@@ -73,5 +73,5 @@ public:
     bool operator>=(const Point& other) const {
         return x * x + y * y >= other.x * other.x + other.y * other.y;
     }
-};
+}; */
 #endif

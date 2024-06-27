@@ -1,12 +1,12 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
+/*   Iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/22 20:10:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:34:39 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -47,7 +47,7 @@ template <typename T> class Array
 		void print();
 };
 
-class Point {
+/* class Point {
 public:
     int x, y;
 
@@ -62,17 +62,28 @@ public:
         return x * x + y * y >= other.x * other.x + other.y * other.y;
     }
 };
-#endif
+#endif */
 
 // ************************************************************************** //
 //                               Template                                		  //
 // ************************************************************************** //
 
 template	<typename T>
-void iter(T *arr, const int arrayLength, void (*f)(T &element))
+void iter(T *arr, const int arrayLength, void (*f)(T &element)) 
 {
 	for (int i = 0; i < arrayLength; i++)
-	{ f(arr[i]);}
+	{
+		f(arr[i]);
+	}
+}
+
+template	<typename T>
+void iter(T *arr, const int arrayLength, void (*f)(const T &element)) 
+{
+	for (int i = 0; i < arrayLength; i++)
+	{
+		f(arr[i]);
+	}
 }
 
 template	<typename T>
