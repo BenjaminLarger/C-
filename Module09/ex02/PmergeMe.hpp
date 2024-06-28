@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/27 16:42:44 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/28 16:07:07 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,6 +20,8 @@
 #include <sstream>
 #include <string>
 #include <list>
+#include <map>
+#include <algorithm> 
 
 
 // ----------COLORS
@@ -45,7 +47,8 @@
 
 
 /* ---------------------UTILS FUNCTIONS */
-
+void	printList(std::list<int> l, const char *color);
+bool	listIsSorted(std::list<int> l);
 
 
 #endif
