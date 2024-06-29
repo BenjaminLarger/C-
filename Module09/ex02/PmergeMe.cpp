@@ -6,82 +6,74 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:29:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/29 14:46:20 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/29 14:58:47 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
+
 #include "PmergeMe.hpp"
 
-std::list<int>	sortEachPair(std::list<int> main, std::list<int> aux)
+void	printList(std::list<int> l, const char *color)
 {
-	std::list<int>::iterator	it1 = main.begin();
-	std::list<int>::iterator	nextIt1 = main.begin();
-	std::list<int>::iterator	it2 = aux.begin();
-	std::list<int>::iterator	nextIt2 = aux.begin();
-
-	++nextIt2;
-	++nextIt1;
-
-	while (nextIt2 != aux.end())
+	for (std::list<int>::iterator it = l.begin(); it != l.end(); ++it)
 	{
-		if (*it2 > *nextIt2)
-		{
-			std::iter_swap(it2, nextIt2);
-            std::iter_swap(it1, nextIt1);
-	
-		}
-		++it2;
-		++nextIt2;
-		++it1;
-		++nextIt1;
+		std::cout << color<< *it << ", ";
 	}
-	if (listIsSorted(aux) == true)
-		return (aux);
-	else
-		return (sortEachPair(main, aux));
+	std::cout << RESET << std::endl;
 }
 
-std::list<int>	mergedSortedList(std::list<int> &main,std::list<int> &aux, long unsigned int index, const long unsigned int originalSize)
+
+bool	listIsSorted(std::list<int> l)
 {
-	std::list<int>::iterator	itMain = main.begin();
-	std::list<int>::iterator	itAux = aux.begin();
-
-	printList(main, YELLOW);
-	printList(aux, GREEN);
-	if (index >= aux.size())
-		index = 0;
-
-	std::advance(itAux, index);
-
-	while (itMain != main.end())
+	for (std::list<int>::iterator it = l.begin(); it != l.end(); ++it)
 	{
-		if (*itMain == *itAux || (*itMain < *itAux && isListMin(main, *itMain)))
-		{
-			aux.insert(itAux, *itMain);
-			itMain = main.erase(itMain);
-			itAux = aux.begin();
-		}
-		else
-			++itMain;
+		std::list<int>::iterator next_it = it;
+		++next_it;
+		if (next_it != l.end() && *it > *next_it)
+			return (false);
 	}
-	if ((listIsSorted(aux) == true && aux.size() == originalSize))
-		return (aux);
-	else
-		return (mergedSortedList(main, aux, index + 1, originalSize));
+	return (true);
 }
 
-std::list<int>	insertStruggler(std::list<int> &aux, int ref)
+
+bool	isListMin(std::list<int> main, int ref)
 {
-	for (std::list<int>::iterator itAux = aux.begin(); itAux != aux.end(); ++itAux)
+	for (std::list<int>::iterator	itMain = main.begin(); itMain != main.end(); ++itMain)
 	{
-		if (*itAux == ref || ref < *itAux)
-		{
-			aux.insert(itAux, ref);
-	
-			return (aux);
-		}
+		if (*itMain < ref)
+			return (false);
 	}
-	aux.push_back(ref);
-	return (aux);
-}	
+	return (true);
+}
+
+void	pushFirstElementToFront(std::list<int> &main, std::list<int> &aux)
+{
+	int	firstElement;
+
+	if (!main.empty())
+	{
+		firstElement = main.front();
+		aux.push_front(firstElement);
+		main.pop_front();
+		
+	}
+}
+
+void	displayNbBeforeOrdering(char **argv)
+{
+	int	i = 1;
+
+	std::cout << "Before:	";
+	while (argv[i])
+	{
+		std::cout << argv[i];
+		i++;
+		if (argv[i])
+			std::cout << " ";	
+	}
+	std::cout << std::endl;
+}
+
+
+
 

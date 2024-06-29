@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/29 14:50:42 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/29 14:58:32 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,44 +41,88 @@
 // ----------MESSAGES
 #define BAD_INPUT "program must take in at least two arguments."
 
-// ************************************************************************** //
-//                               Class                                		  //
-// ************************************************************************** //
-
-
 /* ---------------------UTILS FUNCTIONS */
 void			printList(std::list<int> l, const char *color);
 bool			listIsSorted(std::list<int> l);
 bool			isListMin(std::list<int> main, int ref);
 void			pushFirstElementToFront(std::list<int> &main, std::list<int> &aux);
-//std::list<int>	convertDataInputIntoList(char **argv, int argc);
 void			displayNbBeforeOrdering(char **argv);
 
-/* ---------------------PMERGEME FUNCTIONS */
-std::list<int>	sortEachPair(std::list<int> main, std::list<int> aux);
-std::list<int>	mergedSortedList(std::list<int> &main,std::list<int> &aux, long unsigned int index, const long unsigned int originalSize);
-std::list<int>	insertStruggler(std::list<int> &aux, int ref);
-//void			fordJohnsonSort(std::list<int> main);
-
-
-template <typename T>
-T convertDataInputIntoList(char **argv, int argc)
+/* ---------------------PMERGEME TEMPLATES */
+template <typename Container>
+Container	insertStruggler(Container &aux, int ref)
 {
-    T input;
-    int value;
+	for (typename Container::iterator itAux = aux.begin(); itAux != aux.end(); ++itAux)
+	{
+		if (*itAux == ref || ref < *itAux)
+		{
+			aux.insert(itAux, ref);
+	
+			return (aux);
+		}
+	}
+	aux.push_back(ref);
+	return (aux);
+}
 
-    for (int i = 1; i < argc; i++)
-    {
-        for (int j = 0; argv[i][j]; j++)
-        {
-            if (!isdigit(argv[i][j]))
-                throw std::out_of_range("Invalid input.");
-        }
-        std::istringstream iss(argv[i]);
-        iss >> value;
-        input.push_back(value);
-    }
-    return input;
+template <typename Container>
+Container	mergedSortedList(Container &main,Container &aux, long unsigned int index, const long unsigned int originalSize)
+{
+	typename Container::iterator	itMain = main.begin();
+	typename Container::iterator	itAux = aux.begin();
+
+	printList(main, YELLOW);
+	printList(aux, GREEN);
+	if (index >= aux.size())
+		index = 0;
+
+	std::advance(itAux, index);
+
+	while (itMain != main.end())
+	{
+		if (*itMain == *itAux || (*itMain < *itAux && isListMin(main, *itMain)))
+		{
+			aux.insert(itAux, *itMain);
+			itMain = main.erase(itMain);
+			itAux = aux.begin();
+		}
+		else
+			++itMain;
+	}
+	if ((listIsSorted(aux) == true && aux.size() == originalSize))
+		return (aux);
+	else
+		return (mergedSortedList<Container>(main, aux, index + 1, originalSize));
+}
+
+template <typename Container>
+Container	sortEachPair(Container main, Container aux)
+{
+	typename Container::iterator	it1 = main.begin();
+	typename Container::iterator	nextIt1 = main.begin();
+	typename Container::iterator	it2 = aux.begin();
+	typename Container::iterator	nextIt2 = aux.begin();
+
+	++nextIt2;
+	++nextIt1;
+
+	while (nextIt2 != aux.end())
+	{
+		if (*it2 > *nextIt2)
+		{
+			std::iter_swap(it2, nextIt2);
+            std::iter_swap(it1, nextIt1);
+	
+		}
+		++it2;
+		++nextIt2;
+		++it1;
+		++nextIt1;
+	}
+	if (listIsSorted(aux) == true)
+		return (aux);
+	else
+		return (sortEachPair(main, aux));
 }
 
 template <typename T>
@@ -116,11 +160,31 @@ void	fordJohnsonSort(T main)
 	fordJohnsonSort<T>(main);
 	fordJohnsonSort<T>(aux);
 
-	aux = sortEachPair(main, aux);
+	aux = sortEachPair<T>(main, aux);
 	pushFirstElementToFront(main, aux);
-	aux = mergedSortedList(main, aux, 0, originalSizeWithoutStruggler);
+	aux = mergedSortedList<T>(main, aux, 0, originalSizeWithoutStruggler);
 	if (originalSize % 2 == 1)
 		aux = insertStruggler(aux, struggler);
+}
+
+template <typename T>
+T convertDataInputIntoList(char **argv, int argc)
+{
+    T input;
+    int value;
+
+    for (int i = 1; i < argc; i++)
+    {
+        for (int j = 0; argv[i][j]; j++)
+        {
+            if (!isdigit(argv[i][j]))
+                throw std::out_of_range("Invalid input.");
+        }
+        std::istringstream iss(argv[i]);
+        iss >> value;
+        input.push_back(value);
+    }
+    return input;
 }
 
 #endif
