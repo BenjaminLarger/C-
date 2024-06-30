@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/30 10:48:39 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/30 14:28:30 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,7 +14,7 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-// ----------INCLUDE
+// ---------------------INCLUDE
 #include <iostream>
 #include <stack>
 #include <sstream>
@@ -22,9 +22,10 @@
 #include <list>
 #include <map>
 #include <algorithm> 
+#include <ctime>
 
 
-// ----------COLORS
+// ---------------------COLORS
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"
 #define RED     "\033[1;31m"
@@ -38,15 +39,21 @@
 #define WHITE   "\033[1; 37m"
 #define GREY "\033[1;30m"
 
-// ----------MESSAGES
+// ---------------------MESSAGES
 #define BAD_INPUT "program must take in at least two arguments."
 
 /* ---------------------UTILS FUNCTIONS */
-void			printList(std::list<int> l, const char *color);
-//bool			listIsSorted(std::list<int> l);
-//bool			isListMin(std::list<int> main, int ref);
-//void			pushFirstElementToFront(std::list<int> &main, std::list<int> &aux);
 void			displayNbBeforeOrdering(char **argv);
+
+template <typename Container>
+void	printContainer(Container l, const char *color)
+{
+	for (typename Container::iterator it = l.begin(); it != l.end(); ++it)
+	{
+		std::cout << color<< *it << ", ";
+	}
+	std::cout << RESET << std::endl;
+}
 
 template <typename Container>
 void	displayNbAfterOrdering(Container main)
@@ -71,20 +78,6 @@ bool	isListMin(Container main, int ref)
 }
 
 template <typename Container>
-void	pushFirstElementToFront(Container &main, Container &aux)
-{
-	int	firstElement;
-
-	if (!main.empty())
-	{
-		firstElement = main.front();
-		aux.push_front(firstElement);
-		main.pop_front();
-		
-	}
-}
-
-template <typename Container>
 bool	listIsSorted(Container l)
 {
 	for (typename Container::iterator it = l.begin(); it != l.end(); ++it)
@@ -92,7 +85,10 @@ bool	listIsSorted(Container l)
 		typename Container::iterator next_it = it;
 		++next_it;
 		if (next_it != l.end() && *it > *next_it)
+		{
+			//std::cout << RED << "Error : it = " << *it << ", nextIt = " << *next_it << RESET << std::endl;
 			return (false);
+		}
 	}
 	return (true);
 }
@@ -115,31 +111,23 @@ Container	insertStruggler(Container &aux, int ref)
 }
 
 template <typename Container>
-Container	mergedSortedList(Container &main,Container &aux, long unsigned int index, const long unsigned int originalSize)
+Container	mergedSortedList(Container &main,Container &aux)
 {
-	typename Container::iterator	itMain = main.begin();
-	typename Container::iterator	itAux = aux.begin();
+	Container result;
+    typename Container::iterator itMain = main.begin(), itAux = aux.begin();
 
-	if (index >= aux.size())
-		index = 0;
-
-	std::advance(itAux, index);
-
-	while (itMain != main.end())
+	while (itMain != main.end() && itAux != aux.end())
 	{
-		if (*itMain == *itAux || (*itMain < *itAux && isListMin<Container>(main, *itMain)))
-		{
-			aux.insert(itAux, *itMain);
-			itMain = main.erase(itMain);
-			itAux = aux.begin();
-		}
+		if (isListMin<Container>(main, *itMain) && *itMain < *itAux)
+			result.push_back(*itMain++);
 		else
-			++itMain;
+			result.push_back(*itAux++);
 	}
-	if ((listIsSorted<Container>(aux) == true && aux.size() == originalSize))
-		return (aux);
-	else
-		return (mergedSortedList<Container>(main, aux, index + 1, originalSize));
+		while (itMain != main.end())
+			result.push_back(*itMain++);
+		while (itAux != aux.end())
+			result.push_back(*itAux++);
+	return (aux);
 }
 
 template <typename Container>
@@ -173,16 +161,15 @@ Container	sortEachPair(Container main, Container aux)
 }
 
 template <typename T>
-T	fordJohnsonSort(T main)
+void	fordJohnsonSort(T main, long unsigned int originalSizeWithoutStruggler, bool printResult)
 {
 	T				aux;
 	int							struggler;
 	typename T::iterator it;
 	int							originalSize = main.size();
-	int							originalSizeWithoutStruggler = main.size() - (main.size() % 2);
 
 	if (main.size() < 2)
-		return (main);
+		return ;
 
 	if (main.size() % 2 == 1)
 	{
@@ -204,15 +191,22 @@ T	fordJohnsonSort(T main)
 		it = main.erase(next_it);
 	}
 	
-	fordJohnsonSort<T>(main);
-	fordJohnsonSort<T>(aux);
+	fordJohnsonSort<T>(main, originalSizeWithoutStruggler, printResult);
+	fordJohnsonSort<T>(aux, originalSizeWithoutStruggler, printResult);
 
+	if (aux.size() + main.size() != originalSizeWithoutStruggler)
+		return ;
 	aux = sortEachPair<T>(main, aux);
-	pushFirstElementToFront<T>(main, aux);
-	aux = mergedSortedList<T>(main, aux, 0, originalSizeWithoutStruggler);
+	aux = mergedSortedList<T>(main, aux);
 	if (originalSize % 2 == 1)
 		aux = insertStruggler(aux, struggler);
-	return (aux);
+	if (printResult == true && listIsSorted(aux) == true)
+	{
+		displayNbAfterOrdering(aux);
+		std::cout << GREEN << "Deque is sorted !" << RESET << std::endl;
+	}
+	else if (printResult == true)
+		std::cout << RED << "Deque is not sorted !" << RESET << std::endl;
 }
 
 template <typename T>
