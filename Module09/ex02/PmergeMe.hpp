@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/29 14:58:32 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/30 10:48:39 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -43,10 +43,59 @@
 
 /* ---------------------UTILS FUNCTIONS */
 void			printList(std::list<int> l, const char *color);
-bool			listIsSorted(std::list<int> l);
-bool			isListMin(std::list<int> main, int ref);
-void			pushFirstElementToFront(std::list<int> &main, std::list<int> &aux);
+//bool			listIsSorted(std::list<int> l);
+//bool			isListMin(std::list<int> main, int ref);
+//void			pushFirstElementToFront(std::list<int> &main, std::list<int> &aux);
 void			displayNbBeforeOrdering(char **argv);
+
+template <typename Container>
+void	displayNbAfterOrdering(Container main)
+{
+	std::cout << "After:	";
+	for (typename Container::iterator	itMain = main.begin(); itMain != main.end(); ++itMain)
+	{
+		std::cout << *itMain << " ";
+	}
+	std::cout << std::endl;
+}
+
+template <typename Container>
+bool	isListMin(Container main, int ref)
+{
+	for (typename Container::iterator	itMain = main.begin(); itMain != main.end(); ++itMain)
+	{
+		if (*itMain < ref)
+			return (false);
+	}
+	return (true);
+}
+
+template <typename Container>
+void	pushFirstElementToFront(Container &main, Container &aux)
+{
+	int	firstElement;
+
+	if (!main.empty())
+	{
+		firstElement = main.front();
+		aux.push_front(firstElement);
+		main.pop_front();
+		
+	}
+}
+
+template <typename Container>
+bool	listIsSorted(Container l)
+{
+	for (typename Container::iterator it = l.begin(); it != l.end(); ++it)
+	{
+		typename Container::iterator next_it = it;
+		++next_it;
+		if (next_it != l.end() && *it > *next_it)
+			return (false);
+	}
+	return (true);
+}
 
 /* ---------------------PMERGEME TEMPLATES */
 template <typename Container>
@@ -71,8 +120,6 @@ Container	mergedSortedList(Container &main,Container &aux, long unsigned int ind
 	typename Container::iterator	itMain = main.begin();
 	typename Container::iterator	itAux = aux.begin();
 
-	printList(main, YELLOW);
-	printList(aux, GREEN);
 	if (index >= aux.size())
 		index = 0;
 
@@ -80,7 +127,7 @@ Container	mergedSortedList(Container &main,Container &aux, long unsigned int ind
 
 	while (itMain != main.end())
 	{
-		if (*itMain == *itAux || (*itMain < *itAux && isListMin(main, *itMain)))
+		if (*itMain == *itAux || (*itMain < *itAux && isListMin<Container>(main, *itMain)))
 		{
 			aux.insert(itAux, *itMain);
 			itMain = main.erase(itMain);
@@ -89,7 +136,7 @@ Container	mergedSortedList(Container &main,Container &aux, long unsigned int ind
 		else
 			++itMain;
 	}
-	if ((listIsSorted(aux) == true && aux.size() == originalSize))
+	if ((listIsSorted<Container>(aux) == true && aux.size() == originalSize))
 		return (aux);
 	else
 		return (mergedSortedList<Container>(main, aux, index + 1, originalSize));
@@ -119,14 +166,14 @@ Container	sortEachPair(Container main, Container aux)
 		++it1;
 		++nextIt1;
 	}
-	if (listIsSorted(aux) == true)
+	if (listIsSorted<Container>(aux) == true)
 		return (aux);
 	else
 		return (sortEachPair(main, aux));
 }
 
 template <typename T>
-void	fordJohnsonSort(T main)
+T	fordJohnsonSort(T main)
 {
 	T				aux;
 	int							struggler;
@@ -135,7 +182,7 @@ void	fordJohnsonSort(T main)
 	int							originalSizeWithoutStruggler = main.size() - (main.size() % 2);
 
 	if (main.size() < 2)
-		return ;
+		return (main);
 
 	if (main.size() % 2 == 1)
 	{
@@ -161,10 +208,11 @@ void	fordJohnsonSort(T main)
 	fordJohnsonSort<T>(aux);
 
 	aux = sortEachPair<T>(main, aux);
-	pushFirstElementToFront(main, aux);
+	pushFirstElementToFront<T>(main, aux);
 	aux = mergedSortedList<T>(main, aux, 0, originalSizeWithoutStruggler);
 	if (originalSize % 2 == 1)
 		aux = insertStruggler(aux, struggler);
+	return (aux);
 }
 
 template <typename T>

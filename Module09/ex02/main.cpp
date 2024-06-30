@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/29 14:47:55 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/30 10:48:07 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,8 +22,12 @@ int main(int argc, char **argv)
 			throw (std::runtime_error(BAD_INPUT));
 		displayNbBeforeOrdering(argv);
 		std::list<int> inputs = convertDataInputIntoList<std::list<int> >(argv, argc);
-		fordJohnsonSort<std::list<int> >(inputs);
+		inputs = fordJohnsonSort<std::list<int> >(inputs);
+		displayNbAfterOrdering(inputs);
 		
+		std::deque<int> dequeInputs = convertDataInputIntoList<std::deque<int> >(argv, argc);
+		dequeInputs = fordJohnsonSort<std::deque<int> >(dequeInputs);
+		displayNbAfterOrdering(dequeInputs);
 	}
 	catch (const std::runtime_error& e)
 	{

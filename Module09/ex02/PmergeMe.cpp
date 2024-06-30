@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:29:16 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/29 14:58:47 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/30 10:48:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,30 +35,6 @@ bool	listIsSorted(std::list<int> l)
 	return (true);
 }
 
-
-bool	isListMin(std::list<int> main, int ref)
-{
-	for (std::list<int>::iterator	itMain = main.begin(); itMain != main.end(); ++itMain)
-	{
-		if (*itMain < ref)
-			return (false);
-	}
-	return (true);
-}
-
-void	pushFirstElementToFront(std::list<int> &main, std::list<int> &aux)
-{
-	int	firstElement;
-
-	if (!main.empty())
-	{
-		firstElement = main.front();
-		aux.push_front(firstElement);
-		main.pop_front();
-		
-	}
-}
-
 void	displayNbBeforeOrdering(char **argv)
 {
 	int	i = 1;
@@ -73,7 +49,3 @@ void	displayNbBeforeOrdering(char **argv)
 	}
 	std::cout << std::endl;
 }
-
-
-
-
