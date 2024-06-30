@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/30 14:28:30 by blarger          ###   ########.fr       */
+/*   Updated: 2024/06/30 14:37:39 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,6 +44,7 @@
 
 /* ---------------------UTILS FUNCTIONS */
 void			displayNbBeforeOrdering(char **argv);
+void			displayTimeToProcess(std::clock_t start, std::clock_t end, std::string containerUsed);
 
 template <typename Container>
 void	printContainer(Container l, const char *color)
@@ -160,12 +161,12 @@ Container	sortEachPair(Container main, Container aux)
 		return (sortEachPair(main, aux));
 }
 
-template <typename T>
-void	fordJohnsonSort(T main, long unsigned int originalSizeWithoutStruggler, bool printResult)
+template <typename Container>
+void	fordJohnsonSort(Container main, long unsigned int originalSizeWithoutStruggler, bool printResult)
 {
-	T				aux;
+	Container				aux;
 	int							struggler;
-	typename T::iterator it;
+	typename Container::iterator it;
 	int							originalSize = main.size();
 
 	if (main.size() < 2)
@@ -181,7 +182,7 @@ void	fordJohnsonSort(T main, long unsigned int originalSizeWithoutStruggler, boo
 	it = main.begin();
 	while (aux.size() < main.size() && it != main.end())
 	{
-		typename T::iterator next_it = it;
+		typename Container::iterator next_it = it;
 		++next_it;
 		if (next_it != main.end() && *it > *next_it)
 		{
@@ -191,28 +192,28 @@ void	fordJohnsonSort(T main, long unsigned int originalSizeWithoutStruggler, boo
 		it = main.erase(next_it);
 	}
 	
-	fordJohnsonSort<T>(main, originalSizeWithoutStruggler, printResult);
-	fordJohnsonSort<T>(aux, originalSizeWithoutStruggler, printResult);
+	fordJohnsonSort<Container>(main, originalSizeWithoutStruggler, printResult);
+	fordJohnsonSort<Container>(aux, originalSizeWithoutStruggler, printResult);
 
 	if (aux.size() + main.size() != originalSizeWithoutStruggler)
 		return ;
-	aux = sortEachPair<T>(main, aux);
-	aux = mergedSortedList<T>(main, aux);
+	aux = sortEachPair<Container>(main, aux);
+	aux = mergedSortedList<Container>(main, aux);
 	if (originalSize % 2 == 1)
 		aux = insertStruggler(aux, struggler);
 	if (printResult == true && listIsSorted(aux) == true)
 	{
 		displayNbAfterOrdering(aux);
-		std::cout << GREEN << "Deque is sorted !" << RESET << std::endl;
+		//std::cout << GREEN << "Deque is sorted !" << RESET << std::endl;
 	}
 	else if (printResult == true)
 		std::cout << RED << "Deque is not sorted !" << RESET << std::endl;
 }
 
-template <typename T>
-T convertDataInputIntoList(char **argv, int argc)
+template <typename Container>
+Container convertDataInputIntoList(char **argv, int argc)
 {
-    T input;
+    Container input;
     int value;
 
     for (int i = 1; i < argc; i++)
