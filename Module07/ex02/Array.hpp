@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 15:14:46 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/23 09:20:27 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/01 09:39:09 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,7 @@
 // ----------INCLUDE
 #include <iostream>
 #include <exception>
+#include <cstdlib>
 
 // ----------COLORS
 #define RESET   "\033[0m"
@@ -112,18 +113,9 @@ Array<T>& Array<T>::operator=(const Array &other)
 template <typename T>
 T& Array<T>::operator[](unsigned int index)
 {
-	try
-	{
-		if (index >= this->size())
-			throw std::exception();
-	}
-	catch (const std::exception& e)
-	{
-		std::cout << RED << "ERROR: Access to unallocated memory. Undefined behaviour prevented!" << RESET << std::endl;
-		
-	}
+	if (index >= this->size())
+		throw std::out_of_range("Access to unallocated memory. Undefined behaviour prevented!");
 	return (this->array[index]);
-	
 };
 
 template <typename T>

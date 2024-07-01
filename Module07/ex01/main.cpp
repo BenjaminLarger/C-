@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/27 11:36:56 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/01 09:51:13 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,7 +19,7 @@ int main( void )
     int arr1[] = { 1, 2, 3, 4, 5 };
 
     std::cout << "arr1: " << std::endl;
-    iter(arr1, N, print<int>);
+    iter(arr1, N, print<const int>);
 
     double arr2[] = { 1.1, 2.2, 3.3, 4.4, 5.5 };
 

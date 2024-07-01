@@ -6,11 +6,11 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 09:46:47 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/23 09:27:41 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/01 09:47:55 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Array.hpp"
+#include <Array.hpp>
 
 int main()
 {
@@ -38,9 +38,9 @@ int main()
 		std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 
     try {
-        std::cout << "Accessing out of bounds: " << sizedArray[10] << std::endl;
+        std::cout << "Accessing out of bounds: " << sizedArray[-10000] << std::endl;
     } catch (const std::exception& e) {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cout << RED << "Exception caught: " << e.what() << RESET << std::endl;
     }
 		std::cout << YELLOW<< "----------------------------------------------------" << RESET << std::endl;
 

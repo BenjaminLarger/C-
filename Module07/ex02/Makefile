@@ -44,7 +44,7 @@ $(NAME): $(OBJS)
 
 build/%.o: %.cpp
 	@echo -e "${YELLOW}🔨 Compiling $<...${NC}"
-	$(CXX) $(CFLAGS) -MMD -MP -c $< -o $@
+	$(CXX) $(CFLAGS) -I. -c $< -o $@
 	@echo -e "${GREEN}✅ Compiled $< to $@.${NC}"
 
 clean:
