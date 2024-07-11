@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
@@ -6,18 +6,22 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/27 10:38:40 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/11 19:35:29 by blarger          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "RPN.hpp"
 
-bool	InvalidChar(char c)
+bool	invalidArg(char *str)
 {
-	if ((c < '0' || c > '9') && c != '*' && c != '-' && c != '+' && c != '/')
-		return (true);
-	else
-		return (false);
+	for (int i = 0; str[i]; i++)
+	{
+		if ((str[i] < '0' || str[i] > '9') && str[i] != '*' && str[i] != '-' && str[i] != '+' && str[i] != '/' && str[i] != 32)
+		{
+			return (true);
+		}
+	}
+	return (false);
 }
 
 int	performOperation(int op1, int op2, char operation)
@@ -73,7 +77,7 @@ int main(int argc, char **argv)
 {
 	try
 	{
-		if (argc != 2)
+		if (argc != 2 || invalidArg(argv[1]) == true || argv[1][0] == '\0')
 			throw (std::runtime_error(BAD_INPUT));
 		ReversePolishNotation(argv[1]);
 	}
