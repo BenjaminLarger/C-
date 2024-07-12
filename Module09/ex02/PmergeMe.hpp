@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/11 19:42:13 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/12 09:29:34 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,34 +102,47 @@ Container insertStruggler(Container &aux, int ref) {
   return (aux);
 }
 
-template <typename Container>
-Container mergedSortedList(Container main, Container aux)
+template<typename T>
+bool shouldErase(const T& element)
 {
-  typename Container::iterator itMain = main.begin(), itAux = aux.begin(), beforeItAux = itAux;
-  while (itMain != main.end())
-  {
-	if (isListMin<Container>(main, *itMain))
+    const T threshold = 10; // Example threshold
+    return element < threshold;
+}
+
+template <typename Container>
+Container mergedSortedList(Container main, Container &aux)
+{
+	typename Container::iterator itMain = main.begin(), itAux = aux.begin();
+	Container	result;
+
+	while (itMain != main.end() && main.size() != 0 && !main.empty())
 	{
-		itAux = aux.begin();
-		while (itAux != aux.end())
+		if (isListMin<Container>(main, *itMain))
 		{
-			if (*itAux > *itMain)
+			while (itAux != aux.end() && itMain != main.end() && !main.empty())
 			{
-				beforeItAux = itAux;
-				--beforeItAux;
-				aux.insert(itAux, *itMain);
-				main.erase(itMain);
-				itMain = main.begin();
-				//break;
+				if (*itAux > *itMain)
+				{
+					aux.insert(itAux, *itMain);
+					itMain = main.erase(itMain);
+					if (main.empty() || main.size() == 0)
+						return (aux);
+					itAux = aux.begin();
+
+				}
+				else
+				{
+					++itAux;
+				}
+
 			}
-			++itAux;
 		}
+		else
+			++itMain;
+		if (itMain == main.end() && main.size() != 0)
+			itMain = main.begin();
 	}
-	++itMain;
-  }
- // displayNbAfterOrdering(main, BLUE);
-  displayNbAfterOrdering(aux, BLUE);
-  return (aux);
+	return (aux);
 }
 
 template <typename Container>
@@ -193,7 +206,7 @@ void fordJohnsonSort(Container main,
   if (aux.size() + main.size() != originalSizeWithoutStruggler)
     return;
   aux = sortEachPair<Container>(main, aux);
-  aux = mergedSortedList<Container>(main, aux);
+  mergedSortedList<Container>(main, aux);
   if (originalSize % 2 == 1)
     aux = insertStruggler(aux, struggler);
   if (printResult == true && listIsSorted(aux) == true) {

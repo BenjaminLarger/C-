@@ -13,7 +13,7 @@ RM=rm -f
 MKDIR_P=mkdir -p
 
 # Compilation flags
-CFLAGS=-g -Wall -Wextra -Werror -std=c++98 -fsanitize=address -fno-omit-frame-pointer
+CFLAGS=-g -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -fno-omit-frame-pointer
 
 # Source files and object files
 SRCS=main.cpp PmergeMe.cpp
