@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:31 by blarger           #+#    #+#             */
-/*   Updated: 2024/06/27 07:19:56 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/07 14:25:31 by blarger          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,7 +28,7 @@ Date::Date(unsigned int d, unsigned int m, unsigned int y) : day(d), month(m), y
 	if (d > 31 || d == 0 || m > 12 || m == 0)
 	{
 		std::ostringstream oss;
-        oss << "Error : bad input => " << y << "-" << m << "-" << d << std::endl;
+        oss << "Error: bad input => " << y << "-" << m << "-" << d << std::endl;
 		throw std::out_of_range(oss.str());
 	}
 }
