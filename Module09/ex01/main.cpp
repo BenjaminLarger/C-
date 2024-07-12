@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/11 19:35:29 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/12 09:48:17 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	invalidArg(char *str)
 	for (int i = 0; str[i]; i++)
 	{
 		if ((str[i] < '0' || str[i] > '9') && str[i] != '*' && str[i] != '-' && str[i] != '+' && str[i] != '/' && str[i] != 32)
-		{
 			return (true);
-		}
+		if ((str[i] == '*' || str[i] == '-' || str[i] == '+' || str[i] == '/') && str[i - 1] != 32)
+			return (true);
 	}
 	return (false);
 }
@@ -33,6 +33,8 @@ int	performOperation(int op1, int op2, char operation)
 		case('-'):
 			return (op2 - op1);
 		case ('/'):
+			if (op1 == 0)
+				throw std::out_of_range("Division by zero!");
 			return (op2 / op1);
 		case ('*'):
 			return (op2 * op1);
@@ -47,7 +49,7 @@ void	ReversePolishNotation(const std::string& expression)
 	std::istringstream	tokens(expression);
 	std::string			token;
 	int					value;
-	bool				hasValue = false;
+	int					nbOfValue = 0;
 
 	while (tokens >> token)
 	{
@@ -56,15 +58,15 @@ void	ReversePolishNotation(const std::string& expression)
 			std::istringstream iss(token);
 			iss >> value;
 			s.push(value);
-			hasValue = true;
+			nbOfValue++;
 		}
 		else
 		{
-			if (hasValue == false)
-				throw(std::out_of_range(""));
-			int	operand1 = s.top();
+			if (nbOfValue < 2)
+				throw(std::out_of_range("Not enough value to perform an operation!"));
+			int operand1 = s.top();
 			s.pop();
-			int	operand2 = s.top();
+			int operand2 = s.top();
 			s.pop();
 			s.push(performOperation(operand1, operand2, token[0]));
 		}
@@ -87,7 +89,7 @@ int main(int argc, char **argv)
 	}
 	catch (const std::out_of_range& e)
 	{
-		std::cout << RED << "Error"  << e.what() << RESET << std::endl;
+		std::cout << RED << "\nError: "  << e.what() << RESET << std::endl;
 	}
 	catch(...)
 	{
