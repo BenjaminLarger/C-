@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/13 13:19:01 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/15 12:43:20 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ bool	isOperation(char *str)
 	else
 		return (false);
 }
+
 bool	invalidArg(char *str)
 {
 	for (int i = 0; str[i]; i++)
@@ -26,10 +27,9 @@ bool	invalidArg(char *str)
 		if ((str[i] < '0' || str[i] > '9') && str[i] != '*' && str[i] != '-' && str[i] != '+' && str[i] != '/' && str[i] != 32)
 			return (true);
 		if ((str[i] == '*' || (str[i] == '-' && !isdigit(str[i + 1])) || str[i] == '+' || str[i] == '/') && str[i - 1] != 32)
-			return (true);
-		/* if (isOperation(&str[i]) && str[i + 1] == ' ' && isOperation(&str[i + 2]))
-			throw std::out_of_range("Cannot execute two consecutives signs!"); */
-			
+			return (true);			
+		if ((str[i] == '*' || (str[i] == '-' && !isdigit(str[i + 1])) || str[i] == '+' || str[i] == '/') && (str[i + 1]) == 32 && ((str[i + 2] == '*' || (str[i + 2] == '-' && !isdigit(str[i + 3])) || str[i + 2] == '+' || str[i + 2] == '/')))
+			return (true);			
 	}
 	if (str[strlen(str) - 1] != '+' && str[strlen(str) - 1]  != '-' && str[strlen(str) - 1]  != '/' && str[strlen(str) - 1]  != '*')
 		throw (std::out_of_range("RPN must finish by an operation!"));
@@ -100,7 +100,7 @@ void	ReversePolishNotation(const std::string& expression)
 			
 		}
 	}
-	std::cout << s.top();
+	std::cout << s.top() << std::endl;
 }
 
 int main(int argc, char **argv)

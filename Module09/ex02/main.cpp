@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/11 19:10:02 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/15 12:38:29 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 	}
 	catch(...)
 	{
-		//std::cout << RED << "Unknown error: " << RESET << std::endl;
+		std::cout << RED << "Unknown error: " << RESET << std::endl;
 	}
 	
 	return (0);
