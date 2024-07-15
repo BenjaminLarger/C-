@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/11 19:29:59 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/13 12:44:36 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stack>
 #include <sstream>
 #include <string>
+#include <cstring>
 
 
 // ----------COLORS

@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:06:24 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/12 13:23:55 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/12 17:50:52 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,22 @@ static bool	correctDate(std::string str)
 {
 	int	i = 0;
 
-//	std::cout << str << std::endl;
 	for (; i < 4; i++)
 	{
-		//std::cout << BLUE << str[i] << RESET;
 		if (!isdigit(str[i]))
 			return (false);
 	}
-	//std::cout << WHITE << str[i];
 	if (str[i++] != '-')
 		return (false);
 	for (; i < 7; i++)
 	{
-		//std::cout << RED << str[i];
 		if (!isdigit(str[i]))
 			return (false);
 	}
-	//std::cout << BLUE << str[i];
 	if (str[i++] != '-')
 		return (false);
 	for (; i < 10; i++)
 	{
-		//std::cout << WHITE << str[i];
 		if (!isdigit(str[i]))
 			return (false);
 	}
@@ -56,21 +50,17 @@ static bool	correctDate(std::string str)
 
 Date	getDate(const std::string &s)
 {
-	//std::cout << "_---------------------------\n";
+
     std::pair<Date, double> btcPair;
     std::stringstream ss(s);
     std::string yearStr, monthStr, dayStr;
     std::getline(ss, yearStr, '-');
 	unsigned int year = findTokenizedDate(yearStr); 
 	std::getline(ss, monthStr, '-');
-	//std::cout << monthStr << std::endl;
 	unsigned int month = findTokenizedDate(monthStr); 
 	std::getline(ss, dayStr, '-');
 	unsigned int day = findTokenizedDate(dayStr); 
-	/* if (correctDate(yearStr) == false || correctDate(monthStr) == false || correctDate(dayStr) == false)
-		throw (std::out_of_range("Incorrect input date!\n")); */
 	Date	btcDate(day, month, year);
-	//std::cout << "_---------------------------\n";
    	return btcDate;
 
 }
@@ -162,9 +152,7 @@ DateDoublePairVector read_csv(const std::string& filename, char sep, DateDoubleP
 	DateDoublePairVector myPairs;
 
     if (!file.is_open() && sep == '|')
-	{
         throw std::runtime_error("Error: Could not open file.");
-    }
     while (std::getline(file, line))
 	{
 		try
@@ -184,7 +172,6 @@ DateDoublePairVector read_csv(const std::string& filename, char sep, DateDoubleP
 				std::cerr << RED << e.what() << RESET;
 		}
     }
-
     file.close();
 	return (myPairs);
 }

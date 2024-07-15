@@ -6,7 +6,7 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:51:44 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/12 09:29:34 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/13 13:23:06 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,6 @@ Container insertStruggler(Container &aux, int ref) {
   return (aux);
 }
 
-template<typename T>
-bool shouldErase(const T& element)
-{
-    const T threshold = 10; // Example threshold
-    return element < threshold;
-}
-
 template <typename Container>
 Container mergedSortedList(Container main, Container &aux)
 {
@@ -128,13 +121,11 @@ Container mergedSortedList(Container main, Container &aux)
 					if (main.empty() || main.size() == 0)
 						return (aux);
 					itAux = aux.begin();
-
 				}
 				else
 				{
 					++itAux;
 				}
-
 			}
 		}
 		else
@@ -211,7 +202,7 @@ void fordJohnsonSort(Container main,
     aux = insertStruggler(aux, struggler);
   if (printResult == true && listIsSorted(aux) == true) {
     displayNbAfterOrdering(aux, WHITE);
-     std::cout << GREEN << "List is sorted !" << RESET << std::endl;
+     //std::cout << GREEN << "List is sorted !" << RESET << std::endl;
   } else if (printResult == true)
     std::cout << RED << "List is not sorted !" << RESET << std::endl;
 }

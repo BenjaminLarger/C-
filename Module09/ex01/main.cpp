@@ -6,26 +6,39 @@
 /*   By: blarger <blarger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:49:49 by blarger           #+#    #+#             */
-/*   Updated: 2024/07/12 09:48:17 by blarger          ###   ########.fr       */
+/*   Updated: 2024/07/13 13:19:01 by blarger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
+bool	isOperation(char *str)
+{
+	if ((str[0] == '*' || (str[0] == '-' && !isdigit(str[1])) || str[0] == '+' || str[0] == '/'))
+		return (true);
+	else
+		return (false);
+}
 bool	invalidArg(char *str)
 {
 	for (int i = 0; str[i]; i++)
 	{
 		if ((str[i] < '0' || str[i] > '9') && str[i] != '*' && str[i] != '-' && str[i] != '+' && str[i] != '/' && str[i] != 32)
 			return (true);
-		if ((str[i] == '*' || str[i] == '-' || str[i] == '+' || str[i] == '/') && str[i - 1] != 32)
+		if ((str[i] == '*' || (str[i] == '-' && !isdigit(str[i + 1])) || str[i] == '+' || str[i] == '/') && str[i - 1] != 32)
 			return (true);
+		/* if (isOperation(&str[i]) && str[i + 1] == ' ' && isOperation(&str[i + 2]))
+			throw std::out_of_range("Cannot execute two consecutives signs!"); */
+			
 	}
+	if (str[strlen(str) - 1] != '+' && str[strlen(str) - 1]  != '-' && str[strlen(str) - 1]  != '/' && str[strlen(str) - 1]  != '*')
+		throw (std::out_of_range("RPN must finish by an operation!"));
 	return (false);
 }
 
 int	performOperation(int op1, int op2, char operation)
 {
+	
 	switch (operation)
 	{
 		case ('+'):
@@ -42,7 +55,16 @@ int	performOperation(int op1, int op2, char operation)
 			throw (std::out_of_range(""));
 	}
 }
-
+bool	expressionHasOperation(std::string expression)
+{
+	bool		hasExpression = false;
+	for (int i = 0; expression[i]; i++)
+	{
+		if (expression[i] == '+' || expression[i] == '-' || expression[i] == '/' || expression[i] == '*')
+			hasExpression = true;
+	}
+	return (hasExpression);
+}
 void	ReversePolishNotation(const std::string& expression)
 {
 	std::stack<int> 	s;
@@ -51,9 +73,12 @@ void	ReversePolishNotation(const std::string& expression)
 	int					value;
 	int					nbOfValue = 0;
 
+	s.push(0);
+	if (expressionHasOperation(expression) == false)
+		throw(std::out_of_range("Program requires at least one operation!"));
 	while (tokens >> token)
 	{
-		if (isdigit(token[0]))
+		if (isdigit(token[0]) || (token[0] == '-' && isdigit(token[1])))
 		{
 			std::istringstream iss(token);
 			iss >> value;
@@ -66,13 +91,16 @@ void	ReversePolishNotation(const std::string& expression)
 				throw(std::out_of_range("Not enough value to perform an operation!"));
 			int operand1 = s.top();
 			s.pop();
+			if (s.size() < 2)
+				break ;
 			int operand2 = s.top();
+	
 			s.pop();
 			s.push(performOperation(operand1, operand2, token[0]));
+			
 		}
-		std::cout << s.top() << " ";
 	}
-	std::cout << std::endl << s.top();
+	std::cout << s.top();
 }
 
 int main(int argc, char **argv)
